@@ -4,7 +4,8 @@
 #include <SDL2/SDL.h>
 
 //ROOT = CORE
-namespace ToryEngine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
+
+namespace toryengine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
 {
 	class Object;	//allow root to access object
 
@@ -12,7 +13,7 @@ namespace ToryEngine	//Makes sure it uses the Tory Engine functions, even if use
 	{
 	public:
 		static std::shared_ptr<Root> initalize();	//static can be called anywhere to init Root
-		~Root();
+		~Root();			//???????? Do  I need this
 
 		void Start();	//Main loop. runs all object updates etc
 		void Stop();
@@ -25,7 +26,7 @@ namespace ToryEngine	//Makes sure it uses the Tory Engine functions, even if use
 		//Objects / Entities
 		std::vector<std::shared_ptr<Object>> objects;	//Vector of all objects
 
-		bool running;
+		bool running;	//game loop bool
 		SDL_Window* window;
 	};
 }

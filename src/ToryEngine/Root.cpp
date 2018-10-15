@@ -4,8 +4,8 @@
 #include "Root.h"
 #include "Object.h"
 
-
-namespace ToryEngine
+//EXPLAIN RTN?
+namespace toryengine
 {
 	std::shared_ptr<Root> Root::initalize()
 	{
