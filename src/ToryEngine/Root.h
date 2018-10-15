@@ -2,25 +2,30 @@
 #include <vector>
 
 #include <SDL2/SDL.h>
+
+//ROOT = CORE
 namespace ToryEngine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
 {
-	class Object;
+	class Object;	//allow root to access object
 
-	class Root
+	class Root //:private NonCopyable
 	{
 	public:
-		void start();
-		void stop();
+		static std::shared_ptr<Root> initalize();	//static can be called anywhere to init Root
+		~Root();
+
+		void Start();	//Main loop. runs all object updates etc
+		void Stop();
 
 		std::shared_ptr<Object> addObject();	//Adds a object to the vector
 
 	private:
-		//ENVIRNOMENT?
-		//std::shared_ptr<Environment>;
+		//ENVIRNOMENT (Add all other things here as well)
 
-		//Entities
-		//std::vector<std::shared_ptr<Entity>>;	//vector containing all entities.
+		//Objects / Entities
+		std::vector<std::shared_ptr<Object>> objects;	//Vector of all objects
 
 		bool running;
-
+		SDL_Window* window;
 	};
+}

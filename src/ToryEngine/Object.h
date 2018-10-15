@@ -1,12 +1,15 @@
 #include <memory>
 #include <vector>
 
+//Object = Entity
+
 namespace ToryEngine
 {
-	class Root;
+	class Root;	
 
 	class Object
 	{
+		friend class Root; //Friend allows a class to access the private and protected variables of this class
 	public:
 		std::shared_ptr<Root> getRoot();	//Go to the root, allows to interact with other objects easier.
 	
@@ -16,7 +19,11 @@ namespace ToryEngine
 		template <typename T, typename A, typename B, typename C> std::shared_ptr<T> addComponent<T>(A a, B b, C c);
 
 	private:
-		void tick();
-		void display();
+		//ADD components
+		//std::vector <std::shared_ptr<Component>> components
+
+
+		void Update();
+		void Draw();
 	};
 }

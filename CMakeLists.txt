@@ -34,7 +34,7 @@ endif()
 
 add_library(ToryEngine
 src/ToryEngine/Root.cpp
-src/ToryEngine/Entity.cpp
+src/ToryEngine/Object.cpp
 )
 
 if(MSVC)
