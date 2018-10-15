@@ -16,22 +16,25 @@ namespace toryengine
 	std::shared_ptr<T> addComponent<T>()
 	{
 		//rtn again?
+		//Creates new smart pointer of T, 
+		//sets itself to itself (inside a smart pointer)
+
 	}
 
-	template <typename T, typename A> 
-	std::shared_ptr<T> addComponent<T>(A a)
-	{
-	}
+	//template <typename T, typename A> 
+	//std::shared_ptr<T> addComponent<T>(A a)
+	//{
+	//}
 
-	template <typename T, typename A, typename B> 
-	std::shared_ptr<T> addComponent<T>(A a, B b)
-	{
-	}
+	//template <typename T, typename A, typename B> 
+	//std::shared_ptr<T> addComponent<T>(A a, B b)
+	//{
+	//}
 
-	template <typename T, typename A, typename B, typename C> 
-	std::shared_ptr<T> addComponent<T>(A a, B b, C c)
-	{
-	}
+	//template <typename T, typename A, typename B, typename C> 
+	//std::shared_ptr<T> addComponent<T>(A a, B b, C c)
+	//{
+	//}
 
 	void Object::Update()
 	{

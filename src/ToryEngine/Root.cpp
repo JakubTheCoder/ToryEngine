@@ -8,9 +8,9 @@
 namespace toryengine
 {
 	std::shared_ptr<Root> Root::initalize()
-	{
+	{	
 		//rtn
-
+		//cant have constructor to itself so you okay
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)	//Makes sure SDL initalises
 		{
 			throw std::exception();

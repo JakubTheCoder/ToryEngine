@@ -13,7 +13,6 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 	{
 	public:
 		static std::shared_ptr<Root> initalize();	//static can be called anywhere to init Root
-		~Root();			//???????? Do  I need this
 
 		void Start();	//Main loop. runs all object updates etc
 		void Stop();
