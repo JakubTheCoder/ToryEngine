@@ -18,7 +18,7 @@ namespace toryengine
 		std::shared_ptr<Root> getRoot();	//Go to the root, allows to interact with other objects easier.
 		template <typename T> std::shared_ptr<T> getComponent();	//template class since we dont know what type the component will be
 
-		//add multiple components?
+		//Allows the constructor to set different vars, for example Make player. Make player in red team. Make player in red team a wizard.
 		template <typename T> 
 		std::shared_ptr<T> addComponent<T>();
 
@@ -32,11 +32,14 @@ namespace toryengine
 		std::shared_ptr<T> addComponent<T>(A a, B b, C c);*/
 
 	private:
-		bool begin; //start unity equiv
-		std::vector <std::shared_ptr<Component>> components;
+		std::weak_ptr<Object> objectSelf;
 		std::weak_ptr<Root> root;
+		std::vector <std::shared_ptr<Component>> components;
+
 
 		void Update();
 		void Draw();
+
+		bool begin; //start unity equiv
 	};
 }

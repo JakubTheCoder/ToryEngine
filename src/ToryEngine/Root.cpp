@@ -4,27 +4,37 @@
 #include "Root.h"
 #include "Object.h"
 
-//EXPLAIN RTN?
+#define WINDOW_WIDTH 800	//changes the words WINDOW_WIDTH to 800, no int or memory required to store this
+#define WINDOW_HEIGHT 600
 namespace toryengine
 {
 	std::shared_ptr<Root> Root::initalize()
 	{	
 		//rtn
-		//cant have constructor to itself so you okay
+		//cant have constructor to itself
+		std::shared_ptr<Root> temp = std::make_shared<Root>();	//makes temp a shared pointer
+		temp->running = false;	//game loop is false 
+		temp->rootSelf = temp;	//sets temp to itself since constructor can't do this
+
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)	//Makes sure SDL initalises
 		{
 			throw std::exception();
 		}
 
-		//rtn window
+		temp->window = SDL_CreateWindow("Tory Engine", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,	//Creates a window 
+			WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
-		//if SDL GL Create context
+		if (!SDL_GL_CreateContext(temp->window))	//makes sure window is made
+		{
+			throw std::exception();
+		}
 
 		if (glewInit() != GLEW_OK)	//makes sure GLEW initalises
 		{
 			throw std::exception();
 		}
-		//return rtn
+
+		return temp;
 	}
 
 	void Root::Start()
@@ -47,12 +57,12 @@ namespace toryengine
 			
 			for (std::vector<std::shared_ptr<Object> >::iterator i = objects.begin(); i != objects.end(); i++)	//go through all objects in object vector
 			{
-				//object ticks() 
+				(*i)->Update(); //object ticks() 
 			}
 			//ranged based loop (for each) makes for loop a lot shorter 
 			for each (std::shared_ptr<Object> o in objects) //(object var in collection_to_loop)	<syntax/ For each object in loop {do this}
 			{
-				//Object ticks//
+				o->Update();//Object ticks//
 			}
 			//CLEAR SCREEN
 			glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
@@ -61,7 +71,7 @@ namespace toryengine
 			//DRAW OBJECTS
 			for (std::vector<std::shared_ptr<Object>>::iterator i = objects.begin(); i != objects.end(); i++)
 			{
-				//Object Draws ()
+				(*i)->Draw(); //Object Draws //Iterator is a pointer so we have to de reference that to access data
 			}
 
 			SDL_GL_SwapWindow(window);	//swap buffer
@@ -76,10 +86,12 @@ namespace toryengine
 
 	std::shared_ptr<Object> Root::addObject()
 	{
-		std::shared_ptr<Object> temp = std::make_shared<Object>();//rtn
-		objects.push_back(temp);
+		std::shared_ptr<Object> temp = std::make_shared<Object>();	//make a temp shared pointer
+		objects.push_back(temp);	//push it back into the objects vector
+		temp->objectSelf = temp;	//make itself temp
+		temp->root = rootSelf;		//make root what it is.
 
-		//rtn?
-		//rtn rtn ;)
+		return temp;
+
 	}
 }

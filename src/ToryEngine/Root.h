@@ -15,15 +15,17 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 		static std::shared_ptr<Root> initalize();	//static can be called anywhere to init Root
 
 		void Start();	//Main loop. runs all object updates etc
-		void Stop();
+		void Stop();	//stops the program
 
 		std::shared_ptr<Object> addObject();	//Adds a object to the vector
 
 	private:
-		//ENVIRNOMENT (Add all other things here as well)
+		std::weak_ptr<Root> rootSelf;	//weak pointer for reference
+
 
 		//Objects / Entities
 		std::vector<std::shared_ptr<Object>> objects;	//Vector of all objects
+		//ENVIRNOMENT (Add all other things here as well)
 
 		bool running;	//game loop bool
 		SDL_Window* window;
