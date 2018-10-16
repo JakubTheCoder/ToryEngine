@@ -12,12 +12,12 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 	class Root //:private NonCopyable
 	{
 	public:
-		static std::shared_ptr<Root> initalize();	//static can be called anywhere to init Root
+		static std::shared_ptr<Root> Initalize();	//static can be called anywhere to init Root
 
 		void Start();	//Main loop. runs all object updates etc
 		void Stop();	//stops the program
 
-		std::shared_ptr<Object> addObject();	//Adds a object to the vector
+		std::shared_ptr<Object> AddObject();	//Adds a object to the vector
 
 	private:
 		std::weak_ptr<Root> rootSelf;	//weak pointer for reference

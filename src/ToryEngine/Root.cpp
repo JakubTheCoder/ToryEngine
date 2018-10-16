@@ -8,7 +8,7 @@
 #define WINDOW_HEIGHT 600
 namespace toryengine
 {
-	std::shared_ptr<Root> Root::initalize()
+	std::shared_ptr<Root> Root::Initalize()
 	{	
 		//rtn
 		//cant have constructor to itself
@@ -84,7 +84,7 @@ namespace toryengine
 		running = false;
 	}
 
-	std::shared_ptr<Object> Root::addObject()
+	std::shared_ptr<Object> Root::AddObject()
 	{
 		std::shared_ptr<Object> temp = std::make_shared<Object>();	//make a temp shared pointer
 		objects.push_back(temp);	//push it back into the objects vector

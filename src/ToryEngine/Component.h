@@ -22,5 +22,6 @@ namespace toryengine
 		virtual void OnUpdate() { }	//update
 		virtual void OnDisplay() { }	//display
 
+		bool began; 
 	};
 }
