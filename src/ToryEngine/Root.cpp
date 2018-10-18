@@ -59,11 +59,7 @@ namespace toryengine
 			{
 				(*i)->Update(); //object ticks() 
 			}
-			//ranged based loop (for each) makes for loop a lot shorter 
-			for each (std::shared_ptr<Object> o in objects) //(object var in collection_to_loop)	<syntax/ For each object in loop {do this}
-			{
-				o->Update();//Object ticks//
-			}
+
 			//CLEAR SCREEN
 			glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);

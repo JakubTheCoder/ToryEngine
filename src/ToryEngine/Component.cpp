@@ -5,7 +5,7 @@ namespace toryengine
 {
 	std::shared_ptr<Root> Component::GetRoot()
 	{
-		return GetObject()->getRoot();
+		return GetObject()->GetRoot();
 	}
 
 }

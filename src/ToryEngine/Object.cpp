@@ -7,13 +7,13 @@ namespace toryengine
 		return root.lock();	//creates a shared ptr to Root (to go up hierarchy)
 	}
 	
-	template <T> 
+	template <typename T> 
 	std::shared_ptr<T> Object::GetComponent()	
 	{
 		for (size_t i = 0; i < components.size()i++)	//go thorugh all components of a object
 		{
-			std::shared_ptr<T> test = std::dynamic_pointer_cast<T>(components.at(i));	//attempts to convert back to original component (T) if fails test will be NULL, therefore it is not the component we are looking for
-			//Dynamic casts converts pointers to classes up/ down heirarchy 
+			//attempts to convert back to original component (T) if fails test will be NULL, therefore it is not the component we are looking for
+			std::shared_ptr<T> test = std::dynamic_pointer_cast<T>(components.at(i));	//Dynamic casts converts pointers to classes up/ down heirarchy 
 			if (test)
 			{
 				return test;
@@ -24,7 +24,7 @@ namespace toryengine
 	}	 
 
 	template <typename T>
-	std::shared_ptr<T> AddComponent<T>()
+	std::shared_ptr<T> Object::AddComponent()
 	{
 		//Creates new smart pointer of T, 
 		//sets itself to itself (inside a smart pointer)
@@ -34,6 +34,7 @@ namespace toryengine
 		components.push_back(temp);
 
 	}
+
 	//Extra templates we might not need
 	/*
 	//template <typename T, typename A> 
@@ -51,7 +52,6 @@ namespace toryengine
 	//{
 	//}
 	*/
-
 	void Object::Update()
 	{
 		//for / for each loop to update all components 

@@ -1,3 +1,4 @@
+#pragma once
 #include <memory>
 
 namespace toryengine
@@ -7,7 +8,7 @@ namespace toryengine
 
 	class Component
 	{
-		friend class Object; ////Friend allows a class to access the private and protected variables of this class
+		friend class Object; //Friend allows a class to access the private and protected variables of this class
 
 	public:
 		virtual ~Component() {}
