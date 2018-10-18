@@ -1,9 +1,14 @@
 #include "VertexBuffer.h"
 
+//What are components?
+//Dirty bool (flag bool to?)
 namespace toryengine
 {
-	VertexBuffer::VertexBuffer() :components(0), dirty(false)	
+	VertexBuffer::VertexBuffer()	
 	{
+		components = 0;
+		dirty = false;
+
 		glGenBuffers(1, &id);	//Creates new VBO on GPU
 
 		if (!id)
@@ -14,7 +19,6 @@ namespace toryengine
 
 	void VertexBuffer::Add(glm::vec3 value)
 	{
-
 		if (!components)
 		{
 			components = 3;
@@ -58,7 +62,7 @@ namespace toryengine
 		return components;
 	}
 
-	GLuint VertexBuffer::GetID()
+	GLuint VertexBuffer::GetId()
 	{
 		if (dirty)
 		{

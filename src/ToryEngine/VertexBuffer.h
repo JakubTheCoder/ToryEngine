@@ -12,8 +12,8 @@ namespace toryengine
 		void Add(glm::vec3 value);	//adds position in the X, Y and Z axis
 		void Add(glm::vec4 value);	//adds 4 position in the X, Y,Z and W axis
 		int GetComponents();	
-		int GetDataSize();
-		GLuint GetID();
+		int GetPositionSize() { return position.size(); }
+		GLuint GetId();
 
 	private:
 		GLuint id;	//GLuint = unsigned int
