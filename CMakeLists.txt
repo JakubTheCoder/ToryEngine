@@ -39,6 +39,10 @@ src/ToryEngine/Object.h
 src/ToryEngine/Object.cpp
 src/ToryEngine/Component.h
 src/ToryEngine/Component.cpp
+src/ToryEngine/VertexArray.h
+src/ToryEngine/VertexArray.cpp
+src/ToryEngine/VertexBuffer.h
+src/ToryEngine/VertexBuffer.cpp
 )
 
 if(MSVC)
