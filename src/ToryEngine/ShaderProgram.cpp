@@ -29,10 +29,10 @@ namespace toryengine
 
 		if (!file.is_open())
 		{
-			throw exeption();
+			throw std::exception();
 		}
 
-		while (!file.eof)
+		while (!file.eof())
 		{
 			std::string line;
 			std::getline(file, line);
@@ -40,9 +40,9 @@ namespace toryengine
 		}
 
 		//Prep  Vertex Shader
-		const Glchar *vs = vertSrc.c_str();	//
-		Gluint vertexShaderId = glCreateShader(GL_VERTEX_SHADER);	//Make Vertex Shader
-		glShaderSource(vertexShaderId, 1, &vs, NULL);	
+		const GLchar *vs = vertSrc.c_str();	//
+		GLuint vertexShaderId = glCreateShader(GL_VERTEX_SHADER);	//Make Vertex Shader
+		glShaderSource(vertexShaderId, 1, &vs, NULL);
 		glCompileShader(vertexShaderId);	//Compile vert shader
 		GLint success = 0;
 		glGetShaderiv(vertexShaderId, GL_COMPILE_STATUS, &success);	//checks if shader compiled
@@ -56,16 +56,16 @@ namespace toryengine
 		//Prep FragmentShader
 		const GLchar *fs = fragSrc.c_str();
 		{
-			GLuint fragmentShaderId = glCreateShader(GL_FRAGMENT_SAHDER);	//Make Frag Shader
+			GLuint fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);	//Make Frag Shader
 			glShaderSource(fragmentShaderId, 1, &fs, NULL);
-			glCompileShader(fragmentShader);	//Compile frag shader
+			glCompileShader(fragmentShaderId);	//Compile frag shader
 			glGetShaderiv(fragmentShaderId, GL_COMPILE_STATUS, &success);	//checks if shader compiled
 
 			if (!success)
 			{
 				throw::std::exception();
 			}
-			
+
 			//Prep Shader
 			id = glCreateProgram();	//create shader program
 			glAttachShader(id, vertexShaderId);	//attach vertex to shader
@@ -79,12 +79,12 @@ namespace toryengine
 				throw std::exception();
 			}
 
-			
+
 			glLinkProgram(id);	//Link the programs together
-			glGetProgamiv(id, GL_LINK_STATUS, &success);	//check for errors
+			glGetProgramiv(id, GL_LINK_STATUS, &success);	//check for errors
 			if (!success)
 			{
-				throw std:; exception();
+				throw std::exception();
 			}
 
 			//Detatched linked shader programs and delete, as they are no longer needed
@@ -95,4 +95,43 @@ namespace toryengine
 
 		}
 	}
+	
+		void ShaderProgram::Draw(VertexArray& vertexArray)
+		{
+			glUseProgram(id);
+			glBindVertexArray(vertexArray.GetId());
+
+			glDrawArrays(GL_TRIANGLES, 0, vertexArray.GetVertexCount());
+
+			glBindVertexArray(0);
+			glUseProgram(0);
+		}
+
+		void ShaderProgram::SetUniform(std::string uniform, glm::vec4 value)
+		{
+			GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+
+			if (uniformId == -1)
+			{
+				throw std::exception();
+			}
+			glUseProgram(id);
+			glUniform4f(uniformId, value.x, value.y, value.z, value.w);
+			glUseProgram(0);
+		}
+
+		void ShaderProgram::SetUniform(std::string uniform, float value)
+		{
+			GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+
+			if (uniformId == -1)
+			{
+				throw std::exception();
+			}
+			glUseProgram(id);
+			glUniform1f(uniformId, value);
+			glUseProgram(0);
+		}
+
+	
 }

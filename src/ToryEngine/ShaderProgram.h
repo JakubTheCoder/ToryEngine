@@ -2,7 +2,7 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <string>
-
+//Set uniform with mat 4?
 namespace toryengine
 {
 	class VertexArray;
@@ -12,11 +12,12 @@ namespace toryengine
 	public:
 		ShaderProgram(std::string vert, std::string frag);
 		void Draw(VertexArray& vertexArray);
-		void SetUniform(glm::vec4 uniform);
-		void SetUniform(float uniform);
-		GLuint GetId();
+		void SetUniform(std::string unifrom,glm::vec4 value);
+		void SetUniform(std::string uniform, float value);
+		//void SetUniform(std::string uniform, glm::mat4 value);	//Why do we need this?
+		GLuint GetId() { return id; }
 
 	private:
-		Gluint id;
+		GLuint id;
 	};
 }
