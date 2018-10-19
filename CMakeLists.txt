@@ -43,6 +43,8 @@ src/ToryEngine/VertexArray.h
 src/ToryEngine/VertexArray.cpp
 src/ToryEngine/VertexBuffer.h
 src/ToryEngine/VertexBuffer.cpp
+src/ToryEngine/SharderProgram.h
+src/ToryEngine/ShaderProgram.cpp
 )
 
 if(MSVC)
