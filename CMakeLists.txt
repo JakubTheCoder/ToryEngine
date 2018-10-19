@@ -46,6 +46,8 @@ src/ToryEngine/VertexBuffer.h
 src/ToryEngine/VertexBuffer.cpp
 src/ToryEngine/ShaderProgram.h
 src/ToryEngine/ShaderProgram.cpp
+src/ToryEngine/MeshRenderer.h
+src/ToryEngine/MeshRenderer.cpp
 )
 
 if(MSVC)

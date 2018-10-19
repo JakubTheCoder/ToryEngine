@@ -21,7 +21,7 @@ namespace toryengine
 		virtual void OnInit() { }	// on init
 		virtual void OnBegin() { }	// on begin ? we might not need this??
 		virtual void OnUpdate() { }	//update
-		virtual void OnDisplay() { }	//display
+		virtual void OnDraw() { }	//draw
 
 		bool began; 
 	};
