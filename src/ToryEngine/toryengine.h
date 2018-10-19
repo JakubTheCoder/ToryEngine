@@ -1,6 +1,6 @@
 #pragma once
 
 #include "Root.h"
-#incldue "Object.h"
+#include "Object.h"
 #include "Component.h"
-//#include "MeshRenderer.h"
+#include "MeshRenderer.h"

@@ -133,5 +133,18 @@ namespace toryengine
 			glUseProgram(0);
 		}
 
+		void ShaderProgram::SetUniform(std::string uniform, glm::mat4 value)
+		{
+			GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+
+			if (uniformId == -1)
+			{
+				throw std::exception();
+			}
+
+			glUseProgram(id);
+			glUniformMatrix4fv(uniformId, 1, GL_FALSE, glm::value_ptr(value));
+			glUseProgram(0);
+		}
 	
 }
