@@ -33,15 +33,26 @@ namespace toryengine
 		temp->began = false;
 		components.push_back(temp);
 
+		temp->OnInit();
+		return temp;
 	}
 
 	//Extra templates we might not need
-	/*
-	//template <typename T, typename A> 
-	//std::shared_ptr<T> addComponent<T>(A a)
-	//{
-	//}
+	
+	template <typename T, typename A> 
+	std::shared_ptr<T> Object::AddComponent(A a)
+	{
+		std::shared_ptr<T> temp = std::make_shared<T>();
+		temp->object = objectSelf;
+		temp->began = false;
+		components.push_back(temp);
 
+		temp->OnInit(a);
+
+		return temp;
+	}
+
+	/*
 	//template <typename T, typename A, typename B> 
 	//std::shared_ptr<T> addComponent<T>(A a, B b)
 	//{
@@ -52,9 +63,18 @@ namespace toryengine
 	//{
 	//}
 	*/
+
 	void Object::Update()
 	{
 		//for / for each loop to update all components 
+		for (std::vector<std::shared_ptr<Component>>::iterator it = components.begin();it != components.end(); it++);
+		{
+			if (!(*it)->began)
+			{
+				(*it)->OnBegin();
+				(*it)->begam = true;
+			}
+		}
 	}
 
 	void Object::Draw()

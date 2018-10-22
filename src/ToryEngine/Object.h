@@ -22,14 +22,15 @@ namespace toryengine
 		//Allows the constructor to set different vars, for example Make player. Make player in red team. Make player in red team a wizard.
 		template <typename T> std::shared_ptr<T> AddComponent();
 
-		/*template <typename T, typename A> 
-		std::shared_ptr<T> addComponent<T>(A a);
+		template <typename T, typename A> std::shared_ptr<T> AddComponent(A a);
 
+		/*
 		template <typename T, typename A, typename B>
 		std::shared_ptr<T> addComponent<T>(A a, B b);
 
 		template <typename T, typename A, typename B, typename C> 
-		std::shared_ptr<T> addComponent<T>(A a, B b, C c);*/
+		std::shared_ptr<T> addComponent<T>(A a, B b, C c);
+		*/
 
 	private:
 		std::weak_ptr<Object> objectSelf;

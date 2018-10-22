@@ -28,9 +28,9 @@ namespace toryengine
 			throw std::exception();
 		}
 		//push back position of point
-		position.push_back(value.x);
-		position.push_back(value.y);
-		position.push_back(value.z);
+		data.push_back(value.x);
+		data.push_back(value.y);
+		data.push_back(value.z);
 		dirty = true;
 	}
 
@@ -46,10 +46,10 @@ namespace toryengine
 			throw std::exception();
 		}
 
-		position.push_back(value.x);
-		position.push_back(value.y);
-		position.push_back(value.z);
-		position.push_back(value.w);
+		data.push_back(value.x);
+		data.push_back(value.y);
+		data.push_back(value.z);
+		data.push_back(value.w);
 		dirty = true;
 	}
 
@@ -67,7 +67,7 @@ namespace toryengine
 		if (dirty)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, id);	//Binds making this Buffer object active
-			glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*position.size(), &position.at(0), GL_STATIC_DRAW);	//Uploads copy from memory to into new VBO ???? Why do we have to do this?
+			glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*data.size(), &data.at(0), GL_STATIC_DRAW);	//Uploads copy from memory to into new VBO ???? Why do we have to do this?
 			glBindBuffer(GL_ARRAY_BUFFER, 0);	//reset
 			dirty = false;
 		}

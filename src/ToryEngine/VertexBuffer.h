@@ -12,13 +12,13 @@ namespace toryengine
 		void Add(glm::vec3 value);	//adds position in the X, Y and Z axis
 		void Add(glm::vec4 value);	//adds 4 position in the X, Y,Z and W axis
 		int GetComponents();	
-		int GetPositionSize() { return position.size(); }
+		int GetDataSize() { return data.size(); }
 		GLuint GetId();
 
 	private:
 		GLuint id;	//GLuint = unsigned int
 		int components;		//what exactly are componnts????? Points?
-		std::vector<GLfloat> position;	//GLfloat = float that can be used on a lot of compilers	/ Vector of all positions.
+		std::vector<GLfloat> data;	//GLfloat = float that can be used on a lot of compilers	/ Vector of all positions.
 		bool dirty;		//flag bool to set if a object is created?
 
 	};

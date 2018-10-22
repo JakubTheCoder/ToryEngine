@@ -19,7 +19,7 @@ namespace toryengine
 		colors->Add(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 		colors->Add(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
-		shape = std::make_shared<VertexBuffer>();
+		shape = std::make_shared<VertexArray>();
 		shape->SetBuffer("in_Position", positions);
 		shape->SetBuffer("in_Color", colors);
 
