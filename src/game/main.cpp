@@ -5,25 +5,26 @@
 class TestScreen : public toryengine::Component
 {
 public:
-	void onInit(std::string color)
+	void OnInit(std::string color)
 	{
 		std::cout << "OnInit " << std::endl;
 	}
 
-	void onBegin()
+	void OnBegin()
 	{
-
+		//he
 	}
 
-	void onTick()
+	void OnUpdate()
 	{
-
+		//he
 	}
-	void onDisplay()
+	void OnDraw()
 	{
-
+	//he
 	}
 };
+
 int main()
 {
 	std::cout << "Hello World" << std::endl;
@@ -34,9 +35,9 @@ int main()
 
 	std::shared_ptr<TestScreen> ts = e->AddComponent<TestScreen>("Green");
 
-	//std::shared_ptr<toryengine::MeshRenderer> mr = e->AddComponent<toryengine::MeshRenderer>();
-	//std::shared_ptr<toryengine::MeshRenderer>mr2 = e->GetComponent<toryengine::MeshRenderer>();
+	std::shared_ptr<toryengine::MeshRenderer> mr = e->AddComponent<toryengine::MeshRenderer>();
+	std::shared_ptr<toryengine::MeshRenderer>mr2 = e->GetComponent<toryengine::MeshRenderer>();
 
-	//c->Start();
+	c->Start();
 	return 0;
 }

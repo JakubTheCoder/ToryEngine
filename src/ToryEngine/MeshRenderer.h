@@ -8,7 +8,7 @@ namespace toryengine
 	class VertexArray;
 	class ShaderProgram;
 
-	class MeshRenderer
+	class MeshRenderer : public Component
 	{
 	public:
 		void OnInit();

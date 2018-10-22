@@ -66,19 +66,25 @@ namespace toryengine
 
 	void Object::Update()
 	{
-		//for / for each loop to update all components 
-		for (std::vector<std::shared_ptr<Component>>::iterator it = components.begin();it != components.end(); it++);
+		//Go Through all the components on a object and update them. 
+		for (std::vector<std::shared_ptr<Component>>::iterator i = components.begin();i != components.end(); i++)
 		{
-			if (!(*it)->began)
+			if (!(*i)->began)
 			{
-				(*it)->OnBegin();
-				(*it)->begam = true;
+				(*i)->OnBegin();
+				(*i)->began = true;
 			}
+			(*i)->OnUpdate();
+
 		}
 	}
 
 	void Object::Draw()
 	{
-		//for / for each loop to draw all components 
+		//Go through all components and draw them
+		for (std::vector<std::shared_ptr<Component>>::iterator i = components.begin(); i != components.end(); i++)
+		{
+			(*i)->OnDraw();
+		}
 	}
 }

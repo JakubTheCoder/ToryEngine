@@ -18,11 +18,13 @@ namespace toryengine
 
 	private:
 		std::weak_ptr<Object> object;	//weak ptr to go up hierarchy
+		bool began;
+
 		virtual void OnInit() { }	// on init
-		virtual void OnBegin() { }	// on begin ? we might not need this??
+		virtual void OnBegin() { }	// on begin
 		virtual void OnUpdate() { }	//update
 		virtual void OnDraw() { }	//draw
 
-		bool began; 
+
 	};
 }
