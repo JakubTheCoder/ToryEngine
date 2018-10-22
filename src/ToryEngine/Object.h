@@ -17,30 +17,42 @@ namespace toryengine
 	public:
 		std::shared_ptr<Root> GetRoot();	//Go to the root, allows to interact with other objects easier.
 
-		template <typename T> std::shared_ptr<T> GetComponent();	//template class since we dont know what type the component will be
+		template <typename T> std::shared_ptr<T> GetComponent()//template class since we dont know what type the component will be
+		{
+			for (size_t i = 0; i < components.size(); i++)	//go thorugh all components of a object
+			{
+				//attempts to convert back to original component (T) if fails test will be NULL, therefore it is not the component we are looking for
+				std::shared_ptr<T> test = std::dynamic_pointer_cast<T>(components.at(i));	//Dynamic casts converts pointers to classes up/ down heirarchy 
+				if (test)
+				{
+					return test;
+				}
+			}
+			throw std::exception();//thorw exeption if we couldn't find object
 
+		}
 		//Allows the constructor to set different vars, for example Make player. Make player in red team. Make player in red team a wizard.
-		template <typename T> std::shared_ptr<T> AddComponent();
-		//{
-		//	std::shared_ptr<T> temp = std::make_shared<T>();
-		//	temp->object = objectSelf;
-		//	temp->began = false;
-		//	
-		//	components.push_back(temp);
-		//	temp->OnInit();
-		//	return temp;
-		//}
-		template <typename T, typename A> std::shared_ptr<T> AddComponent(A a);
-		//{
-		//	std::shared_ptr<T> temp = std::make_shared<T>();
-		//	temp->object = objectSelf;
-		//	temp->began = false;
-		//	components.push_back(temp);
+		template <typename T> std::shared_ptr<T> AddComponent()
+		{
+			std::shared_ptr<T> temp = std::make_shared<T>();
+			temp->object = objectSelf;
+			temp->began = false;
+			
+			components.push_back(temp);
+			temp->OnInit();
+			return temp;
+		}
+		template <typename T, typename A> std::shared_ptr<T> AddComponent(A a)
+		{
+			std::shared_ptr<T> temp = std::make_shared<T>();
+			temp->object = objectSelf;
+			temp->began = false;
+			components.push_back(temp);
 
-		//	temp->OnInit(a);
+			temp->OnInit(a);
 
-		//	return temp;
-		//}
+			return temp;
+		}
 
 		/*
 		template <typename T, typename A, typename B>
