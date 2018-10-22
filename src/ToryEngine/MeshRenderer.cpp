@@ -28,8 +28,13 @@ namespace toryengine
 
 	void MeshRenderer::OnDraw()
 	{
+		// model mat4 from transform...
 		shader->SetUniform("in_Model", glm::mat4(1.0f));
-		shader->SetUniform("in_Model", glm::mat4(1.0f));
+
+		// camera's transform (and inverse) 
+		shader->SetUniform("in_View", glm::mat4(1.0f));
+
+		// from screen
 		shader->SetUniform("in_Projection", glm::mat4(1.0f));
 		shader->Draw(*shape);
 	}

@@ -10,10 +10,12 @@ if(MSVC)
   include_directories(
     contrib/msvc-windows-x86/glew/include
     contrib/msvc-windows-x86/SDL2/include
+    contrib/msvc-windows-x86/SDL2_image/include
   )
 
   link_directories(
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2/lib
+    ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_image/lib
     ${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/lib
   )
 else()
@@ -48,15 +50,17 @@ src/ToryEngine/ShaderProgram.h
 src/ToryEngine/ShaderProgram.cpp
 src/ToryEngine/MeshRenderer.h
 src/ToryEngine/MeshRenderer.cpp
+src/ToryEngine/Transform.h
+src/ToryEngine/Transform.cpp
 )
 
 if(MSVC)
   target_link_libraries(ToryEngine
-    SDL2 glew32 opengl32
+    SDL2 SDL2_image glew32 opengl32
   )
 else()
   target_link_libraries(ToryEngine
-    SDL2 GLU GLEW GL
+    SDL2 SDL2_image GLU GLEW GL
   )
 endif()
 
@@ -72,7 +76,11 @@ if(MSVC)
       "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2/bin/SDL2.dll"
       "$<TARGET_FILE_DIR:game>"
   )
-
+  add_custom_command(TARGET game POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/SDL2_image/bin/SDL2_image.dll"
+      "$<TARGET_FILE_DIR:game>"
+  )
   add_custom_command(TARGET game POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
       "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/glew/bin/glew32.dll"

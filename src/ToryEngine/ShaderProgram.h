@@ -12,9 +12,11 @@ namespace toryengine
 	public:
 		ShaderProgram(std::string vert, std::string frag);
 		void Draw(VertexArray& vertexArray);
+
 		void SetUniform(std::string unifrom,glm::vec4 value);
 		void SetUniform(std::string uniform, float value);
-		void SetUniform(std::string uniform, glm::mat4 value);	//Why do we need this?
+
+		void SetUniform(std::string uniform, glm::mat4 value);	
 		GLuint GetId() { return id; }
 
 	private:

@@ -1,7 +1,6 @@
 #include <ToryEngine/toryengine.h>
 
 #include <iostream>
-
 class TestScreen : public toryengine::Component
 {
 public:
@@ -12,21 +11,19 @@ public:
 
 	void OnBegin()
 	{
-		//he
 	}
 
 	void OnUpdate()
 	{
-		//he
 	}
 	void OnDraw()
 	{
-	//he
 	}
 };
 
 int main()
 {
+
 	std::cout << "Hello World" << std::endl;
 
 	std::shared_ptr<toryengine::Root> c = toryengine::Root::Initalize();
