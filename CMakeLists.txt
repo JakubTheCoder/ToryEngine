@@ -52,6 +52,10 @@ src/ToryEngine/MeshRenderer.h
 src/ToryEngine/MeshRenderer.cpp
 src/ToryEngine/Transform.h
 src/ToryEngine/Transform.cpp
+src/ToryEngine/Resource.h
+src/ToryEngine/Resource.cpp
+src/ToryEngine/Resources.h
+src/ToryEngine/Resources.cpp
 )
 
 if(MSVC)

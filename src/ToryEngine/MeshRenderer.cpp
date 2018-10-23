@@ -1,9 +1,12 @@
 #include <iostream>
-
+#include <glm/ext.hpp>
+#include <SDL2/SDL.h>
 #include "MeshRenderer.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "ShaderProgram.h"
+#include "Object.h"
+#include "Transform.h"
 
 namespace toryengine
 {
@@ -29,13 +32,13 @@ namespace toryengine
 	void MeshRenderer::OnDraw()
 	{
 		// model mat4 from transform...
-		shader->SetUniform("in_Model", glm::mat4(1.0f));
+		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());//glm::mat4(1.0f));
 
 		// camera's transform (and inverse) 
 		shader->SetUniform("in_View", glm::mat4(1.0f));
 
 		// from screen
-		shader->SetUniform("in_Projection", glm::mat4(1.0f));
+		shader->SetUniform("in_Projection",glm::perspective(glm::radians(45.f),600.0f/800.0f,0.1f,1000.0f));		//SDL GET WINDOW HEIGHT/	
 		shader->Draw(*shape);
 	}
 }

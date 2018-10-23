@@ -3,6 +3,7 @@
 
 #include "Root.h"
 #include "Object.h"
+#include "Transform.h"
 
 #define WINDOW_WIDTH 800	//changes the words WINDOW_WIDTH to 800, no int or memory required to store this
 #define WINDOW_HEIGHT 600
@@ -83,10 +84,11 @@ namespace toryengine
 	std::shared_ptr<Object> Root::AddObject()
 	{
 		std::shared_ptr<Object> temp = std::make_shared<Object>();	//make a temp shared pointer
+
 		objects.push_back(temp);	//push it back into the objects vector
 		temp->objectSelf = temp;	//make itself temp
 		temp->root = rootSelf;		//make root what it is.
-
+		temp->AddComponent<Transform>();
 		return temp;
 
 	}
