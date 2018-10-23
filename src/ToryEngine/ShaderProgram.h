@@ -2,12 +2,14 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <string>
-//Set uniform with mat 4?
+
+#include "NonCopyable.h"
+
 namespace toryengine
 {
 	class VertexArray;
 
-	class ShaderProgram
+	class ShaderProgram : private NonCopyable
 	{
 	public:
 		ShaderProgram(std::string vert, std::string frag);

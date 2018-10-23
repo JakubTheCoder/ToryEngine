@@ -36,6 +36,7 @@ endif()
 
 add_library(ToryEngine
 src/ToryEngine/toryengine.h
+src/ToryEngine/NonCopyable.h
 src/ToryEngine/Root.h
 src/ToryEngine/Root.cpp
 src/ToryEngine/Object.h
@@ -56,6 +57,10 @@ src/ToryEngine/Resource.h
 src/ToryEngine/Resource.cpp
 src/ToryEngine/Resources.h
 src/ToryEngine/Resources.cpp
+src/ToryEngine/Mesh.h
+src/ToryEngine/Mesh.cpp
+src/ToryEngine/Texture.h
+src/ToryEngine/Texture.cpp
 )
 
 if(MSVC)

@@ -11,6 +11,6 @@ namespace toryengine
 		template <typename T> std::shared_ptr<T> Create<T>();
 
 	private:
-		std::list<
+		std::list < std::shared_ptr<Resource>> resources;
 	};
 }

@@ -1,16 +1,16 @@
 #pragma once
 #include <memory>
 #include <vector>
-
 #include <SDL2/SDL.h>
 
+#include "NonCopyable.h"
 //ROOT = CORE
 
 namespace toryengine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
 {
 	class Object;	//allow root to access object
 
-	class Root //:private NonCopyable
+	class Root :private NonCopyable
 	{
 	public:
 		static std::shared_ptr<Root> Initalize();	//static can be called anywhere to init Root
