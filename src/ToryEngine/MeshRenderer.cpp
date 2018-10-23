@@ -35,10 +35,10 @@ namespace toryengine
 		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());//glm::mat4(1.0f));
 
 		// camera's transform (and inverse) 
-		shader->SetUniform("in_View", glm::mat4(1.0f));
+		shader->SetUniform("in_View", glm::translate( glm::mat4(1.0f),glm::vec3(0.0f,0.0f,-2.0f)));
 
 		// from screen
-		shader->SetUniform("in_Projection",glm::perspective(glm::radians(45.f),600.0f/800.0f,0.1f,1000.0f));		//SDL GET WINDOW HEIGHT/	
+		shader->SetUniform("in_Projection",glm::perspective(glm::radians(45.f),800.0f/600.0f,0.1f,1000.0f));		//WIDTH / HEIGHT
 		shader->Draw(*shape);
 	}
 }

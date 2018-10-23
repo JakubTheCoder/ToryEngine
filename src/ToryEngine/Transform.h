@@ -20,6 +20,6 @@ class Transform : public Component
 	private:
 		glm::vec3 localPosition;
 		glm::vec3 localRotation;
-		glm::vec3 localScale;
+		glm::vec3 localScale = glm::vec3(1.0f,1.0f,1.0f);
 };
 }
