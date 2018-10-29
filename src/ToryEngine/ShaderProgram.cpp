@@ -119,7 +119,6 @@ namespace toryengine
 		}
 		glUseProgram(id);
 		glUniform4f(uniformId, value.x, value.y, value.z, value.w);
-		//glUniform1i(uniformId, 1);
 		glUseProgram(0);
 	}
 

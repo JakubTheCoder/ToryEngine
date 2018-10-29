@@ -3,10 +3,10 @@
 
 namespace toryengine
 {
+
 	class Resource
 	{
-	public:
-
+		friend class Resources;
 	private:
 		std::string path;
 	};

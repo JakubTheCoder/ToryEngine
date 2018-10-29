@@ -16,7 +16,7 @@ namespace toryengine
 		{
 			throw std::exception();
 		}
-		buffers.resize(10);	//resize buffers vector ?????? but why?
+		buffers.resize(10);	//Make buffer have 10 channels?
 	}
 
 	void VertexArray::SetBuffer(std::string attribute, std::weak_ptr<VertexBuffer> buffer)
@@ -29,7 +29,7 @@ namespace toryengine
 		{
 			buffers.at(1) = buffer.lock();
 		}
-		else if (attribute == "in_Texture")
+		else if (attribute == "in_TexCoord")
 		{
 			buffers.at(2) = buffer.lock();
 		}

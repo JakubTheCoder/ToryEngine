@@ -10,14 +10,16 @@
 namespace toryengine
 {
 	class Root;	
-
+	/*!
+	Acts as base object to attach components to.
+	*/
 	class Object
 	{
 		friend class Root; //Friend allows a class to access the private and protected variables of this class
 	public:
-		std::shared_ptr<Root> GetRoot();	//Go to the root, allows to interact with other objects easier.
+		std::shared_ptr<Root> GetRoot();	///< Go to the root, allows to interact with other objects easier.
 
-		template <typename T> std::shared_ptr<T> GetComponent()//template class since we dont know what type the component will be
+		template <typename T> std::shared_ptr<T> GetComponent()	//template class since we dont know what type the component will be
 		{
 			for (size_t i = 0; i < components.size(); i++)	//go thorugh all components of a object
 			{
