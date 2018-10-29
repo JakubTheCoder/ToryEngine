@@ -17,14 +17,18 @@ namespace toryengine
 		positions->Add(glm::vec3(-0.5f, -0.5f, 0.0f));
 		positions->Add(glm::vec3(0.5f, -0.5f, 0.0f));
 
-		std::shared_ptr<VertexBuffer> colors = std::make_shared<VertexBuffer>();
-		colors->Add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-		colors->Add(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-		colors->Add(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+		std::shared_ptr<VertexBuffer>texCoords = std::make_shared<VertexBuffer>();
+		texCoords->Add(glm::vec2(0.5f, 0.0f));
+		texCoords->Add(glm::vec2(0.0f, 1.0f));
+		texCoords->Add(glm::vec2(1.0f, 1.0f));
+		//std::shared_ptr<VertexBuffer> colors = std::make_shared<VertexBuffer>();
+		//colors->Add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		//colors->Add(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+		//colors->Add(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
 		shape = std::make_shared<VertexArray>();
 		shape->SetBuffer("in_Position", positions);
-		shape->SetBuffer("in_Color", colors);
+		shape->SetBuffer("in_TexCoord", texCoords);
 
 		shader = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 	}

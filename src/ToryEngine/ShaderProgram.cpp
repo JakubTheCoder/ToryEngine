@@ -71,8 +71,10 @@ namespace toryengine
 		glAttachShader(id, vertexShaderId);	//attach vertex to shader
 		glAttachShader(id, fragmentShaderId);	//attach fragment to shader
 
-		glBindAttribLocation(id, 0, "in_position");	//Binds and Make sure VAO attribute is set to first position
-		glBindAttribLocation(id, 1, "in_color");	// Binds VBO
+		glBindAttribLocation(id, 0, "in_Position");	//Binds and Make sure VAO attribute is set to first position
+		glBindAttribLocation(id, 1, "in_Color");	// Binds VBO
+		glBindAttribLocation(id, 2, "in_TexCoord");
+		glBindAttribLocation(id, 3, "in_Normal");
 
 		if (glGetError() != GL_NO_ERROR)
 		{
@@ -117,6 +119,7 @@ namespace toryengine
 		}
 		glUseProgram(id);
 		glUniform4f(uniformId, value.x, value.y, value.z, value.w);
+		//glUniform1i(uniformId, 1);
 		glUseProgram(0);
 	}
 

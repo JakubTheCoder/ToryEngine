@@ -31,9 +31,9 @@ int main()
 	std::shared_ptr<toryengine::Object> e = c->AddObject();
 
 	std::shared_ptr<TestScreen> ts = e->AddComponent<TestScreen>("Green");
-
 	std::shared_ptr<toryengine::MeshRenderer> mr = e->AddComponent<toryengine::MeshRenderer>();
 	std::shared_ptr<toryengine::MeshRenderer>mr2 = e->GetComponent<toryengine::MeshRenderer>();
+	//Make texture and set through Resource system
 
 	c->Start();
 	return 0;

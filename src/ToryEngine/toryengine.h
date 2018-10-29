@@ -5,5 +5,6 @@
 #include "Object.h"
 #include "Component.h"
 #include "MeshRenderer.h"
+#include "Texture.h"
 
 #endif
