@@ -19,6 +19,12 @@ namespace toryengine
 		buffers.resize(10);	//Make buffer have 10 channels?
 	}
 
+	VertexArray::VertexArray(std::string path)
+	{
+		dirty = false;
+
+	}
+
 	void VertexArray::SetBuffer(std::string attribute, std::weak_ptr<VertexBuffer> buffer)
 	{
 		if (attribute == "in_Position")		//What is attribute used for?
@@ -80,5 +86,49 @@ namespace toryengine
 		return id;
 	}
 
+	void VertexArray::SplitString(std::string& input, char splitter, std::vector<std::string>&output)
+	{
+		std::string current;
 
+		output.clear();	//cleans any output that we used for previous data
+
+		for (size_t i = 0; i < input.length(); i++)
+		{
+			if (input.at(i) == splitter)	//if spliter is a character, push it pack into output and reset current
+			{
+				output.push_back(current);
+				current = "";
+			}
+			else
+			{
+				current += input.at(i);
+			}
+		}
+
+		if (current.length() > 0)
+		{
+			output.push_back(current);
+		}
+	}
+	void VertexArray::SplitStringSpace(std::string&input, std::vector<std::string>&output)
+	{
+		std::string current;
+		output.clear();
+
+		for (size_t i = 0; i < input.length(); i++)
+		{
+			if (input.at(i) == ' ' || input.at(i) == '\r' || input.at(i) == '\n' || input.at(i) == '\t')
+			{
+				if (current.length() > 0)
+				{
+					output.push_back(current);
+					current = "";
+				}
+			}
+			else
+			{
+				current += input.at(i);
+			}
+		}
+	}
 }
