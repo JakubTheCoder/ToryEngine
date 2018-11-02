@@ -20,6 +20,7 @@ namespace toryengine
 
 		void SplitString(std::string& input, char splitter, std::vector<std::string>&output);
 		void SplitStringSpace(std::string& input, std::vector<std::string>&output);
+
 	private:
 		GLuint id;
 		std::vector<std::shared_ptr<VertexBuffer>> buffers;

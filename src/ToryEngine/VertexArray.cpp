@@ -1,6 +1,9 @@
+#include <iostream>
+#include <fstream>
+
 #include "VertexArray.h"
 #include "VertexBuffer.h"
-//Attribute?
+
 //Why do we lock buffers?
 //Get VertexCount math?
 
@@ -21,8 +24,167 @@ namespace toryengine
 
 	VertexArray::VertexArray(std::string path)
 	{
+		//Loading Model 
 		dirty = false;
+		glGenVertexArrays(1, &id);
 
+		if (!id)
+		{
+			throw std::exception();
+		}
+		buffers.resize(10);
+		std::ifstream file(path.c_str());
+
+		if (!file.is_open)
+		{
+			throw std::exception();
+		}
+		std::string line;	//Current line we are on
+		std::vector<std::string> splitLine;	//Splits Lines up
+
+		std::vector<glm::vec3> positions;	//Vertex Positions of Model
+		std::vector<glm::vec2> texCoords;	//Texture Coords of Model
+		std::vector<glm::vec3> normals;		//Normals of Model
+
+		//Create Vertex Buffers and set them to NULL, so that if the model doesn't have a certain buffer it will not be made
+		//Model will always have at least position buffer but will be treated like other buffers
+		VertexBuffer *positionBuffer = NULL;
+		VertexBuffer *texCoordBuffer = NULL;
+		VertexBuffer *normalBuffer = NULL;
+
+		while (!file.eof())	//while we haven't reached end of file
+		{
+			std::getline(file, line);	//Get a line
+
+			if (line.length() < 1)	//If there is nothing on the line, continue
+			{
+				continue;
+			}
+
+			SplitStringSpace(line, splitLine);	//Start spliting white space
+
+			if (splitLine.size() < 1)	//if split line is empty continue, nothing on line 
+			{
+				continue;
+			}
+
+			if (splitLine.at(0) == "v")	//Is there a Vertex present on current line?
+			{
+				if (!positionBuffer)	//if we dont have a position buffer yet, create a position buffer
+				{
+					positionBuffer = new VertexBuffer();
+				}
+
+				//Convertes String to double, since we are reading from a textfile, all text is strings,
+				//which we need to covert to doubles to get position values of a vertex
+				positions.push_back(glm::vec3(atof(splitLine.at(1).c_str()), atof(splitLine.at(2).c_str()), atof(splitLine.at(3).c_str())));
+			}
+			else if (splitLine.at(0) == "vt")	//Is there a Vertex Texture present on current line?
+			{
+				if (!texCoordBuffer)	//if theres no Texture Coord buffer, create one
+				{
+					texCoordBuffer = new VertexBuffer();
+				}
+				texCoords.push_back(glm::vec2(atof(splitLine.at(1).c_str()), 1.0f - atof(splitLine.at(2).c_str())));
+			}
+			else if (splitLine.at(0) == "vn")	//Is there a Vertex Normal present on current line?
+			{
+				if (!normalBuffer)	//if there is no Normal buffer, create one
+				{
+					normalBuffer = new VertexBuffer();
+				}
+				normals.push_back(glm::vec3(atof(splitLine.at(1).c_str()), atof(splitLine.at(2).c_str()), atof(splitLine.at(3).c_str())));
+			}
+			else if (splitLine.at(0) == "f")	//is there a face present on current line?
+			{
+				//Faces need more splitting due to how they are stored in a file
+				std::vector<std::string>subsplit;
+
+				SplitString(splitLine.at(1), '/', subsplit);
+				//dont need to check for position since we know models will always have at least position
+				//We need to get to first position (0) by -1 because it starts at 1
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
+				{
+					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				}
+				if (normalBuffer)	//if there is a normal buffer, add normals
+				{
+					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				}
+
+				SplitString(splitLine.at(2), '/', subsplit);
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
+				{
+					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				}
+				if (normalBuffer)	//if there is a normal buffer, add normals
+				{
+					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				}
+
+				SplitString(splitLine.at(3), '/', subsplit);
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
+				{
+					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				}
+				if (normalBuffer)	//if there is a normal buffer, add normals
+				{
+					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				}
+
+
+				if (splitLine.size() < 5)	//Ngons suck so they won't be added
+				{
+					continue;
+				}
+				//Triangluate mesh -> draw triable between 3,4 and 1st vertex of a quad to triangulate mesh.
+				SplitString(splitLine.at(3), '/', subsplit);
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
+				{
+					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				}
+				if (normalBuffer)	//if there is a normal buffer, add normals
+				{
+					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				}
+
+				SplitString(splitLine.at(4), '/', subsplit);
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
+				{
+					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				}
+				if (normalBuffer)	//if there is a normal buffer, add normals
+				{
+					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				}
+
+				SplitString(splitLine.at(1), '/', subsplit);
+				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
+				{
+					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
+				}
+				if (normalBuffer)	//if there is a normal buffer, add normals
+				{
+					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
+				}
+			}
+			//Convert these to weak ptrs
+			SetBuffer("in_Position", positionBuffer);
+			if (texCoordBuffer)
+			{
+				SetBuffer("in_texCoord", texCoordBuffer);
+			}
+			if (normalBuffer)
+			{
+				SetBuffer("in_Normal", normalBuffer);
+			}
+		}
 	}
 
 	void VertexArray::SetBuffer(std::string attribute, std::weak_ptr<VertexBuffer> buffer)
@@ -96,8 +258,8 @@ namespace toryengine
 		{
 			if (input.at(i) == splitter)	//if spliter is a character, push it pack into output and reset current
 			{
-				output.push_back(current);
-				current = "";
+				output.push_back(current);	//push back character into output
+				current = "";	//reset current
 			}
 			else
 			{
@@ -105,16 +267,17 @@ namespace toryengine
 			}
 		}
 
-		if (current.length() > 0)
+		if (current.length() > 0)	//Push all the characters that are inside current 
 		{
 			output.push_back(current);
 		}
 	}
 	void VertexArray::SplitStringSpace(std::string&input, std::vector<std::string>&output)
 	{
-		std::string current;
-		output.clear();
-
+		std::string current;	
+		output.clear();	//Clear any current outputs
+		
+		//Break up any spaces, new lines etc.
 		for (size_t i = 0; i < input.length(); i++)
 		{
 			if (input.at(i) == ' ' || input.at(i) == '\r' || input.at(i) == '\n' || input.at(i) == '\t')
@@ -129,6 +292,11 @@ namespace toryengine
 			{
 				current += input.at(i);
 			}
+		}
+
+		if (current.length() > 0)
+		{
+			output.push_back(current);
 		}
 	}
 }
