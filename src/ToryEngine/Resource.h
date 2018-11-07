@@ -1,4 +1,4 @@
-
+#pragma once
 #include <string>
 
 namespace toryengine
@@ -7,6 +7,8 @@ namespace toryengine
 	class Resource
 	{
 		friend class Resources;
+	public:
+
 	private:
 		std::string path;
 	};

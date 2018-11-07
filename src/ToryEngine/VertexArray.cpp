@@ -35,7 +35,7 @@ namespace toryengine
 		buffers.resize(10);
 		std::ifstream file(path.c_str());
 
-		if (!file.is_open)
+		if (!file.is_open())
 		{
 			throw std::exception();
 		}
@@ -48,9 +48,9 @@ namespace toryengine
 
 		//Create Vertex Buffers and set them to NULL, so that if the model doesn't have a certain buffer it will not be made
 		//Model will always have at least position buffer but will be treated like other buffers
-		VertexBuffer *positionBuffer = NULL;
-		VertexBuffer *texCoordBuffer = NULL;
-		VertexBuffer *normalBuffer = NULL;
+		std::shared_ptr<VertexBuffer> positionBuffer = NULL;
+		std::shared_ptr<VertexBuffer> texCoordBuffer = NULL;
+		std::shared_ptr<VertexBuffer> normalBuffer = NULL;
 
 		while (!file.eof())	//while we haven't reached end of file
 		{
@@ -72,7 +72,7 @@ namespace toryengine
 			{
 				if (!positionBuffer)	//if we dont have a position buffer yet, create a position buffer
 				{
-					positionBuffer = new VertexBuffer();
+					positionBuffer = std::shared_ptr<VertexBuffer>();
 				}
 
 				//Convertes String to double, since we are reading from a textfile, all text is strings,
@@ -83,7 +83,7 @@ namespace toryengine
 			{
 				if (!texCoordBuffer)	//if theres no Texture Coord buffer, create one
 				{
-					texCoordBuffer = new VertexBuffer();
+					texCoordBuffer = std::shared_ptr<VertexBuffer>();
 				}
 				texCoords.push_back(glm::vec2(atof(splitLine.at(1).c_str()), 1.0f - atof(splitLine.at(2).c_str())));
 			}
@@ -91,7 +91,7 @@ namespace toryengine
 			{
 				if (!normalBuffer)	//if there is no Normal buffer, create one
 				{
-					normalBuffer = new VertexBuffer();
+					normalBuffer = std::shared_ptr<VertexBuffer>();
 				}
 				normals.push_back(glm::vec3(atof(splitLine.at(1).c_str()), atof(splitLine.at(2).c_str()), atof(splitLine.at(3).c_str())));
 			}
