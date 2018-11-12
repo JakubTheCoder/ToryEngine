@@ -1,3 +1,4 @@
+#pragma once
 #include <glm/glm.hpp>
 #include <GL/glew.h>
 #include <memory>
@@ -11,6 +12,7 @@ namespace toryengine
 	{
 	public:
 		Texture(std::string path);
+		Texture();
 		GLuint GetId() { return id; }
 		glm::vec2 GetSize() { return size; }
 

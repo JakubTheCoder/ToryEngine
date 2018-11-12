@@ -35,6 +35,8 @@ if(MSVC)
 endif()
 
 add_library(ToryEngine
+contrib/stb_image/stb_image.h
+contrib/stb_image/stb_image.cpp
 src/ToryEngine/toryengine.h
 src/ToryEngine/NonCopyable.h
 src/ToryEngine/Root.h

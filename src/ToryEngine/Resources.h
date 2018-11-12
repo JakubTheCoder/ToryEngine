@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>	//includes linked lists
 #include <memory>
+
+#include "Texture.h"
 namespace toryengine
 {
 	class Resource;
@@ -11,20 +13,29 @@ namespace toryengine
 		template <typename T> std::shared_ptr<T> Load(std::string path)
 		{
 			//creates a texture inside and returns;
-			for (size_t i = 0; i < resources.size(); i++)
-			{
-				if (resources.at(i) == resources.at(i)->GetPath())
-				{
-					return resources.at(i);
-				}
-
-			}				
 			std::shared_ptr<T> temp = std::make_shared<T>();
-			temp->SetPath(path);
-			temp->GetRoot();
+			if (resources.size() !=0)
+			{
+				for (size_t i = 0; i < resources.size(); i++)
+				{
+					if (resources.at(i)->GetPath() == path)
+					{
+						return std::dynamic_pointer_cast <T>(resources.at(i));
+						//temp = resources.at(i);
+						//return temp;
+					}
 
-			resources.push_back(temp);
-			return temp;
+				}
+			}
+			else
+			{
+				temp->SetPath(path);
+				temp->GetRoot();
+
+				resources.push_back(temp);
+				return temp;
+			}
+
 				
 
 		}

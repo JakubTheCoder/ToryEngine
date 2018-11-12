@@ -52,6 +52,9 @@ namespace toryengine
 			temp->began = false;
 			components.push_back(temp);
 
+			//temp->resources = root->resources;
+			temp
+
 			temp->OnInit(a);
 
 			return temp;

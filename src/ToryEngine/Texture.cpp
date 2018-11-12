@@ -3,7 +3,10 @@
 
 namespace toryengine
 {
+	Texture::Texture()
+	{
 
+	}
 	Texture::Texture(std::string path)
 	{
 		int w = 0;	//Width of texture
@@ -21,7 +24,7 @@ namespace toryengine
 		size.x = w;	
 		size.y = h;
 
-		glGenTextures(1, &id);	//generate texture 1 texture
+		glGenTextures(1, &id);	//generate texture 1 
 
 		if (!id)
 		{

@@ -10,6 +10,7 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 {
 	class Object;	//allow root to access object
 	class Resource;	//allow root to access Resource
+	class Resources;
 
 	class Root :private NonCopyable
 	{
@@ -24,9 +25,10 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 	private:
 		std::weak_ptr<Root> rootSelf;	//weak pointer for reference
 
-
+		std::shared_ptr<Resources> resources;
 		//Objects / Entities
 		std::vector<std::shared_ptr<Object>> objects;	//Vector of all objects
+
 		//ENVIRNOMENT (Add all other things here as well)
 
 		bool running;	//game loop bool

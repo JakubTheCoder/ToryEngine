@@ -16,6 +16,7 @@ namespace toryengine
 		std::shared_ptr<Root> temp = std::make_shared<Root>();	//makes temp a shared pointer
 		temp->running = false;	//game loop is false 
 		temp->rootSelf = temp;	//sets temp to itself since constructor can't do this
+		temp->resources = std::make_shared<toryengine::Resources>();
 
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)	//Makes sure SDL initalises
 		{
@@ -88,6 +89,7 @@ namespace toryengine
 		objects.push_back(temp);	//push it back into the objects vector
 		temp->objectSelf = temp;	//make itself temp
 		temp->root = rootSelf;		//make root what it is.
+		//temp->resources?????
 		temp->AddComponent<Transform>();
 		return temp;
 

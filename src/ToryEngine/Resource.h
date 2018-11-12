@@ -9,8 +9,10 @@ namespace toryengine
 	{
 		friend class Resources;
 	public:
+		virtual ~Resource() {}
 		std::string GetPath() { return path; }
 		void SetPath(std::string _path) { path = _path; }
+
 		std::shared_ptr<Root> GetRoot();
 	private:
 		std::string path;
