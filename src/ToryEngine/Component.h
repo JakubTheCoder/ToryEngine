@@ -15,12 +15,12 @@ namespace toryengine
 		virtual ~Component() {}
 		std::shared_ptr<Object> GetObject() { return object.lock(); }
 		std::shared_ptr<Root> GetRoot();
-		std::shared_ptr<Resources> GetResources() { return resources.lock(); }
+		std::shared_ptr<Resources> GetResources();
 		//Keyboard / Env / Resources
 
 	private:
 		std::weak_ptr<Object> object;	//weak ptr to go up hierarchy
-		std::weak_ptr<Resources> resources;
+		std::weak_ptr<Root> root;
 		bool began;
 
 		virtual void OnInit() { }	// on init

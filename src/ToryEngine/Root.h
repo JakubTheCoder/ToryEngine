@@ -9,7 +9,7 @@
 namespace toryengine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
 {
 	class Object;	//allow root to access object
-	class Resource;	//allow root to access Resource
+	//class Resource;	//allow root to access Resource
 	class Resources;
 
 	class Root :private NonCopyable
@@ -21,6 +21,7 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 		void Stop();	//stops the program
 
 		std::shared_ptr<Object> AddObject();	//Adds a object to the vector
+		std::shared_ptr<Resources> GetResources() { return resources; }	//get a list of resources
 
 	private:
 		std::weak_ptr<Root> rootSelf;	//weak pointer for reference

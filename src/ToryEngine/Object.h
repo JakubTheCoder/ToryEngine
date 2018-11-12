@@ -40,7 +40,8 @@ namespace toryengine
 			std::shared_ptr<T> temp = std::make_shared<T>();
 			temp->object = objectSelf;
 			temp->began = false;
-			
+			temp->root = root;
+
 			components.push_back(temp);
 			temp->OnInit();
 			return temp;
@@ -50,10 +51,9 @@ namespace toryengine
 			std::shared_ptr<T> temp = std::make_shared<T>();
 			temp->object = objectSelf;
 			temp->began = false;
-			components.push_back(temp);
+			temp->root = root;
 
-			//temp->resources = root->resources;
-			temp
+			components.push_back(temp);
 
 			temp->OnInit(a);
 

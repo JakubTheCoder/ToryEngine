@@ -21,8 +21,6 @@ namespace toryengine
 					if (resources.at(i)->GetPath() == path)
 					{
 						return std::dynamic_pointer_cast <T>(resources.at(i));
-						//temp = resources.at(i);
-						//return temp;
 					}
 
 				}
@@ -36,7 +34,7 @@ namespace toryengine
 				return temp;
 			}
 
-				
+			return std::shared_ptr<T>();
 
 		}
 		//Creates a texture
