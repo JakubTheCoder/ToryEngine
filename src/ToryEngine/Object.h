@@ -10,6 +10,7 @@
 namespace toryengine
 {
 	class Root;	
+
 	/*!
 	Acts as base object to attach components to.
 	*/

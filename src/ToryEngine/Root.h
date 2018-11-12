@@ -9,6 +9,7 @@
 namespace toryengine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
 {
 	class Object;	//allow root to access object
+	class Resource;	//allow root to access Resource
 
 	class Root :private NonCopyable
 	{

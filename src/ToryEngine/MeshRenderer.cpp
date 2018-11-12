@@ -1,6 +1,7 @@
 #include <iostream>
 #include <glm/ext.hpp>
 #include <SDL2/SDL.h>
+
 #include "MeshRenderer.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"

@@ -33,8 +33,9 @@ int main()
 	std::shared_ptr<TestScreen> ts = object->AddComponent<TestScreen>("Green");
 
 	std::shared_ptr<toryengine::MeshRenderer> mr = object->AddComponent<toryengine::MeshRenderer>();
-
 	std::shared_ptr<toryengine::MeshRenderer>mr2 = object->GetComponent<toryengine::MeshRenderer>();
+
+	mr->GetResources()->Load<toryengine::Texture>("texture.jpg");
 
 	//std::shared_ptr<Texture> t = getResources()->load<Texture>("")
 	//How do we access GetResources? to load in texture?
