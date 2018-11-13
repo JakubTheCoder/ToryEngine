@@ -78,7 +78,8 @@ namespace toryengine
 
 			SDL_GL_SwapWindow(window);	//swap buffer
 		}
-
+		SDL_DestroyWindow(window);
+		SDL_Quit();
 	}
 
 	void Root::Stop()

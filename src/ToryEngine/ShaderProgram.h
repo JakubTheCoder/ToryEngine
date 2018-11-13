@@ -13,7 +13,7 @@ namespace toryengine
 	struct Sampler
 	{
 		GLint id;
-		Texture * texture;
+		std::weak_ptr<Texture> texture;
 	};
 
 	class ShaderProgram : private NonCopyable
@@ -25,7 +25,7 @@ namespace toryengine
 		void SetUniform(std::string unifrom,glm::vec4 value);
 		void SetUniform(std::string uniform, float value);
 		void SetUniform(std::string uniform, glm::mat4 value);	
-		void SetUniform(std::string uniform, Texture *texture);
+		void SetUniform(std::string uniform, std::weak_ptr<Texture> texture);
 
 		GLuint GetId() { return id; }
 

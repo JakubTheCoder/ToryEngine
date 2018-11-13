@@ -7,8 +7,9 @@ namespace toryengine
 	{
 
 	}
-	Texture::Texture(std::string path)
+	Texture::Texture(std::string _path)
 	{
+		path = _path;
 		int w = 0;	//Width of texture
 		int h = 0;	//Height of texture
 		int channels = 0;	//number of color channles
@@ -40,7 +41,7 @@ namespace toryengine
 		//0 (legacy code)
 		//Format and data type of the loaded image ( we pass RGB values which we then store as chars
 		//Actual data we generated when loading in texture
-
+		//free(data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 
 		stbi_image_free(data);	//free the image data since we already have a bound image

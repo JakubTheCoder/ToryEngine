@@ -8,6 +8,8 @@ namespace toryengine
 	class VertexArray;
 	class ShaderProgram;
 	class Mesh;
+	class Texture;
+
 	class MeshRenderer : public Component
 	{
 	public:
@@ -15,12 +17,14 @@ namespace toryengine
 		//void SetMesh(std::weak_ptr<Mesh> mesh)
 		//std::shared_ptr<Mesh> GetMesh();
 		//std::shared_ptr<Material> GetMaterial();
+		void SetTexture(std::weak_ptr<Texture> texture);
 	private:
 		void OnDraw();
 
 		std::shared_ptr<VertexArray> shape;
 		std::shared_ptr<ShaderProgram> shader;
 		std::weak_ptr<Mesh> mesh;
+		std::weak_ptr<Texture> texture;
 		//std::shared_ptr<Material> material;
 	};
 }

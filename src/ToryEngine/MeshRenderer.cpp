@@ -46,4 +46,11 @@ namespace toryengine
 		shader->SetUniform("in_Projection",glm::perspective(glm::radians(45.f),800.0f/600.0f,0.1f,1000.0f));		//WIDTH / HEIGHT
 		shader->Draw(*shape);
 	}
+
+	void MeshRenderer::SetTexture(std::weak_ptr<Texture> texture)
+	{
+		shader->SetUniform("in_Texture", texture.lock());
+		//shader->Draw(*shape);
+
+	}
 }

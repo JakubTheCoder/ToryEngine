@@ -103,7 +103,25 @@ namespace toryengine
 		glUseProgram(id);
 		glBindVertexArray(vertexArray.GetId());
 
+		for (size_t i = 0; i < samplers.size(); i++)	//Go through all textures and draw them
+		{
+			glActiveTexture(GL_TEXTURE0 + i);
+			if (samplers.at(i).texture.lock())
+			{
+				glBindTexture(GL_TEXTURE_2D, samplers.at(i).id );
+			}
+			else
+			{
+				glBindTexture(GL_TEXTURE_2D, 0);
+			}
+		}
 		glDrawArrays(GL_TRIANGLES, 0, vertexArray.GetVertexCount());
+
+		for (size_t i = 0; i < samplers.size(); i++)
+		{
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE20, 0);
+		}
 
 		glBindVertexArray(0);
 		glUseProgram(0);
@@ -149,7 +167,7 @@ namespace toryengine
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::SetUniform(std::string uniform, Texture *texture)
+	void ShaderProgram::SetUniform(std::string uniform, std::weak_ptr<Texture> texture)
 	{
 		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
 
