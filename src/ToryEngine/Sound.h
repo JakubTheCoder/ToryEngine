@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
-
+#include <vector>
 namespace toryengine
 {
 	struct SoundImpl;
@@ -17,7 +17,6 @@ namespace toryengine
 
 	private:
 		std::shared_ptr<SoundImpl> impl;
-
-
+		std::vector<SoundImpl> audioSources
 	};
 }
