@@ -2,6 +2,8 @@
 #include <memory>
 #include <vector>
 #include <SDL2/SDL.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 #include "NonCopyable.h"
 //ROOT = CORE
@@ -34,5 +36,7 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 
 		bool running;	//game loop bool
 		SDL_Window* window;
+		ALCdevice* device;
+		ALCcontext* context;
 	};
 }

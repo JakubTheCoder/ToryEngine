@@ -76,7 +76,7 @@ src/ToryEngine/Sound.cpp
 
 if(MSVC)
   target_link_libraries(ToryEngine
-    SDL2 SDL2_image glew32 opengl32 OpenAL32 ogg vorbisfile
+    SDL2 SDL2_image glew32 opengl32 OpenAL32 ogg vorbis vorbisfile
   )
 else()
   target_link_libraries(ToryEngine
@@ -108,7 +108,7 @@ if(MSVC)
   )
 add_custom_command(TARGET game POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_SOURCE_DIR}/contrib/msvc-2017-windows-x86/openal-soft/bin/OpenAL32.dll"
+      "${CMAKE_SOURCE_DIR}/contrib/msvc-windows-x86/openal-soft/bin/OpenAL32.dll"
       "$<TARGET_FILE_DIR:game>"
 )
 endif()

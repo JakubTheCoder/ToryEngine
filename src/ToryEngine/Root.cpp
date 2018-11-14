@@ -40,6 +40,25 @@ namespace toryengine
 			throw std::exception();
 		}
 
+		temp->device = alcOpenDevice(NULL);
+		if (!temp->device)
+		{
+			throw std::exception();
+		}
+		temp->context = alcCreateContext(temp->device, NULL);
+
+		if (!temp->context)
+		{
+			alcCloseDevice(temp->device);
+			throw std::exception();
+		}
+
+		if (!alcMakeContextCurrent(temp->context))
+		{
+			alcDestroyContext(temp->context);
+			alcCloseDevice(temp->device);
+			throw std::exception();
+		}
 		return temp;
 	}
 
