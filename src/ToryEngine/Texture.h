@@ -5,10 +5,11 @@
 #include <string>
 
 #include "Resource.h"
+#include "NonCopyable.h"
 
 namespace toryengine
 {
-	class Texture : public Resource
+	class Texture : public Resource, private NonCopyable
 	{
 	public:
 		Texture(std::string _path);

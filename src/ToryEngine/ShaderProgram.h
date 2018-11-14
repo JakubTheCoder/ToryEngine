@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
+#include <memory>
 #include "NonCopyable.h"
 
 namespace toryengine
