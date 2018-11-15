@@ -1,6 +1,7 @@
 #ifndef TORYENGINE_TORYENGINE_H
 #define TORYENGINE_TORYENGINE_H
 
+#include "Exception.h"
 #include "Root.h"
 #include "Object.h"
 #include "Component.h"

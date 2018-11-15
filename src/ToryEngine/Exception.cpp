@@ -1,11 +1,9 @@
 #include "Exception.h"
 
-Exception::Exception(std::string _message)
+namespace toryengine
 {
-	message = _message;
-}
-
-const char Exception::what()
-{
-	return message;
+	Exception::Exception(const std::string _message)
+	{
+		message = _message;
+	}
 }

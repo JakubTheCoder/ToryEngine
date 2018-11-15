@@ -5,7 +5,7 @@
 #include <vorbis/vorbisfile.h>
 
 #include "Sound.h"
-
+#include "Exception.h"
 namespace toryengine
 {
 	struct SoundImpl
@@ -30,8 +30,9 @@ namespace toryengine
 			//File Descriptor
 			if (ov_fopen(filename.c_str(), &oggFile) != 0)
 			{
-				std::cout << "Failed to open file " << filename << "for decoding" << std::endl;
-				throw std::exception();
+				std::cout << "Failed to open file " << filename << " for decoding" << std::endl;
+				throw toryengine::Exception("Failed to load Sound file");
+				//throw std::exception();
 			}
 
 			pInfo = ov_info(&oggFile, -1);	//Extract info from file header
