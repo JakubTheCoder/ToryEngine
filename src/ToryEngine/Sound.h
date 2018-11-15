@@ -17,6 +17,6 @@ namespace toryengine
 
 	private:
 		std::shared_ptr<SoundImpl> impl;
-		std::vector<SoundImpl> audioSources
+		//std::vector<SoundImpl> audioSources;
 	};
 }

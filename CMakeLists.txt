@@ -72,6 +72,8 @@ src/ToryEngine/Texture.h
 src/ToryEngine/Texture.cpp
 src/ToryEngine/Sound.h
 src/ToryEngine/Sound.cpp
+src/ToryEngine/Exception.h
+src/ToryEngine/Exception.cpp
 )
 
 if(MSVC)

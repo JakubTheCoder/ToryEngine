@@ -30,7 +30,7 @@ int main()
 	std::shared_ptr<toryengine::Object> object = root->AddObject();
 	//std::shared_ptr<toryengine::Resources> resources = std::make_shared<toryengine::Resources>();
 
-	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../dixie_horn.ogg");
+	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../Crush8-bit.ogg");
 	s->Play();
 
 	std::shared_ptr<TestScreen> ts = object->AddComponent<TestScreen>("Green");
