@@ -14,10 +14,12 @@ namespace toryengine
 	{
 	public:
 		void OnInit();
-		//void SetMesh(std::weak_ptr<Mesh> mesh)
-		//std::shared_ptr<Mesh> GetMesh();
-		//std::shared_ptr<Material> GetMaterial();
+		void SetMesh(std::weak_ptr<Mesh> _mesh);
+		std::shared_ptr<Mesh> GetMesh() { return mesh.lock(); }
+
 		void SetTexture(std::weak_ptr<Texture> texture);
+
+		//std::shared_ptr<Material> GetMaterial();
 	private:
 		void OnDraw();
 
@@ -25,6 +27,7 @@ namespace toryengine
 		std::shared_ptr<ShaderProgram> shader;
 		std::weak_ptr<Mesh> mesh;
 		std::weak_ptr<Texture> texture;
+
 		//std::shared_ptr<Material> material;
 	};
 }

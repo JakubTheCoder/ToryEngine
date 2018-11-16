@@ -29,6 +29,7 @@ namespace toryengine
 
 		shape = std::make_shared<VertexArray>();
 		shape->SetBuffer("in_Position", positions);
+
 		shape->SetBuffer("in_TexCoord", texCoords);
 
 		shader = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
@@ -40,10 +41,12 @@ namespace toryengine
 		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());//glm::mat4(1.0f));
 
 		// camera's transform (and inverse) 
-		shader->SetUniform("in_View", glm::translate( glm::mat4(1.0f),glm::vec3(0.0f,0.0f,-2.0f)));
+		shader->SetUniform("in_View", glm::inverse(glm::translate( glm::mat4(1.0f),glm::vec3(0.0f,0.0f,2.0f))));
+		//Make camera object Get view matrix 
 
 		// from screen
 		shader->SetUniform("in_Projection",glm::perspective(glm::radians(45.f),800.0f/600.0f,0.1f,1000.0f));		//WIDTH / HEIGHT
+		//Get camera projection matrix
 		shader->Draw(*shape);
 	}
 
@@ -53,4 +56,11 @@ namespace toryengine
 		//shader->Draw(*shape);
 
 	}
+
+	void MeshRenderer::SetMesh(std::weak_ptr<Mesh> _mesh)
+	{
+		mesh = _mesh.lock();
+	}
+
+
 }

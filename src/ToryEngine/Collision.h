@@ -1,9 +1,8 @@
 #pragma once 
 
 #include <glm/glm.hpp>
-//#include 
 #include "Component.h"
-
+//include tribox C file.
 namespace toryengine
 {
 	extern "C"

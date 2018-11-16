@@ -56,17 +56,12 @@ namespace toryengine
 		{
 			std::getline(file, line);	//Get a line
 
-			if (line.length() < 1)	//If there is nothing on the line, continue
-			{
-				continue;
-			}
+			if (line.length() < 1)	continue;//If there is nothing on the line, continue
 
 			SplitStringSpace(line, splitLine);	//Start spliting white space
 
-			if (splitLine.size() < 1)	//if split line is empty continue, nothing on line 
-			{
-				continue;
-			}
+			if (splitLine.size() < 1)	continue;//if split line is empty continue, nothing on line 
+
 
 			if (splitLine.at(0) == "v")	//Is there a Vertex present on current line?
 			{
@@ -136,10 +131,8 @@ namespace toryengine
 				}
 
 
-				if (splitLine.size() < 5)	//Ngons suck so they won't be added
-				{
-					continue;
-				}
+				if (splitLine.size() < 5) continue;	//Ngons suck so they won't be added
+
 				//Triangluate mesh -> draw triable between 3,4 and 1st vertex of a quad to triangulate mesh.
 				SplitString(splitLine.at(3), '/', subsplit);
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger

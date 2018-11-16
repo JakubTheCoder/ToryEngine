@@ -23,6 +23,7 @@ namespace toryengine
 				}
 
 			}
+			//temp->Load(path);
 			temp->SetPath(res->GetPath());
 			temp->GetRoot();
 

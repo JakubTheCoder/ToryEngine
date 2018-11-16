@@ -1,22 +1,28 @@
 #include <GL/glew.h>
 #include <vector>
 #include <memory>
+
 #include "Resource.h"
+#include "NonCopyable.h"
+#include "VertexArray.h"
 
 namespace toryengine
 {
-	class Mesh :public Resource
+	class VertexArray;
+	class Mesh :public Resource, private NonCopyable
 	{
 	public:
-		Mesh();
+		Mesh(std::string path);
 		//void AddFace(Face& face);
-		GLuint GetId();
-		
+		GLuint GetId() { return id; }
+		std::shared_ptr<VertexArray> GetShape() { return shape; }
 	private:
 		//std::vector<Face> faces;
+		GLuint id;
 		bool dirty;
-		std::shared_ptr<Mesh> create();
-		std::shared_ptr<Mesh> load(std::string path);
+		std::shared_ptr<Mesh> Create();
+		std::shared_ptr<Mesh> Load(std::string path);
+		std::shared_ptr<VertexArray> shape;
 
 	};
 }
