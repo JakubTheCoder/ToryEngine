@@ -18,6 +18,7 @@ namespace toryengine
 		std::shared_ptr<VertexArray> GetShape() { return shape; }
 	private:
 		//std::vector<Face> faces;
+		//vector of vec3s- push back when loading
 		GLuint id;
 		bool dirty;
 		std::shared_ptr<Mesh> Create();

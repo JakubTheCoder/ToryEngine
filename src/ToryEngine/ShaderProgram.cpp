@@ -4,6 +4,7 @@
 
 #include "ShaderProgram.h"
 #include "VertexArray.h"
+#include "Texture.h"
 
 namespace toryengine
 {
@@ -108,7 +109,7 @@ namespace toryengine
 			glActiveTexture(GL_TEXTURE0 + i);
 			if (samplers.at(i).texture.lock())
 			{
-				glBindTexture(GL_TEXTURE_2D, samplers.at(i).id );
+				glBindTexture(GL_TEXTURE_2D, samplers.at(i).texture.lock()->GetId());
 			}
 			else
 			{

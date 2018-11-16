@@ -23,7 +23,7 @@ namespace toryengine
 	private:
 		void OnDraw();
 
-		std::shared_ptr<VertexArray> shape;
+		//std::shared_ptr<VertexArray> shape;
 		std::shared_ptr<ShaderProgram> shader;
 		std::weak_ptr<Mesh> mesh;
 		std::weak_ptr<Texture> texture;

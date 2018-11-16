@@ -5,7 +5,7 @@ namespace toryengine
 {
 	Texture::Texture()
 	{
-
+		id = 9;
 	}
 	Texture::Texture(std::string _path)
 	{
