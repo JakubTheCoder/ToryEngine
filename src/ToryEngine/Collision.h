@@ -1,7 +1,7 @@
 #pragma once 
 
 #include <glm/glm.hpp>
-
+//#include 
 #include "Component.h"
 
 namespace toryengine
@@ -16,7 +16,8 @@ namespace toryengine
 	class Collision :public Component
 	{
 	public:
-		bool IsColliding(glm::vec3 boxCentre, glm::vec3 boxHalfSize, Triangle t);
+		bool TriBoxCollision(glm::vec3 boxCentre, glm::vec3 boxHalfSize, Triangle t);
+		bool BoxCollision();
 
 	private:
 
