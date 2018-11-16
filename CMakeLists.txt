@@ -44,6 +44,7 @@ endif()
 add_library(ToryEngine
 contrib/stb_image/stb_image.h
 contrib/stb_image/stb_image.cpp
+contrib/collision/tribox.c
 src/ToryEngine/toryengine.h
 src/ToryEngine/NonCopyable.h
 src/ToryEngine/Root.h
@@ -74,6 +75,8 @@ src/ToryEngine/Sound.h
 src/ToryEngine/Sound.cpp
 src/ToryEngine/Exception.h
 src/ToryEngine/Exception.cpp
+src/ToryEngine/Collision.h
+src/ToryEngine/Collision.cpp
 )
 
 if(MSVC)
