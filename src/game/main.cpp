@@ -37,7 +37,7 @@ int main()
 
 	std::shared_ptr<toryengine::MeshRenderer> mr = object->AddComponent<toryengine::MeshRenderer>();
 	std::shared_ptr<toryengine::MeshRenderer>mr2 = object->GetComponent<toryengine::MeshRenderer>();
-	std::shared_ptr<toryengine::Resources> temp = root->GetResources();
+	//std::shared_ptr<toryengine::Resources> temp = root->GetResources();
 	std::shared_ptr<toryengine::Texture>texture = std::make_shared<toryengine::Texture> ("../texture.jpg");
 	mr2->SetTexture(texture);// root->GetResources()->Load<toryengine::Texture>(texture));//"texture.jpg"));
 

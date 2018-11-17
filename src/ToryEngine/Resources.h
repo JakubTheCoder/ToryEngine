@@ -10,7 +10,7 @@ namespace toryengine
 	class Resources
 	{
 	public:
-		template <typename T> std::shared_ptr<T> Load(std::shared_ptr<T> res)//std::string path)
+		template <typename T> std::shared_ptr<T> Load(std::shared_ptr<T> resource)//std::string path)
 		{
 			//creates a texture inside and returns;
 			std::shared_ptr<T> temp = std::make_shared<T>();
@@ -23,8 +23,8 @@ namespace toryengine
 				}
 
 			}
-			//temp->Load(path);
-			temp->SetPath(res->GetPath());
+			temp->Load(path);
+			temp->SetPath(resource->GetPath());
 			temp->GetRoot();
 
 			resources.push_back(temp);
