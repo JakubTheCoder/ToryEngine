@@ -13,6 +13,7 @@ namespace toryengine
 {
 	void MeshRenderer::OnInit()
 	{
+		//reee
 		//std::shared_ptr<VertexBuffer> positions = std::make_shared<VertexBuffer>();
 		//positions->Add(glm::vec3(0.0f, 0.5f, 0.0f));
 		//positions->Add(glm::vec3(-0.5f, -0.5f, 0.0f));
