@@ -46,7 +46,7 @@ namespace toryengine
 			temp->OnInit();
 			return temp;
 		}
-		template <typename T, typename A> std::shared_ptr<T> AddComponent(A a)
+		template <typename T, typename A> std::shared_ptr<T> AddComponent(A _a)
 		{
 			std::shared_ptr<T> temp = std::make_shared<T>();
 			temp->object = objectSelf;
@@ -55,7 +55,7 @@ namespace toryengine
 
 			components.push_back(temp);
 
-			temp->OnInit(a);
+			temp->OnInit(_a);
 
 			return temp;
 		}

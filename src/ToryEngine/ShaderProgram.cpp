@@ -8,9 +8,9 @@
 
 namespace toryengine
 {
-	ShaderProgram::ShaderProgram(std::string vert, std::string frag)
+	ShaderProgram::ShaderProgram(std::string _vert, std::string _frag)
 	{
-		std::ifstream file(vert.c_str());
+		std::ifstream file(_vert.c_str());
 		std::string vertSrc;
 
 		if (!file.is_open())
@@ -25,7 +25,7 @@ namespace toryengine
 			vertSrc += line + "\n";
 		}
 		file.close();
-		file.open(frag.c_str());
+		file.open(_frag.c_str());
 		std::string fragSrc;
 
 		if (!file.is_open())
@@ -99,10 +99,10 @@ namespace toryengine
 		
 	}
 
-	void ShaderProgram::Draw(VertexArray& vertexArray)
+	void ShaderProgram::Draw(VertexArray& _vertexArray)
 	{
 		glUseProgram(id);
-		glBindVertexArray(vertexArray.GetId());
+		glBindVertexArray(_vertexArray.GetId());
 
 		for (size_t i = 0; i < samplers.size(); i++)	//Go through all textures and draw them
 		{
@@ -116,7 +116,7 @@ namespace toryengine
 				glBindTexture(GL_TEXTURE_2D, 0);
 			}
 		}
-		glDrawArrays(GL_TRIANGLES, 0, vertexArray.GetVertexCount());
+		glDrawArrays(GL_TRIANGLES, 0, _vertexArray.GetVertexCount());
 
 		for (size_t i = 0; i < samplers.size(); i++)
 		{
@@ -128,35 +128,35 @@ namespace toryengine
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::SetUniform(std::string uniform, glm::vec4 value)
+	void ShaderProgram::SetUniform(std::string _uniform, glm::vec4 _value)
 	{
-		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+		GLint uniformId = glGetUniformLocation(id, _uniform.c_str());
 
 		if (uniformId == -1)
 		{
 			throw std::exception();
 		}
 		glUseProgram(id);
-		glUniform4f(uniformId, value.x, value.y, value.z, value.w);
+		glUniform4f(uniformId, _value.x, _value.y, _value.z, _value.w);
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::SetUniform(std::string uniform, float value)
+	void ShaderProgram::SetUniform(std::string _uniform, float _value)
 	{
-		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+		GLint uniformId = glGetUniformLocation(id, _uniform.c_str());
 
 		if (uniformId == -1)
 		{
 			throw std::exception();
 		}
 		glUseProgram(id);
-		glUniform1f(uniformId, value);
+		glUniform1f(uniformId, _value);
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::SetUniform(std::string uniform, glm::mat4 value)
+	void ShaderProgram::SetUniform(std::string _uniform, glm::mat4 _value)
 	{
-		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+		GLint uniformId = glGetUniformLocation(id, _uniform.c_str());
 
 		if (uniformId == -1)
 		{
@@ -164,13 +164,13 @@ namespace toryengine
 		}
 
 		glUseProgram(id);
-		glUniformMatrix4fv(uniformId, 1, GL_FALSE, glm::value_ptr(value));
+		glUniformMatrix4fv(uniformId, 1, GL_FALSE, glm::value_ptr(_value));
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::SetUniform(std::string uniform, std::weak_ptr<Texture> texture)
+	void ShaderProgram::SetUniform(std::string _uniform, std::weak_ptr<Texture> _texture)
 	{
-		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+		GLint uniformId = glGetUniformLocation(id, _uniform.c_str());
 
 		if (uniformId == -1)
 		{
@@ -181,7 +181,7 @@ namespace toryengine
 		{
 			if (samplers.at(i).id == uniformId)
 			{
-				samplers.at(i).texture = texture;
+				samplers.at(i).texture = _texture;
 
 				glUseProgram(id);
 				glUniform1i(uniformId, i);
@@ -192,7 +192,7 @@ namespace toryengine
 
 		Sampler s;
 		s.id = uniformId;
-		s.texture = texture;
+		s.texture = _texture;
 		samplers.push_back(s);
 
 		glUseProgram(id);

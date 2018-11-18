@@ -18,7 +18,7 @@ namespace toryengine
 		}
 
 
-		void LoadOgg(std::string filename, std::vector<char>&buffer, ALenum &format, ALsizei &freq)
+		void LoadOgg(std::string _filename, std::vector<char>& _buffer, ALenum & _format, ALsizei& _freq)
 		{
 			int endian = 0;
 			int bitStream = 0;
@@ -28,9 +28,9 @@ namespace toryengine
 			OggVorbis_File oggFile = { 0 };
 
 			//File Descriptor
-			if (ov_fopen(filename.c_str(), &oggFile) != 0)
+			if (ov_fopen(_filename.c_str(), &oggFile) != 0)
 			{
-				std::cout << "Failed to open file " << filename << " for decoding" << std::endl;
+				std::cout << "Failed to open file " << _filename << " for decoding" << std::endl;
 				throw toryengine::Exception("Failed to load Sound file");
 				//throw std::exception();
 			}
@@ -40,15 +40,15 @@ namespace toryengine
 			//record format (for OpenAL)
 			if (pInfo->channels == 1)
 			{
-				format = AL_FORMAT_MONO16;
+				_format = AL_FORMAT_MONO16;
 			}
 			else
 			{
-				format = AL_FORMAT_STEREO16;
+				_format = AL_FORMAT_STEREO16;
 			}
 
 			//Sample rate (for OpenAL)
-			freq = pInfo->rate;
+			_freq = pInfo->rate;
 
 			//Keep reading bytes from file to populate output buffer
 			while (true)
@@ -59,7 +59,7 @@ namespace toryengine
 				if (bytes < 0)
 				{
 					ov_clear(&oggFile);
-					std::cout << "Failed to decode file " << filename << std::endl;
+					std::cout << "Failed to decode file " << _filename << std::endl;
 					throw std::exception();
 				}
 				else if (bytes == 0)
@@ -68,7 +68,7 @@ namespace toryengine
 				}
 
 				//copy temp array into output buffer
-				buffer.insert(buffer.end(), array, array + bytes);
+				_buffer.insert(_buffer.end(), array, array + bytes);
 			}
 			//Clean up
 			ov_clear(&oggFile);
@@ -77,12 +77,12 @@ namespace toryengine
 	};
 	Sound::Sound() {}
 
-	Sound::Sound(std::string path)
+	Sound::Sound(std::string _path)
 	{
-		Load(path);
+		Load(_path);
 	}
 
-	void Sound::Load(std::string path)
+	void Sound::Load(std::string _path)
 	{
 		impl = std::make_shared<SoundImpl>();
 		ALenum format = 0;
@@ -91,7 +91,7 @@ namespace toryengine
 
 		alGenBuffers(1, &impl->id);
 
-		impl->LoadOgg(path.c_str(), bufferData, format, freq);
+		impl->LoadOgg(_path.c_str(), bufferData, format, freq);
 		alBufferData(impl->id, format, &bufferData[0], static_cast<ALsizei>(bufferData.size()), freq);
 	}
 
@@ -105,11 +105,11 @@ namespace toryengine
 		alSourcePlay(sid);
 	}
 
-	void Sound::Play(float vol, float varMin, float varMax)
+	void Sound::Play(float _vol, float _varMin, float _varMax)
 	{
-		varMin *= 1000.0f;
-		varMax *= 1000.0f;
-		float variance = (std::rand() % ((int)varMin + 1 - (int)varMax) + (int)varMin) / 1000.0f;	//randomise variance
+		_varMin *= 1000.0f;
+		_varMax *= 1000.0f;
+		float variance = (std::rand() % ((int)_varMin + 1 - (int)_varMax) + (int)_varMin) / 1000.0f;	//randomise variance
 		//
 		ALuint sid = 0;
 		alGenSources(1, &sid);
@@ -117,7 +117,7 @@ namespace toryengine
 		alSource3f(sid, AL_POSITION, 0.0f, 0.0f, 0.0f);
 		alSourcei(sid, AL_BUFFER, impl->id);
 		alSourcef(sid, AL_PITCH, variance);
-		alSourcef(sid, AL_GAIN, vol);
+		alSourcef(sid, AL_GAIN, _vol);
 		alSourcePlay(sid);
 	}
 }

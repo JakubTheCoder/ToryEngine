@@ -22,7 +22,7 @@ namespace toryengine
 		buffers.resize(10);	//Make buffer have 10 channels?
 	}
 
-	VertexArray::VertexArray(std::string path)
+	VertexArray::VertexArray(std::string _path)
 	{
 		//Loading Model 
 		dirty = false;
@@ -33,7 +33,7 @@ namespace toryengine
 			throw std::exception();
 		}
 		buffers.resize(10);
-		std::ifstream file(path.c_str());
+		std::ifstream file(_path.c_str());
 
 		if (!file.is_open())
 		{
@@ -180,19 +180,19 @@ namespace toryengine
 		}
 	}
 
-	void VertexArray::SetBuffer(std::string attribute, std::weak_ptr<VertexBuffer> buffer)
+	void VertexArray::SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer)
 	{
-		if (attribute == "in_Position")		//What is attribute used for?
+		if (_attribute == "in_Position")		//What is attribute used for?
 		{
-			buffers.at(0) = buffer.lock();		//why do we change into shared ptrs???????
+			buffers.at(0) = _buffer.lock();		//why do we change into shared ptrs???????
 		}
-		else if (attribute == "in_Color")
+		else if (_attribute == "in_Color")
 		{
-			buffers.at(1) = buffer.lock();
+			buffers.at(1) = _buffer.lock();
 		}
-		else if (attribute == "in_TexCoord")
+		else if (_attribute == "in_TexCoord")
 		{
-			buffers.at(2) = buffer.lock();
+			buffers.at(2) = _buffer.lock();
 		}
 		else
 		{
@@ -241,55 +241,55 @@ namespace toryengine
 		return id;
 	}
 
-	void VertexArray::SplitString(std::string& input, char splitter, std::vector<std::string>&output)
+	void VertexArray::SplitString(std::string& _input, char _splitter, std::vector<std::string>& _output)
 	{
 		std::string current;
 
-		output.clear();	//cleans any output that we used for previous data
+		_output.clear();	//cleans any output that we used for previous data
 
-		for (size_t i = 0; i < input.length(); i++)
+		for (size_t i = 0; i < _input.length(); i++)
 		{
-			if (input.at(i) == splitter)	//if spliter is a character, push it pack into output and reset current
+			if (_input.at(i) == _splitter)	//if spliter is a character, push it pack into output and reset current
 			{
-				output.push_back(current);	//push back character into output
+				_output.push_back(current);	//push back character into output
 				current = "";	//reset current
 			}
 			else
 			{
-				current += input.at(i);
+				current += _input.at(i);
 			}
 		}
 
 		if (current.length() > 0)	//Push all the characters that are inside current 
 		{
-			output.push_back(current);
+			_output.push_back(current);
 		}
 	}
-	void VertexArray::SplitStringSpace(std::string&input, std::vector<std::string>&output)
+	void VertexArray::SplitStringSpace(std::string& _input, std::vector<std::string>& _output)
 	{
 		std::string current;	
-		output.clear();	//Clear any current outputs
+		_output.clear();	//Clear any current outputs
 		
 		//Break up any spaces, new lines etc.
-		for (size_t i = 0; i < input.length(); i++)
+		for (size_t i = 0; i < _input.length(); i++)
 		{
-			if (input.at(i) == ' ' || input.at(i) == '\r' || input.at(i) == '\n' || input.at(i) == '\t')
+			if (_input.at(i) == ' ' || _input.at(i) == '\r' || _input.at(i) == '\n' || _input.at(i) == '\t')
 			{
 				if (current.length() > 0)
 				{
-					output.push_back(current);
+					_output.push_back(current);
 					current = "";
 				}
 			}
 			else
 			{
-				current += input.at(i);
+				current += _input.at(i);
 			}
 		}
 
 		if (current.length() > 0)
 		{
-			output.push_back(current);
+			_output.push_back(current);
 		}
 	}
 }

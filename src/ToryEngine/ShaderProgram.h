@@ -20,13 +20,13 @@ namespace toryengine
 	class ShaderProgram : private NonCopyable
 	{
 	public:
-		ShaderProgram(std::string vert, std::string frag);
-		void Draw(VertexArray& vertexArray);
+		ShaderProgram(std::string _vert, std::string _frag);
+		void Draw(VertexArray& _vertexArray);
 
-		void SetUniform(std::string unifrom,glm::vec4 value);
-		void SetUniform(std::string uniform, float value);
-		void SetUniform(std::string uniform, glm::mat4 value);	
-		void SetUniform(std::string uniform, std::weak_ptr<Texture> texture);
+		void SetUniform(std::string _unifrom,glm::vec4 _value);
+		void SetUniform(std::string _uniform, float _value);
+		void SetUniform(std::string _uniform, glm::mat4 _value);	
+		void SetUniform(std::string _uniform, std::weak_ptr<Texture> _texture);
 
 		GLuint GetId() { return id; }
 

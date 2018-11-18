@@ -9,9 +9,9 @@ namespace toryengine
 	{
 	public:
 		VertexBuffer();
-		void Add(glm::vec2 value);
-		void Add(glm::vec3 value);	//adds position in the X, Y and Z axis
-		void Add(glm::vec4 value);	//adds 4 position in the X, Y,Z and W axis
+		void Add(glm::vec2 _value);
+		void Add(glm::vec3 _value);	//adds position in the X, Y and Z axis
+		void Add(glm::vec4 _value);	//adds 4 position in the X, Y,Z and W axis
 		int GetComponents();	
 		int GetDataSize() { return data.size(); }
 		GLuint GetId();

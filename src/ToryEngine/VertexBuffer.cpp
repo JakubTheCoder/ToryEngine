@@ -17,7 +17,7 @@ namespace toryengine
 		}
 	}
 
-	void VertexBuffer::Add(glm::vec2 value)
+	void VertexBuffer::Add(glm::vec2 _value)
 	{
 		if (!components)
 		{
@@ -27,11 +27,11 @@ namespace toryengine
 		{
 			throw std::exception();
 		}
-		data.push_back(value.x);
-		data.push_back(value.y);
+		data.push_back(_value.x);
+		data.push_back(_value.y);
 		dirty = true;
 	}
-	void VertexBuffer::Add(glm::vec3 value)
+	void VertexBuffer::Add(glm::vec3 _value)
 	{
 		if (!components)
 		{
@@ -42,13 +42,13 @@ namespace toryengine
 			throw std::exception();
 		}
 		//push back position of point
-		data.push_back(value.x);
-		data.push_back(value.y);
-		data.push_back(value.z);
+		data.push_back(_value.x);
+		data.push_back(_value.y);
+		data.push_back(_value.z);
 		dirty = true;
 	}
 
-	void VertexBuffer::Add(glm::vec4 value)
+	void VertexBuffer::Add(glm::vec4 _value)
 	{
 		if (!components)
 		{
@@ -60,10 +60,10 @@ namespace toryengine
 			throw std::exception();
 		}
 
-		data.push_back(value.x);
-		data.push_back(value.y);
-		data.push_back(value.z);
-		data.push_back(value.w);
+		data.push_back(_value.x);
+		data.push_back(_value.y);
+		data.push_back(_value.z);
+		data.push_back(_value.w);
 		dirty = true;
 	}
 

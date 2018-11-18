@@ -50,10 +50,9 @@ namespace toryengine
 		shader->Draw(*shape);
 	}
 
-	void MeshRenderer::SetTexture(std::weak_ptr<Texture> texture)
+	void MeshRenderer::SetTexture(std::weak_ptr<Texture> _texture)
 	{
-		shader->SetUniform("in_Texture", texture.lock());
-		//shader->Draw(*shape);
+		shader->SetUniform("in_Texture", _texture.lock());
 
 	}
 

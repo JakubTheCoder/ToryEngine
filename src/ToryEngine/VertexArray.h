@@ -13,13 +13,13 @@ namespace toryengine
 	{
 	public:
 		VertexArray();
-		VertexArray(std::string path);
-		void SetBuffer(std::string attribute, std::weak_ptr<VertexBuffer> buffer);
+		VertexArray(std::string _path);
+		void SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer);
 		int GetVertexCount();
 		GLuint GetId();
 
-		void SplitString(std::string& input, char splitter, std::vector<std::string>&output);
-		void SplitStringSpace(std::string& input, std::vector<std::string>&output);
+		void SplitString(std::string& _input, char _splitter, std::vector<std::string>&_output);
+		void SplitStringSpace(std::string& _input, std::vector<std::string>&_output);
 
 	private:
 		GLuint id;

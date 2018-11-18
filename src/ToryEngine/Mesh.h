@@ -12,7 +12,7 @@ namespace toryengine
 	class Mesh :public Resource, private NonCopyable
 	{
 	public:
-		Mesh(std::string path);
+		Mesh(std::string _path);
 		//void AddFace(Face& face);
 		GLuint GetId() { return id; }
 		std::shared_ptr<VertexArray> GetShape() { return shape; }
@@ -22,7 +22,7 @@ namespace toryengine
 		GLuint id;
 		bool dirty;
 		std::shared_ptr<Mesh> Create();
-		std::shared_ptr<Mesh> Load(std::string path);
+		std::shared_ptr<Mesh> Load(std::string _path);
 		std::shared_ptr<VertexArray> shape;
 
 	};

@@ -17,7 +17,7 @@ namespace toryengine
 		void SetMesh(std::weak_ptr<Mesh> _mesh);
 		std::shared_ptr<Mesh> GetMesh() { return mesh.lock(); }
 
-		void SetTexture(std::weak_ptr<Texture> texture);
+		void SetTexture(std::weak_ptr<Texture> _texture);
 
 		//std::shared_ptr<Material> GetMaterial();
 	private:

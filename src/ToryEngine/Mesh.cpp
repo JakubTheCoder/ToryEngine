@@ -4,9 +4,9 @@
 
 namespace toryengine
 {
-	Mesh::Mesh(std::string path)
+	Mesh::Mesh(std::string _path)
 	{
-		Load(path);
+		Load(_path);
 	}
 
 	//std::shared_ptr<Mesh> Mesh::Load(std::string path)

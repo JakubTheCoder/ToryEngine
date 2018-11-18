@@ -49,7 +49,7 @@ namespace toryengine
 		*/
 	}
 
-	std::shared_ptr<Texture> Texture::Load(std::string _path)
+	void Texture::Load(std::string _path)
 	{
 		path = _path;
 		int w = 0;	//Width of texture

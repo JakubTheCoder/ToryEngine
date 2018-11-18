@@ -28,7 +28,7 @@ int main()
 
 	std::shared_ptr<toryengine::Root> root = toryengine::Root::Initalize();
 	std::shared_ptr<toryengine::Object> object = root->AddObject();
-	std::shared_ptr<toryengine::Resources> resources = std::make_shared<toryengine::Resources>();
+	//std::shared_ptr<toryengine::Resources> resources = std::make_shared<toryengine::Resources>();
 
 	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../Crush8-bit.ogg");
 	s->Play();
@@ -36,10 +36,10 @@ int main()
 	std::shared_ptr<TestScreen> ts = object->AddComponent<TestScreen>("Green");
 
 	std::shared_ptr<toryengine::MeshRenderer> mr = object->AddComponent<toryengine::MeshRenderer>();
-	std::shared_ptr<toryengine::MeshRenderer>mr2 = object->GetComponent<toryengine::MeshRenderer>();
+	//std::shared_ptr<toryengine::MeshRenderer>mr2 = object->GetComponent<toryengine::MeshRenderer>();
 	//std::shared_ptr<toryengine::Resources> temp = root->GetResources();
-	std::shared_ptr<toryengine::Texture>texture = std::make_shared<toryengine::Texture> ("../texture.jpg");
-	mr2->SetTexture(texture);// root->GetResources()->Load<toryengine::Texture>(texture));//"texture.jpg"));
+	//std::shared_ptr<toryengine::Texture>texture = std::make_shared<toryengine::Texture> ("../texture.jpg");
+	mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));//"texture.jpg"));
 
 	//std::shared_ptr<Texture> t = getResources()->load<Texture>("")
 	//How do we access GetResources? to load in texture?

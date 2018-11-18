@@ -17,8 +17,8 @@ namespace toryengine
 		GLuint GetId() { return id; }
 		glm::vec2 GetSize() { return size; }
 		std::string GetPath() { return path; }
-		std::shared_ptr<Texture> Load(std::string path);
-		std::shared_ptr<Texture>Create();
+		void Load(std::string _path);
+		//std::shared_ptr<Texture>Create();
 	private:
 		GLuint id;
 		bool dirty;

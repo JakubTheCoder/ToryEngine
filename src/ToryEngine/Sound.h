@@ -10,9 +10,9 @@ namespace toryengine
 	{
 	public:
 		Sound();
-		Sound(std::string path);
-		void Load(std::string path);
-		void Play(float vol, float varMin, float varMax);
+		Sound(std::string _path);
+		void Load(std::string _path);
+		void Play(float _vol, float _varMin, float _varMax);
 		void Play();
 
 	private:
