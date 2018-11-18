@@ -1,6 +1,5 @@
 #include <memory>
 #include "Mesh.h"
-#include "VertexArray.h"
 
 namespace toryengine
 {
@@ -16,6 +15,5 @@ namespace toryengine
 		//Make Vertex Array shared pointer and pass in path 
 		//shape = std::make_shared<VertexArray>(path);
 		//return shape;
-		//return model;
 	}
 }

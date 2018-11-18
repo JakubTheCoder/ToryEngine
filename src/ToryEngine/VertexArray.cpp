@@ -172,7 +172,7 @@ namespace toryengine
 			SetBuffer("in_Position", positionBuffer);
 			if (texCoordBuffer)
 			{
-				SetBuffer("in_texCoord", texCoordBuffer);
+				SetBuffer("in_TexCoord", texCoordBuffer);
 			}
 			if (normalBuffer)
 			{

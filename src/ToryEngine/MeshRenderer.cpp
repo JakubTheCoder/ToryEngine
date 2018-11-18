@@ -31,7 +31,6 @@ namespace toryengine
 		//shape->SetBuffer("in_Position", positions);
 
 		//shape->SetBuffer("in_TexCoord", texCoords);
-
 		shader = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
 	}
 
@@ -47,7 +46,8 @@ namespace toryengine
 		// from screen
 		shader->SetUniform("in_Projection",glm::perspective(glm::radians(45.f),800.0f/600.0f,0.1f,1000.0f));		//WIDTH / HEIGHT
 		//Get camera projection matrix
-		shader->Draw(*shape);
+		//shape = GetMesh();
+		shader->Draw(*mesh.lock()->GetShape());
 	}
 
 	void MeshRenderer::SetTexture(std::weak_ptr<Texture> _texture)
