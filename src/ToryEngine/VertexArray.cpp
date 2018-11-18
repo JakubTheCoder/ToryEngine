@@ -67,7 +67,7 @@ namespace toryengine
 			{
 				if (!positionBuffer)	//if we dont have a position buffer yet, create a position buffer
 				{
-					positionBuffer = std::shared_ptr<VertexBuffer>();
+					positionBuffer = std::make_shared<VertexBuffer>();
 				}
 
 				//Convertes String to double, since we are reading from a textfile, all text is strings,
@@ -78,7 +78,7 @@ namespace toryengine
 			{
 				if (!texCoordBuffer)	//if theres no Texture Coord buffer, create one
 				{
-					texCoordBuffer = std::shared_ptr<VertexBuffer>();
+					texCoordBuffer = std::make_shared<VertexBuffer>();
 				}
 				texCoords.push_back(glm::vec2(atof(splitLine.at(1).c_str()), 1.0f - atof(splitLine.at(2).c_str())));
 			}
@@ -86,7 +86,7 @@ namespace toryengine
 			{
 				if (!normalBuffer)	//if there is no Normal buffer, create one
 				{
-					normalBuffer = std::shared_ptr<VertexBuffer>();
+					normalBuffer = std::make_shared<VertexBuffer>();
 				}
 				normals.push_back(glm::vec3(atof(splitLine.at(1).c_str()), atof(splitLine.at(2).c_str()), atof(splitLine.at(3).c_str())));
 			}
@@ -99,6 +99,7 @@ namespace toryengine
 				//dont need to check for position since we know models will always have at least position
 				//We need to get to first position (0) by -1 because it starts at 1
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+
 				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
 				{
 					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -182,9 +183,9 @@ namespace toryengine
 
 	void VertexArray::SetBuffer(std::string _attribute, std::weak_ptr<VertexBuffer> _buffer)
 	{
-		if (_attribute == "in_Position")		//What is attribute used for?
+		if (_attribute == "in_Position")		
 		{
-			buffers.at(0) = _buffer.lock();		//why do we change into shared ptrs???????
+			buffers.at(0) = _buffer.lock();		
 		}
 		else if (_attribute == "in_Color")
 		{
@@ -193,6 +194,10 @@ namespace toryengine
 		else if (_attribute == "in_TexCoord")
 		{
 			buffers.at(2) = _buffer.lock();
+		}
+		else if (_attribute == "in_Normal")
+		{
+			buffers.at(3) = _buffer.lock();
 		}
 		else
 		{

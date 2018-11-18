@@ -4,17 +4,18 @@
 
 namespace toryengine
 {
-	Mesh::Mesh(std::string _path)
+	Mesh::Mesh()
 	{
-		Load(_path);
 	}
 
-	//std::shared_ptr<Mesh> Mesh::Load(std::string path)
-	//{
+	void Mesh::Load(std::string _path)
+	{
+		model = std::make_shared<VertexArray>(_path);
+
+
 		//Make Vertex Array shared pointer and pass in path 
 		//shape = std::make_shared<VertexArray>(path);
-
 		//return shape;
-
-	//}
+		//return model;
+	}
 }

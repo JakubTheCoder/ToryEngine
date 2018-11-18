@@ -12,18 +12,22 @@ namespace toryengine
 	class Mesh :public Resource, private NonCopyable
 	{
 	public:
-		Mesh(std::string _path);
-		//void AddFace(Face& face);
+		Mesh();
 		GLuint GetId() { return id; }
-		std::shared_ptr<VertexArray> GetShape() { return shape; }
+		std::shared_ptr<VertexArray> GetShape() { return model; }
+
+		std::shared_ptr<Mesh> Create();
+		void Load(std::string _path);
+
 	private:
 		//std::vector<Face> faces;
 		//vector of vec3s- push back when loading
 		GLuint id;
 		bool dirty;
-		std::shared_ptr<Mesh> Create();
-		std::shared_ptr<Mesh> Load(std::string _path);
-		std::shared_ptr<VertexArray> shape;
+
+
+		std::shared_ptr<VertexArray> model;
+		std::vector<glm::vec3> faces;
 
 	};
 }

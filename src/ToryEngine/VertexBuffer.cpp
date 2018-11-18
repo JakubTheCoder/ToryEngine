@@ -81,7 +81,7 @@ namespace toryengine
 		if (dirty)
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, id);	//Binds making this Buffer object active
-			glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*data.size(), &data.at(0), GL_STATIC_DRAW);	//Uploads copy from memory to into new VBO ???? Why do we have to do this?
+			glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*data.size(), &data.at(0), GL_STATIC_DRAW);	//Uploads copy from memory to into new VBO 
 			glBindBuffer(GL_ARRAY_BUFFER, 0);	//reset
 			dirty = false;
 		}

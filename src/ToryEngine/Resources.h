@@ -4,6 +4,8 @@
 #include <memory>
 
 #include "Texture.h"
+#include "Mesh.h"
+
 namespace toryengine
 {
 	class Resource;

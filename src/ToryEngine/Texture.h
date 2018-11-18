@@ -12,11 +12,12 @@ namespace toryengine
 	class Texture : public Resource, private NonCopyable
 	{
 	public:
-		Texture(std::string _path);
 		Texture();
 		GLuint GetId() { return id; }
 		glm::vec2 GetSize() { return size; }
+
 		std::string GetPath() { return path; }
+
 		void Load(std::string _path);
 		//std::shared_ptr<Texture>Create();
 	private:

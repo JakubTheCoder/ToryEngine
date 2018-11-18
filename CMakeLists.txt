@@ -66,7 +66,6 @@ src/ToryEngine/Transform.cpp
 src/ToryEngine/Resource.h
 src/ToryEngine/Resource.cpp
 src/ToryEngine/Resources.h
-src/ToryEngine/Resources.cpp
 src/ToryEngine/Mesh.h
 src/ToryEngine/Mesh.cpp
 src/ToryEngine/Texture.h

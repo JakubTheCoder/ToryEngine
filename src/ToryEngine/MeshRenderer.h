@@ -14,6 +14,7 @@ namespace toryengine
 	{
 	public:
 		void OnInit();
+
 		void SetMesh(std::weak_ptr<Mesh> _mesh);
 		std::shared_ptr<Mesh> GetMesh() { return mesh.lock(); }
 

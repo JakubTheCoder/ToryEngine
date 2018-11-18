@@ -18,7 +18,7 @@ namespace toryengine
 
 	private:
 		GLuint id;	//GLuint = unsigned int
-		int components;		//what exactly are componnts????? Points?
+		int components;		
 		std::vector<GLfloat> data;	//GLfloat = float that can be used on a lot of compilers	/ Vector of all positions.
 		bool dirty;		//flag bool to set if a object is created?
 

@@ -40,10 +40,7 @@ int main()
 	//std::shared_ptr<toryengine::Resources> temp = root->GetResources();
 	//std::shared_ptr<toryengine::Texture>texture = std::make_shared<toryengine::Texture> ("../texture.jpg");
 	mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));//"texture.jpg"));
-
-	//std::shared_ptr<Texture> t = getResources()->load<Texture>("")
-	//How do we access GetResources? to load in texture?
-
+	mr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../curuthers.obj"));
 	root->Start();
 	return 0;
 }
