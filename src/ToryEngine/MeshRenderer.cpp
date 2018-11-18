@@ -59,7 +59,7 @@ namespace toryengine
 	void MeshRenderer::SetMesh(std::weak_ptr<Mesh> _mesh)
 	{
 		//shader->SetUniform("in_Model", _mesh.lock());
-		shader->SetUniform("in_Model", glm::mat4(1.0f));
+		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());
 	}
 
 

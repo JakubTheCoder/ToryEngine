@@ -12,15 +12,12 @@ namespace toryengine
 {
 	std::shared_ptr<Root> Root::Initalize()
 	{	
-		//rtn
 		//cant have constructor to itself
 		std::shared_ptr<Root> temp = std::make_shared<Root>();	//makes temp a shared pointer
 		temp->running = false;	//game loop is false 
 		temp->rootSelf = temp;	//sets temp to itself since constructor can't do this
 
 		temp->resources = std::make_shared<Resources>();
-
-		//temp->resources = std::make_shared<toryengine::Resources>();
 
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)	//Makes sure SDL initalises
 		{
@@ -45,6 +42,7 @@ namespace toryengine
 		{
 			throw std::exception();
 		}
+		//temp->context = alcCreateContext(temp->device, NULL);
 		temp->context = alcCreateContext(temp->device, NULL);
 
 		if (!temp->context)
