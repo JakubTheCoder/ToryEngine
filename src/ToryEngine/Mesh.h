@@ -14,7 +14,9 @@ namespace toryengine
 	public:
 		Mesh();
 		GLuint GetId() { return id; }
-		std::shared_ptr<VertexArray> GetShape();// { return model; }
+		std::shared_ptr<VertexArray> GetShape(){ return model; }
+
+		void AddFace(glm::vec3 _face) { faces.push_back(_face); }
 
 		std::shared_ptr<Mesh> Create();
 		void Load(std::string _path);
@@ -27,6 +29,7 @@ namespace toryengine
 
 
 		std::shared_ptr<VertexArray> model;
+
 		std::vector<glm::vec3> faces;
 
 	};

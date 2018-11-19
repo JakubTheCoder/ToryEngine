@@ -10,4 +10,5 @@
 #include "Resource.h"
 #include "Resources.h"
 #include "Sound.h"
+#include "Transform.h"
 #endif

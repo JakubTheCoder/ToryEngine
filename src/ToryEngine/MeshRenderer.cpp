@@ -32,6 +32,7 @@ namespace toryengine
 
 		//shape->SetBuffer("in_TexCoord", texCoords);
 		shader = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
+
 	}
 
 	void MeshRenderer::OnDraw()

@@ -11,8 +11,8 @@
 namespace toryengine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
 {
 	class Object;	//allow root to access object
-	//class Resource;	//allow root to access Resource
 	class Resources;
+	class Environment;
 
 	class Root :private NonCopyable
 	{
@@ -25,14 +25,28 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 		std::shared_ptr<Object> AddObject();	//Adds a object to the vector
 		std::shared_ptr<Resources> GetResources() { return resources; }	//get a list of resources
 
+		template <typename T> 
+		void GetObjectsWithComponent(std::vector<std::shared_ptr<Object>>& output)
+		{
+			for (size_t i= 0; i < objects.size(); i++)
+			{
+				if (objects.at(i)->HasComponent<T>())
+				{
+					output.push_back(objects.at(i));
+				}
+			}
+			
+		}
+
 	private:
 		std::weak_ptr<Root> rootSelf;	//weak pointer for reference
 
-		std::shared_ptr<Resources> resources;
-		//Objects / Entities
 		std::vector<std::shared_ptr<Object>> objects;	//Vector of all objects
 
-		//ENVIRNOMENT (Add all other things here as well)
+		//Other stuff Root has to access
+		std::shared_ptr<Resources> resources;	//loading in textures / models / shaders
+		std::shared_ptr<Environment> environment;	//delta time
+			
 
 		bool running;	//game loop bool
 		SDL_Window* window;

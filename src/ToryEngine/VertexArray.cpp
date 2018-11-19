@@ -164,6 +164,9 @@ namespace toryengine
 				{
 					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 				}
+
+
+				//ADD FACES? 
 			}
 			//Convert these to weak ptrs
 			SetBuffer("in_Position", positionBuffer);

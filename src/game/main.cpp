@@ -49,6 +49,11 @@ int main()
 	//mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));//"texture.jpg"));
 	mr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../curuthers.obj"));
 	mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
+	std::vector<std::shared_ptr<toryengine::Object>> output;
+	root->GetObjectsWithComponent<toryengine::MeshRenderer>(output);
+
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_DEPTH_TEST);
 	root->Start();
 	return 0;
 }

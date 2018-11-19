@@ -5,6 +5,7 @@
 #include "Object.h"
 #include "Transform.h"
 #include "Resources.h"
+#include "Environment.h"
 
 #define WINDOW_WIDTH 800	//changes the words WINDOW_WIDTH to 800, no int or memory required to store this
 #define WINDOW_HEIGHT 600
@@ -16,8 +17,10 @@ namespace toryengine
 		std::shared_ptr<Root> temp = std::make_shared<Root>();	//makes temp a shared pointer
 		temp->running = false;	//game loop is false 
 		temp->rootSelf = temp;	//sets temp to itself since constructor can't do this
-
+		
+		//Make pointers to things that work from Root
 		temp->resources = std::make_shared<Resources>();
+		temp->environment = std::make_shared<Environment>();
 
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)	//Makes sure SDL initalises
 		{
@@ -26,6 +29,9 @@ namespace toryengine
 
 		temp->window = SDL_CreateWindow("Tory Engine", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,	//Creates a window 
 			WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+
+		//glEnable(GL_CULL_FACE);
+		//glEnable(GL_DEPTH_TEST);
 
 		if (!SDL_GL_CreateContext(temp->window))	//makes sure window is made
 		{
@@ -64,8 +70,16 @@ namespace toryengine
 	{
 		running = true; //game loop bool
 
+		//
+		glm::vec3 angle = glm::vec3(0.0f, 1.0f, 0.0f);
+
+		float lastTime = SDL_GetTicks();
+		float idealTime = 1.0f / 60.0f;
 		while (running)	//= true
 		{
+			float time = SDL_GetTicks();
+			float diff = time - lastTime;
+			environment->SetDeltaTime(diff / 1000.0f);
 			SDL_Event event = { 0 }; //allows us to have inputs
 
 			while (SDL_PollEvent(&event))
@@ -75,17 +89,17 @@ namespace toryengine
 					running = false; //Turns program off
 				}
 			}
-
+			//angle += 0.05f;
 			//UPDATE OBJECTS
-			
 			for (std::vector<std::shared_ptr<Object> >::iterator i = objects.begin(); i != objects.end(); i++)	//go through all objects in object vector
 			{
+				(*i)->GetComponent<Transform>()->Rotate(angle);
 				(*i)->Update(); //object ticks() 
 			}
 
 			//CLEAR SCREEN
 			glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			//DRAW OBJECTS
 			for (std::vector<std::shared_ptr<Object>>::iterator i = objects.begin(); i != objects.end(); i++)
@@ -94,6 +108,11 @@ namespace toryengine
 			}
 
 			SDL_GL_SwapWindow(window);	//swap buffer
+			if (idealTime > environment->GetDeltaTime())
+			{
+				//Sleep for remaning time
+				SDL_Delay((idealTime - environment->GetDeltaTime())*1000.0f);
+			}
 		}
 		SDL_DestroyWindow(window);
 		SDL_Quit();
