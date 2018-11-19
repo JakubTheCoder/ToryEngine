@@ -53,6 +53,8 @@ src/ToryEngine/Object.h
 src/ToryEngine/Object.cpp
 src/ToryEngine/Component.h
 src/ToryEngine/Component.cpp
+src/ToryEngine/Environment.h
+src/ToryEngine/Environment.cpp
 src/ToryEngine/VertexArray.h
 src/ToryEngine/VertexArray.cpp
 src/ToryEngine/VertexBuffer.h

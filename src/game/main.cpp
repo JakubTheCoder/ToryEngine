@@ -46,8 +46,9 @@ int main()
 	//std::shared_ptr<toryengine::MeshRenderer>mr2 = object->GetComponent<toryengine::MeshRenderer>();
 	//std::shared_ptr<toryengine::Resources> temp = root->GetResources();
 	//std::shared_ptr<toryengine::Texture>texture = std::make_shared<toryengine::Texture> ("../texture.jpg");
-	mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));//"texture.jpg"));
+	//mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));//"texture.jpg"));
 	mr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../curuthers.obj"));
+	mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
 	root->Start();
 	return 0;
 }
