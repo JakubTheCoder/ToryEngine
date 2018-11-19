@@ -14,7 +14,7 @@ namespace toryengine
 	public:
 		Mesh();
 		GLuint GetId() { return id; }
-		std::shared_ptr<VertexArray> GetShape() { return model; }
+		std::shared_ptr<VertexArray> GetShape();// { return model; }
 
 		std::shared_ptr<Mesh> Create();
 		void Load(std::string _path);
