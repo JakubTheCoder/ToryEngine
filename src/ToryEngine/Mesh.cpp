@@ -6,7 +6,10 @@ namespace toryengine
 	Mesh::Mesh()
 	{
 	}
-	std::shared_ptr<VertexArray> Mesh::GetShape() { return model; }
+	std::shared_ptr<VertexArray> Mesh::GetShape() 
+	{ 
+		return model; 
+	}
 	void Mesh::Load(std::string _path)
 	{
 		model = std::make_shared<VertexArray>(_path);

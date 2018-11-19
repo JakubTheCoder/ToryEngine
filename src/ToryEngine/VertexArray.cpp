@@ -4,9 +4,6 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 
-//Why do we lock buffers?
-//Get VertexCount math?
-
 namespace toryengine
 {
 	VertexArray::VertexArray()

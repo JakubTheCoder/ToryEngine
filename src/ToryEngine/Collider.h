@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "Component.h"
+
 //include tribox C file.
 namespace toryengine
 {
@@ -12,7 +13,7 @@ namespace toryengine
 
 	struct Triangle;
 
-	class Collision :public Component
+	class Collider :public Component
 	{
 	public:
 		//bool TriBoxCollision(glm::vec3 boxCentre, glm::vec3 boxHalfSize, Triangle t);

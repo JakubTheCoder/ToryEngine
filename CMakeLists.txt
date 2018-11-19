@@ -74,8 +74,12 @@ src/ToryEngine/Sound.h
 src/ToryEngine/Sound.cpp
 src/ToryEngine/Exception.h
 src/ToryEngine/Exception.cpp
-src/ToryEngine/Collision.h
-src/ToryEngine/Collision.cpp
+src/ToryEngine/Collider.h
+src/ToryEngine/Collider.cpp
+src/ToryEngine/BoxCollider.h
+src/ToryEngine/BoxCollider.cpp
+src/ToryEngine/MeshCollider.h
+src/ToryEngine/MeshCollider.cpp
 )
 
 if(MSVC)

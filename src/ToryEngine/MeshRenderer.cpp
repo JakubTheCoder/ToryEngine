@@ -13,7 +13,6 @@ namespace toryengine
 {
 	void MeshRenderer::OnInit()
 	{
-		//reee
 		//std::shared_ptr<VertexBuffer> positions = std::make_shared<VertexBuffer>();
 		//positions->Add(glm::vec3(0.0f, 0.5f, 0.0f));
 		//positions->Add(glm::vec3(-0.5f, -0.5f, 0.0f));
@@ -60,7 +59,7 @@ namespace toryengine
 	void MeshRenderer::SetMesh(std::weak_ptr<Mesh> _mesh)
 	{
 		//shader->SetUniform("in_Model", _mesh.lock());
-		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());
+		shader->SetUniform("in_Positions",);
 	}
 
 
