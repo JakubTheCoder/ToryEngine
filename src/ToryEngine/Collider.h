@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include "Component.h"
 #include <vector>
-
+#include "Root.h"
 //include tribox C file.
 namespace toryengine
 {
@@ -13,6 +13,9 @@ namespace toryengine
 	}
 
 	//struct Triangle;
+	class BoxCollider;
+	class MeshCollider;
+	class Root;
 
 	class Collider :public Component
 	{
@@ -22,12 +25,13 @@ namespace toryengine
 		void OnTick()
 		{
 			std::vector<std::shared_ptr<toryengine::Object>> output;
-			root->GetObjectsWithComponent<MeshCollider>(output);
+			root.lock()->GetObjectsWithComponent<MeshCollider>(output);
+			
 		}
 		//get a list of all ocmponentes
 		//try to collide with it, first AABB
 		//Those that colide do a triangle box intercent using triBoxOVerLap
 	private:
-
+		std::weak_ptr<Root> root;
 	};
 }

@@ -7,8 +7,15 @@
 
 namespace toryengine
 {
-	class VertexBuffer;
+	struct Triangle
+	{
+		glm::vec3 a;
+		glm::vec3 b;
+		glm::vec3 c;
+	};
 
+	class VertexBuffer;
+	//class Mesh;
 	class VertexArray
 	{
 	public:
@@ -20,11 +27,13 @@ namespace toryengine
 
 		void SplitString(std::string& _input, char _splitter, std::vector<std::string>&_output);
 		void SplitStringSpace(std::string& _input, std::vector<std::string>&_output);
+		std::vector<std::shared_ptr<Triangle>> GetFaces() { return faces; }
 
 	private:
 		GLuint id;
-		std::vector<std::shared_ptr<VertexBuffer>> buffers;
 		bool dirty;
 
+		std::vector<std::shared_ptr<VertexBuffer>> buffers;
+		std::vector < std::shared_ptr<Triangle>>faces;
 	};
 }

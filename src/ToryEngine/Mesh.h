@@ -9,6 +9,7 @@
 namespace toryengine
 {
 	class VertexArray;
+
 	class Mesh :public Resource, private NonCopyable
 	{
 	public:
@@ -16,11 +17,8 @@ namespace toryengine
 		GLuint GetId() { return id; }
 		std::shared_ptr<VertexArray> GetShape(){ return model; }
 
-		void AddFace(glm::vec3 _face) { faces.push_back(_face); }
-
-		std::shared_ptr<Mesh> Create();
+		//std::shared_ptr<Mesh> Create();
 		void Load(std::string _path);
-
 	private:
 		//std::vector<Face> faces;
 		//vector of vec3s- push back when loading
@@ -30,7 +28,7 @@ namespace toryengine
 
 		std::shared_ptr<VertexArray> model;
 
-		std::vector<glm::vec3> faces;
+		std::vector<std::shared_ptr<Triangle>>faces;
 
 	};
 }

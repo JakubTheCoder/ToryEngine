@@ -48,6 +48,7 @@ namespace toryengine
 		std::shared_ptr<VertexBuffer> positionBuffer = NULL;
 		std::shared_ptr<VertexBuffer> texCoordBuffer = NULL;
 		std::shared_ptr<VertexBuffer> normalBuffer = NULL;
+		std::shared_ptr<Triangle> t = std::make_shared<Triangle>();
 
 		while (!file.eof())	//while we haven't reached end of file
 		{
@@ -89,6 +90,7 @@ namespace toryengine
 			}
 			else if (splitLine.at(0) == "f")	//is there a face present on current line?
 			{
+
 				//Faces need more splitting due to how they are stored in a file
 				std::vector<std::string>subsplit;
 
@@ -96,6 +98,8 @@ namespace toryengine
 				//dont need to check for position since we know models will always have at least position
 				//We need to get to first position (0) by -1 because it starts at 1
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+
+				t->a = positions.at(atoi(subsplit.at(0).c_str()) - 1);
 
 				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
 				{
@@ -108,6 +112,9 @@ namespace toryengine
 
 				SplitString(splitLine.at(2), '/', subsplit);
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+
+				t->b = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+
 				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
 				{
 					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -119,6 +126,11 @@ namespace toryengine
 
 				SplitString(splitLine.at(3), '/', subsplit);
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+
+				t->c = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				//faces.push_back(t);
+				faces.push_back(t);
+
 				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
 				{
 					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -134,6 +146,9 @@ namespace toryengine
 				//Triangluate mesh -> draw triable between 3,4 and 1st vertex of a quad to triangulate mesh.
 				SplitString(splitLine.at(3), '/', subsplit);
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+
+				t->a = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+
 				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
 				{
 					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -145,6 +160,9 @@ namespace toryengine
 
 				SplitString(splitLine.at(4), '/', subsplit);
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+
+				t->b = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+
 				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
 				{
 					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -156,6 +174,9 @@ namespace toryengine
 
 				SplitString(splitLine.at(1), '/', subsplit);
 				positionBuffer->Add(positions.at(atoi(subsplit.at(0).c_str()) - 1));	//atoi convertes to interger
+
+				t->c = positions.at(atoi(subsplit.at(0).c_str()) - 1);
+				faces.push_back(t);
 				if (texCoordBuffer)	//if theres a tex coord buffer add tex coords
 				{
 					texCoordBuffer->Add(texCoords.at(atoi(subsplit.at(1).c_str()) - 1));
@@ -165,10 +186,7 @@ namespace toryengine
 					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 				}
 
-
-				//ADD FACES? 
 			}
-			//Convert these to weak ptrs
 			SetBuffer("in_Position", positionBuffer);
 			if (texCoordBuffer)
 			{

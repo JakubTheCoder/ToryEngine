@@ -39,8 +39,7 @@ namespace toryengine
 		{
 			for (size_t i = 0; i < components.size(); i++)	//go thorugh all components of a object
 			{
-				//attempts to convert back to original component (T) if fails test will be NULL, therefore it is not the component we are looking for
-				std::shared_ptr<T> test = std::dynamic_pointer_cast<T>(components.at(i));	//Dynamic casts converts pointers to classes up/ down heirarchy 
+				std::shared_ptr<T> test = std::dynamic_pointer_cast<T>(components.at(i));
 				if (test)
 				{
 					return true;
