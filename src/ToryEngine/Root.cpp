@@ -91,7 +91,7 @@ namespace toryengine
 			//UPDATE OBJECTS
 			for (std::vector<std::shared_ptr<Object> >::iterator i = objects.begin(); i != objects.end(); i++)	//go through all objects in object vector
 			{
-				(*i)->GetComponent<Transform>()->Rotate(angle);
+				//(*i)->GetComponent<Transform>()->Rotate(angle);
 				(*i)->Update(); //object ticks() 
 			}
 

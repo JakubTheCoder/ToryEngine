@@ -28,7 +28,7 @@ namespace toryengine
 			if (GetObject()->GetComponent<Transform>()->GetPosition().x + GetSize().x < bc->GetObject()->GetComponent<Transform>()->GetPosition().x
 				|| GetObject()->GetComponent<Transform>()->GetPosition().x> bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetSize().x)
 			{
-				isBoxColliding = false;
+				isColliding = false;
 			}
 
 			//Y Axis Collision
@@ -36,7 +36,7 @@ namespace toryengine
 			if (GetObject()->GetComponent<Transform>()->GetPosition().y + GetSize().y < bc->GetObject()->GetComponent<Transform>()->GetPosition().y
 				|| GetObject()->GetComponent<Transform>()->GetPosition().y> bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetSize().y)
 			{
-				isBoxColliding = false;
+				isColliding = false;
 			}
 
 			//Z Axis Collision
@@ -44,9 +44,9 @@ namespace toryengine
 			if (GetObject()->GetComponent<Transform>()->GetPosition().z + GetSize().z < bc->GetObject()->GetComponent<Transform>()->GetPosition().z
 				|| GetObject()->GetComponent<Transform>()->GetPosition().z> bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetSize().z)
 			{
-				isBoxColliding = false;
+				isColliding = false;
 			}
-			isBoxColliding = true;
+			isColliding = true;
 		}
 
 	}

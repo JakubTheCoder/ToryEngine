@@ -15,6 +15,7 @@ namespace toryengine
 		void SetSize(glm::vec3 _size) { size = _size; }
 		glm::vec3 GetSize() { return size; }
 
+		bool isBoxColliding() { return isColliding; }
 		void OnUpdate();
 
 		//std::shared_ptr<Root> GetRoot();
@@ -22,6 +23,6 @@ namespace toryengine
 	private:
 		std::weak_ptr<Root> root;
 		glm::vec3 size;
-		bool isBoxColliding;
+		bool isColliding;
 	};
 }
