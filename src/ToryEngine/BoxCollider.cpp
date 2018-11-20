@@ -12,7 +12,7 @@ namespace toryengine
 
 	void BoxCollider::OnUpdate()
 	{
-		std::vector<std::shared_ptr<toryengine::Object>> colBoxes;	//Makes a vector of objects 
+		std::vector<std::shared_ptr<Object>> colBoxes;	//Makes a vector of objects 
 		root.lock()->GetObjectsWithComponent<BoxCollider>(colBoxes);	//Gets all the objects with a BoxCollider
 		for (size_t i = 0; i < colBoxes.size(); i++)
 		{
@@ -21,8 +21,7 @@ namespace toryengine
 			{
 				continue;
 			}
-			//GetObject()->GetComponent<Transform>()->GetPosition();
-			//bc->GetSize();
+
 
 			//X Axis Collision 
 			//if (box1.x+box1.w<box2.x || box1.x > box2.x + box2.w)isColliding =  false);

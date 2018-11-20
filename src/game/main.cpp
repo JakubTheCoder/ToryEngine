@@ -34,8 +34,9 @@ int main()
 
 	std::shared_ptr<TestScreen> ts = object->AddComponent<TestScreen>("Green");
 
-	object->AddComponent<toryengine::BoxCollider>();
-	object->GetComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
+	//object->AddComponent<toryengine::BoxCollider>();
+	//object->GetComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
+	object->AddComponent<toryengine::MeshCollider>();
 	std::shared_ptr<toryengine::MeshRenderer> mr = object->AddComponent<toryengine::MeshRenderer>();
 	//std::shared_ptr<toryengine::MeshRenderer>mr2 = object->GetComponent<toryengine::MeshRenderer>();
 	//std::shared_ptr<toryengine::Resources> temp = root->GetResources();
