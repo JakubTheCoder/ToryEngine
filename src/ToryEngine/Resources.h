@@ -1,4 +1,4 @@
-
+#pragma once
 #include <string>
 #include <vector>	//includes linked lists
 #include <memory>

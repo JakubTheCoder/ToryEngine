@@ -89,7 +89,6 @@ namespace toryengine
 					running = false; //Turns program off
 				}
 			}
-			//angle += 0.05f;
 			//UPDATE OBJECTS
 			for (std::vector<std::shared_ptr<Object> >::iterator i = objects.begin(); i != objects.end(); i++)	//go through all objects in object vector
 			{
