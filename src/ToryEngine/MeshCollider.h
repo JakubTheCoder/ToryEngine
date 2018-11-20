@@ -3,13 +3,14 @@
 #include <vector>
 
 #include "Collider.h"
-#include "collision/tribox.c"
-
+//#include "collision/tribox.c"
+#include "VertexArray.h"
 namespace toryengine
 {
 	class Root;
 	class Mesh;
 	class VertexArray;
+	class BoxCollider;
 
 	extern "C"
 	{

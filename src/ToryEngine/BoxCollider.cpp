@@ -12,11 +12,11 @@ namespace toryengine
 
 	void BoxCollider::OnUpdate()
 	{
-		std::vector<std::shared_ptr<toryengine::Object>> boxes;	//Makes a vector of objects 
-		root.lock()->GetObjectsWithComponent<BoxCollider>(boxes);	//Gets all the objects with a BoxCollider
-		for (size_t i = 0; i < boxes.size(); i++)
+		std::vector<std::shared_ptr<toryengine::Object>> colBoxes;	//Makes a vector of objects 
+		root.lock()->GetObjectsWithComponent<BoxCollider>(colBoxes);	//Gets all the objects with a BoxCollider
+		for (size_t i = 0; i < colBoxes.size(); i++)
 		{
-			std::shared_ptr<BoxCollider> bc = boxes.at(i)->GetComponent<BoxCollider>();
+			std::shared_ptr<BoxCollider> bc = colBoxes.at(i)->GetComponent<BoxCollider>();
 			if (bc.get() == this)
 			{
 				continue;
