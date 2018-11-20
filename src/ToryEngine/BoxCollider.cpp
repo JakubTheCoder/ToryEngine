@@ -1,11 +1,12 @@
 #include "BoxCollider.h"
 #include "Transform.h"
+#include "Root.h"
 namespace toryengine
 {
-	//std::shared_ptr<Root> BoxCollider::GetRoot()
-	//{
-	//	return root.lock();
-	//}
+	std::shared_ptr<Root> BoxCollider::GetRoot()
+	{
+		return root.lock();
+	}
 
 	void BoxCollider::onTick()
 	{
@@ -46,24 +47,6 @@ namespace toryengine
 			}
 			isColliding = true;
 		}
-
-
-		//BoxCollider box1 = this->BoxCollider();
-		//First box X min = x;
-		//first box X max = X + box width
-		//first box Y min = y;
-		//first box y max = y + box height
-		//first box z min = z;
-		//first box z max = z + depth
-		//get same for box 2
-		//OR  dont use temp vars and use width / height / depth
-
-
-		//check  
-		//if (boxX1.w < boxX2 min || box1Xmin > x2Max)return false;
-		//if (boxY1 max  <y2min || y1min > y2max) return false;
-		//if (boxZ1 max < boxZ2min || boxZ1min > boxZ2max) return false;
-		//return true;
 
 	}
 }

@@ -11,4 +11,5 @@
 #include "Resources.h"
 #include "Sound.h"
 #include "Transform.h"
+#include "BoxCollider.h";
 #endif
