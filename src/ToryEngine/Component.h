@@ -25,7 +25,7 @@ namespace toryengine
 
 		virtual void OnInit() { }	// on init
 		virtual void OnBegin() { }	// on begin
-		virtual void OnUpdate() { }	//update
+		virtual void OnUpdate() { }	//update (on tick)
 		virtual void OnDraw() { }	//draw
 
 

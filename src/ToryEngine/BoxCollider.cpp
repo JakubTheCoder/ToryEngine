@@ -1,14 +1,16 @@
+
 #include "BoxCollider.h"
 #include "Transform.h"
 #include "Root.h"
+
 namespace toryengine
 {
-	std::shared_ptr<Root> BoxCollider::GetRoot()
-	{
-		return root.lock();
-	}
+	//std::shared_ptr<Root> BoxCollider::GetRoot()
+	//{
+	//	return root.lock();
+	//}
 
-	void BoxCollider::onTick()
+	void BoxCollider::OnUpdate()
 	{
 		std::vector<std::shared_ptr<toryengine::Object>> boxes;	//Makes a vector of objects 
 		root.lock()->GetObjectsWithComponent<BoxCollider>(boxes);	//Gets all the objects with a BoxCollider
@@ -27,7 +29,7 @@ namespace toryengine
 			if (GetObject()->GetComponent<Transform>()->GetPosition().x + GetSize().x < bc->GetObject()->GetComponent<Transform>()->GetPosition().x
 				|| GetObject()->GetComponent<Transform>()->GetPosition().x> bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetSize().x)
 			{
-				isColliding = false;
+				isBoxColliding = false;
 			}
 
 			//Y Axis Collision
@@ -35,7 +37,7 @@ namespace toryengine
 			if (GetObject()->GetComponent<Transform>()->GetPosition().y + GetSize().y < bc->GetObject()->GetComponent<Transform>()->GetPosition().y
 				|| GetObject()->GetComponent<Transform>()->GetPosition().y> bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetSize().y)
 			{
-				isColliding = false;
+				isBoxColliding = false;
 			}
 
 			//Z Axis Collision
@@ -43,9 +45,9 @@ namespace toryengine
 			if (GetObject()->GetComponent<Transform>()->GetPosition().z + GetSize().z < bc->GetObject()->GetComponent<Transform>()->GetPosition().z
 				|| GetObject()->GetComponent<Transform>()->GetPosition().z> bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetSize().z)
 			{
-				isColliding = false;
+				isBoxColliding = false;
 			}
-			isColliding = true;
+			isBoxColliding = true;
 		}
 
 	}

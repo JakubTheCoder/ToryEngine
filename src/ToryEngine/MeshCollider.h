@@ -3,19 +3,30 @@
 #include <vector>
 
 #include "Collider.h"
+#include "collision/tribox.c"
+
 namespace toryengine
 {
+	class Root;
 	class Mesh;
 	class VertexArray;
 
-	class MeshCollider
+	extern "C"
 	{
+		int triBoxOverlap(float boxcenter[3], float boxhalfsize[3], float triverts[3][3]);
+	}
+	class MeshCollider : public Collider
+	{
+		friend class Object;
 	public:
 		std::shared_ptr<Mesh> GetMesh();
-		std::vector<std::shared_ptr<Triangle>> GetShape();// {faces = mesh.lock()->GetShape(); }
+		std::vector<std::shared_ptr<Triangle>> GetShape();
 
+		void OnUpdate();
 	private:
+		std::weak_ptr<Root> root;
 		std::weak_ptr<Mesh> mesh;	//for faces
 		//std::vector<std::shared_ptr<Triangle>>faces;
+		bool isTriBoxColliding;
 	};
 }

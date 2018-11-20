@@ -23,7 +23,7 @@ namespace toryengine
 	public:
 		bool TriBoxCollision(glm::vec3 boxCentre, glm::vec3 boxHalfSize, Triangle t);//Faces from mesh);
 		//bool BoxCollision(std::vector<std::shared_ptr<toryengine::Object>> boxOutput);//Box from 
-		void OnTick();
+		void OnUpdate();
 
 		//get a list of all ocmponentes
 		//try to collide with it, first AABB
