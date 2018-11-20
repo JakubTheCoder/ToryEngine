@@ -100,6 +100,8 @@ namespace toryengine
 			glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+			glEnable(GL_CULL_FACE);
+			glEnable(GL_DEPTH_TEST);
 			//DRAW OBJECTS
 			for (std::vector<std::shared_ptr<Object>>::iterator i = objects.begin(); i != objects.end(); i++)
 			{
@@ -112,6 +114,8 @@ namespace toryengine
 				//Sleep for remaning time
 				SDL_Delay((idealTime - environment->GetDeltaTime())*1000.0f);
 			}
+			glDisable(GL_CULL_FACE);
+			glDisable(GL_DEPTH_TEST);
 		}
 		SDL_DestroyWindow(window);
 		SDL_Quit();

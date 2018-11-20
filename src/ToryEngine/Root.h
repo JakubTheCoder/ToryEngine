@@ -6,6 +6,7 @@
 #include <AL/alc.h>
 
 #include "NonCopyable.h"
+#include "Object.h"
 //ROOT = CORE
 
 namespace toryengine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
