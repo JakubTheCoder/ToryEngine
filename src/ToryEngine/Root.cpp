@@ -2,7 +2,6 @@
 #include <algorithm>
 
 #include "Root.h"
-#include "Object.h"
 #include "Transform.h"
 #include "Resources.h"
 #include "Environment.h"

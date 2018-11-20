@@ -1,15 +1,12 @@
 
 #include "Collider.h"
-#include "VertexArray.h"
 #include "BoxCollider.h"
 #include "MeshCollider.h"
+#include "VertexArray.h"	//for Triangle
 namespace toryengine
 {
 	void Collider::OnTick()
 	{
-		std::vector<std::shared_ptr<toryengine::Object>> boxOutput;
-		root.lock()->GetObjectsWithComponent<BoxCollider>(boxOutput);
-
 		std::vector<std::shared_ptr<toryengine::Object>>meshOutput;
 		root.lock()->GetObjectsWithComponent<MeshCollider>(meshOutput);
 	}
@@ -41,22 +38,37 @@ namespace toryengine
 		return true;
 	}
 
-	bool BoxCollision()//colliding with box
-	{
-		//First box X min = x;
-		//first box X max = X + box width
-		//first box Y min = y;
-		//first box y max = y + box height
-		//first box z min = z;
-		//first box z max = z + depth
-		//get same for box 2
-		//OR  dont use temp vars and use width / height / depth
+	//bool Collider::BoxCollision(std::vector<std::shared_ptr<toryengine::Object>> boxes)
+	//{
+	//	for (size_t i = 0; i < boxes.size(); i++)
+	//	{
+	//		std::shared_ptr<BoxCollider> bc = boxes.at(i)->GetComponent<BoxCollider>();
+	//		if (bc == this)
+	//		{
+	//			continue;
+	//		}
+	//		bc->GetSize()
+	//	}
 
-		//check  if (boxX1 max < boxX2 min || box1Xmin > x2Max)return false;
-		//if (boxY1 max  <y2min || y1min > y2max) return false;
-		//if (boxZ1 max < boxZ2min || boxZ1min > boxZ2max) return false;
-		//return true;
+	//	//if (this->boxes.GetComponent<BoxCollider>())
 
-		return false;
-	}
+	//	BoxCollider box1 = this->BoxCollider();
+	//	//First box X min = x;
+	//	//first box X max = X + box width
+	//	//first box Y min = y;
+	//	//first box y max = y + box height
+	//	//first box z min = z;
+	//	//first box z max = z + depth
+	//	//get same for box 2
+	//	//OR  dont use temp vars and use width / height / depth
+
+
+	//	//check  
+	//	if (boxX1.w < boxX2 min || box1Xmin > x2Max)return false;
+	//	//if (boxY1 max  <y2min || y1min > y2max) return false;
+	//	//if (boxZ1 max < boxZ2min || boxZ1min > boxZ2max) return false;
+	//	//return true;
+
+	//	return false;
+	//}
 }

@@ -1,0 +1,69 @@
+#include "BoxCollider.h"
+#include "Transform.h"
+namespace toryengine
+{
+	//std::shared_ptr<Root> BoxCollider::GetRoot()
+	//{
+	//	return root.lock();
+	//}
+
+	void BoxCollider::onTick()
+	{
+		std::vector<std::shared_ptr<toryengine::Object>> boxes;	//Makes a vector of objects 
+		root.lock()->GetObjectsWithComponent<BoxCollider>(boxes);	//Gets all the objects with a BoxCollider
+		for (size_t i = 0; i < boxes.size(); i++)
+		{
+			std::shared_ptr<BoxCollider> bc = boxes.at(i)->GetComponent<BoxCollider>();
+			if (bc.get() == this)
+			{
+				continue;
+			}
+			//GetObject()->GetComponent<Transform>()->GetPosition();
+			//bc->GetSize();
+
+			//X Axis Collision 
+			//if (box1.x+box1.w<box2.x || box1.x > box2.x + box2.w)isColliding =  false);
+			if (GetObject()->GetComponent<Transform>()->GetPosition().x + GetSize().x < bc->GetObject()->GetComponent<Transform>()->GetPosition().x
+				|| GetObject()->GetComponent<Transform>()->GetPosition().x> bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetSize().x)
+			{
+				isColliding = false;
+			}
+
+			//Y Axis Collision
+			//if(box1.y+box1.h<boxY2||box1.y>box2.y+box2.h)isColliding = false;
+			if (GetObject()->GetComponent<Transform>()->GetPosition().y + GetSize().y < bc->GetObject()->GetComponent<Transform>()->GetPosition().y
+				|| GetObject()->GetComponent<Transform>()->GetPosition().y> bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetSize().y)
+			{
+				isColliding = false;
+			}
+
+			//Z Axis Collision
+			//if(box1.z+box1.d<box2.z||box1.z > box2.z+box2.h) isColliding = false;
+			if (GetObject()->GetComponent<Transform>()->GetPosition().z + GetSize().z < bc->GetObject()->GetComponent<Transform>()->GetPosition().z
+				|| GetObject()->GetComponent<Transform>()->GetPosition().z> bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetSize().z)
+			{
+				isColliding = false;
+			}
+			isColliding = true;
+		}
+
+
+		//BoxCollider box1 = this->BoxCollider();
+		//First box X min = x;
+		//first box X max = X + box width
+		//first box Y min = y;
+		//first box y max = y + box height
+		//first box z min = z;
+		//first box z max = z + depth
+		//get same for box 2
+		//OR  dont use temp vars and use width / height / depth
+
+
+		//check  
+		//if (boxX1.w < boxX2 min || box1Xmin > x2Max)return false;
+		//if (boxY1 max  <y2min || y1min > y2max) return false;
+		//if (boxZ1 max < boxZ2min || boxZ1min > boxZ2max) return false;
+		//return true;
+
+	}
+}

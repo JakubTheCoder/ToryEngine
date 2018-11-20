@@ -23,14 +23,6 @@ public:
 
 int main()
 {
-	//float lastTime = SDL_GetTicks();
-
-	/*
-	float time = SDL_GetTicks();
-	float diff = time -lastTime;
-	environment->deltaTime = diff / 1000.0f;
-	lastTime = time;
-	*/
 	std::cout << "Hello World" << std::endl;
 
 	std::shared_ptr<toryengine::Root> root = toryengine::Root::Initalize();
