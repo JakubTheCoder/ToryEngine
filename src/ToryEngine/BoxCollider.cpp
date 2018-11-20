@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "BoxCollider.h"
 #include "Transform.h"
 #include "Root.h"
@@ -22,31 +22,20 @@ namespace toryengine
 				continue;
 			}
 
-
-			//X Axis Collision 
-			//if (box1.x+box1.w<box2.x || box1.x > box2.x + box2.w)isColliding =  false);
-			if (GetObject()->GetComponent<Transform>()->GetPosition().x + GetSize().x < bc->GetObject()->GetComponent<Transform>()->GetPosition().x
-				|| GetObject()->GetComponent<Transform>()->GetPosition().x> bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetSize().x)
+			if (GetObject()->GetComponent<Transform>()->GetPosition().x < bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetSize().x &&
+				GetObject()->GetComponent<Transform>()->GetPosition().x + GetSize().x > bc->GetObject()->GetComponent<Transform>()->GetPosition().x &&
+				GetObject()->GetComponent<Transform>()->GetPosition().y < bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetSize().y &&
+				GetObject()->GetComponent<Transform>()->GetPosition().y + GetSize().y > bc->GetObject()->GetComponent<Transform>()->GetPosition().y &&
+				GetObject()->GetComponent<Transform>()->GetPosition().z < bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetSize().z &&
+				GetObject()->GetComponent<Transform>()->GetPosition().z + GetSize().z > bc->GetObject()->GetComponent<Transform>()->GetPosition().z)
+			{
+				isColliding = true;
+			}
+			else
 			{
 				isColliding = false;
 			}
 
-			//Y Axis Collision
-			//if(box1.y+box1.h<boxY2||box1.y>box2.y+box2.h)isColliding = false;
-			if (GetObject()->GetComponent<Transform>()->GetPosition().y + GetSize().y < bc->GetObject()->GetComponent<Transform>()->GetPosition().y
-				|| GetObject()->GetComponent<Transform>()->GetPosition().y> bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetSize().y)
-			{
-				isColliding = false;
-			}
-
-			//Z Axis Collision
-			//if(box1.z+box1.d<box2.z||box1.z > box2.z+box2.h) isColliding = false;
-			if (GetObject()->GetComponent<Transform>()->GetPosition().z + GetSize().z < bc->GetObject()->GetComponent<Transform>()->GetPosition().z
-				|| GetObject()->GetComponent<Transform>()->GetPosition().z> bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetSize().z)
-			{
-				isColliding = false;
-			}
-			isColliding = true;
 		}
 
 	}

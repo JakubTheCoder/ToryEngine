@@ -33,7 +33,7 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 		template <typename T> 
 		void GetObjectsWithComponent(std::vector<std::shared_ptr<Object>>& output)
 		{
-			//Clear? Maybe???
+			//output.clear();
 			for (size_t i= 0; i < objects.size(); i++)
 			{
 				if (objects.at(i)->HasComponent<T>())

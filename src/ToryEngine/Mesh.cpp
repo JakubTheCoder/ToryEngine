@@ -10,6 +10,7 @@ namespace toryengine
 	{
 		model = std::make_shared<VertexArray>(_path);
 		SetFaces(); 
+
 	}
 	void Mesh::SetFaces()
 	{
