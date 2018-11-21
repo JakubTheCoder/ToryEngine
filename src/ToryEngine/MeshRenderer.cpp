@@ -52,7 +52,7 @@ namespace toryengine
 		shader->SetUniform("in_Projection", GetRoot()->GetCurrentCamera()->GetComponent<Camera>()->GetProjectionMatrix());		//WIDTH / HEIGHT
 		//Get camera projection matrix
 		//shape = GetMesh();
-		shader->Draw(*mesh.lock()->GetShape());
+		shader->Draw(mesh.lock()->GetShape());
 	}
 
 	void MeshRenderer::SetTexture(std::weak_ptr<Texture> _texture)

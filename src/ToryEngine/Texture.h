@@ -11,8 +11,11 @@ namespace toryengine
 {
 	class Texture : public Resource, private NonCopyable
 	{
+		friend class RenderTexture;
+
 	public:
-		Texture();
+		Texture() {}
+		Texture(int width, int height);
 		GLuint GetId() { return id; }
 		glm::vec2 GetSize() { return size; }
 

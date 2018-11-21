@@ -4,7 +4,9 @@
 
 #include "ShaderProgram.h"
 #include "VertexArray.h"
+#include "VertexBuffer.h"
 #include "Texture.h"
+#include "RenderTexture.h"
 
 namespace toryengine
 {
@@ -96,13 +98,41 @@ namespace toryengine
 		glDetachShader(id, fragmentShaderId);
 		glDeleteShader(fragmentShaderId);
 
-		
-	}
+		//Create a simple square to use as a canvis for render texture
+		std::shared_ptr<VertexBuffer> squarePos = std::make_shared<VertexBuffer>();
+		std::shared_ptr<VertexBuffer> squareTex = std::make_shared<VertexBuffer>();
 
-	void ShaderProgram::Draw(VertexArray& _vertexArray)
+		//First Triangle
+		squarePos->Add(glm::vec2(-1.0f, 1.0f));
+		squarePos->Add(glm::vec2(-1.0f, -1.0f));
+		squarePos->Add(glm::vec2(1.0f, -1.0f));
+		//Second Triangle
+		squarePos->Add(glm::vec2(1.0f, -1.0f));
+		squarePos->Add(glm::vec2(1.0f, 1.0f));
+		squarePos->Add(glm::vec2(-1.0f, 1.0f));
+
+		//Texture Coords for Square
+		//First Tri
+		squareTex->Add(glm::vec2(0.0f, 0.0f));
+		squareTex->Add(glm::vec2(0.0f, -1.0f));
+		squareTex->Add(glm::vec2(1.0f, -1.0f));
+		//Second Tri
+		squareTex->Add(glm::vec2(1.0f, -1.0f));
+		squareTex->Add(glm::vec2(1.0f, 0.0f));
+		squareTex->Add(glm::vec2(0.0f, 0.0f));
+
+		square = std::make_shared<VertexArray>();
+		square->SetBuffer("in_Position", squarePos);
+		square->SetBuffer("in_TexCoord", squareTex);
+	}
+	void ShaderProgram::Draw()
+	{
+		Draw(square);
+	}
+	void ShaderProgram::Draw(std::shared_ptr<VertexArray> _vertexArray)
 	{
 		glUseProgram(id);
-		glBindVertexArray(_vertexArray.GetId());
+		glBindVertexArray(_vertexArray->GetId());
 
 		for (size_t i = 0; i < samplers.size(); i++)	//Go through all textures and draw them
 		{
@@ -116,7 +146,7 @@ namespace toryengine
 				glBindTexture(GL_TEXTURE_2D, 0);
 			}
 		}
-		glDrawArrays(GL_TRIANGLES, 0, _vertexArray.GetVertexCount());
+		glDrawArrays(GL_TRIANGLES, 0, _vertexArray->GetVertexCount());
 
 		for (size_t i = 0; i < samplers.size(); i++)
 		{
@@ -126,6 +156,22 @@ namespace toryengine
 
 		glBindVertexArray(0);
 		glUseProgram(0);
+	}
+	
+	void ShaderProgram::Draw(std::shared_ptr<RenderTexture> _renderTexture)
+	{
+		Draw(_renderTexture, square);
+	}
+
+	void ShaderProgram::Draw(std::shared_ptr<RenderTexture> _renderTexture, std::shared_ptr<VertexArray> _vertexArray)
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, _renderTexture->GetFbId());
+		glm::vec4 lastViewport = viewport;
+		viewport = glm::vec4(0, 0, _renderTexture->GetSize().x, _renderTexture->GetSize().y);
+		Draw(_vertexArray);
+		viewport = lastViewport;
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 	}
 
 	void ShaderProgram::SetUniform(std::string _uniform, glm::vec4 _value)
