@@ -89,6 +89,8 @@ int main()
 	mainCamera->AddComponent<toryengine::Camera>();
 	mainCamera->GetRoot()->SetCurrentCamera(mainCamera);
 
+	std::shared_ptr<toryengine::Object> sideCamera = root->AddObject();
+	mainCamera->AddComponent<toryengine::Camera>();
 	//Create Objcets
 	//std::shared_ptr<toryengine::Object> cat = root->AddObject();
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();

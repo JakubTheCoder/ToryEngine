@@ -41,11 +41,11 @@ namespace toryengine
 	void MeshRenderer::OnDraw()
 	{
 		// model mat4 from transform...
-		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());
+		shader->SetUniform("in_Model", GetRoot()->GetCurrentCamera()->GetComponent<Transform>()->GetMatrix());
 
 		// camera's transform (and inverse) 
 
-		shader->SetUniform("in_View", glm::inverse(root.lock()->GetCurrentCamera()->GetComponent<Camera>()->GetProjectionMatrix()));
+		shader->SetUniform("in_View", glm::inverse(GetRoot()->GetCurrentCamera()->GetComponent<Camera>()->GetProjectionMatrix()));
 		//Make camera object Get view matrix 
 
 		// from screen
