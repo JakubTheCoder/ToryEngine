@@ -35,7 +35,10 @@ namespace toryengine
 
 		//shape->SetBuffer("in_TexCoord", texCoords);
 		shader = std::make_shared<ShaderProgram>("../resources/shaders/simple.vert", "../resources/shaders/simple.frag");
-
+		lightKeyShader = std::make_shared<ShaderProgram>("../resources/shaders/lightkeypass.vert","../resources/shaders/lightkeypass.frag");
+		nullShader = std::make_shared<ShaderProgram>("../resources/shaders.nullpass.vert","../nullpass.frag");
+		blurShader = std::make_shared<ShaderProgram>("../resources/shaders/blur.vert","../resources/shaders/blur.frag");
+		mergeShader = std::make_shared<ShaderProgram>("../resources/shaders/mergepass.vert","../resources/shaders/mergepass.frag");
 	}
 
 	void MeshRenderer::OnDraw()

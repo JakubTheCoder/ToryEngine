@@ -26,6 +26,11 @@ namespace toryengine
 		void OnDraw();
 
 		std::shared_ptr<ShaderProgram> shader;
+		std::shared_ptr<ShaderProgram> lightKeyShader;
+		std::shared_ptr<ShaderProgram> nullShader;
+		std::shared_ptr<ShaderProgram> blurShader;
+		std::shared_ptr<ShaderProgram> mergeShader;
+
 		std::weak_ptr<Mesh> mesh;
 		std::weak_ptr<Texture> texture;
 		//std::weak_ptr<Root> root;
