@@ -1,6 +1,7 @@
 #include <ToryEngine/toryengine.h>
 
 #include <iostream>
+//Where to put Render Textures? and how to place them in Mesh Renderer instead of the default shader, pass in what shader you want you use? meaning they have to be created in main / root maybe?
 class TestScreen : public toryengine::Component
 {
 public:
@@ -96,6 +97,7 @@ int main()
 	//sideCamera->GetRoot()->SetCurrentCamera(sideCamera);
 	sideCamera->GetComponent<toryengine::Transform>()->Rotate(glm::vec3(0.0f,90.0f,0.0f));	//ROTATION WORKS AS IF YOU PUT A POLE THROUGH THE axis 
 	mainCamera->GetRoot()->SetCurrentCamera(mainCamera);
+
 	//Create Objcets
 	//std::shared_ptr<toryengine::Object> cat = root->AddObject();
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();
