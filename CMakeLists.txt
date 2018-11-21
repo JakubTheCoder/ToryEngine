@@ -82,6 +82,8 @@ src/ToryEngine/BoxCollider.h
 src/ToryEngine/BoxCollider.cpp
 src/ToryEngine/MeshCollider.h
 src/ToryEngine/MeshCollider.cpp
+src/ToryEngine/Camera.h
+src/ToryEngine/Camera.cpp
 )
 
 if(MSVC)

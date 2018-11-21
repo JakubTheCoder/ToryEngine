@@ -81,15 +81,34 @@ int main()
 {
 	std::cout << "Hello World" << std::endl;
 
+	//Create and Initliaise Root
 	std::shared_ptr<toryengine::Root> root = toryengine::Root::Initalize();
 
+	//Camera
+	std::shared_ptr<toryengine::Object> mainCamera = root->AddObject();
+	mainCamera->AddComponent<toryengine::Camera>();
+	mainCamera->GetRoot()->SetCurrentCamera(mainCamera);
+
+	//Create Objcets
 	//std::shared_ptr<toryengine::Object> cat = root->AddObject();
-
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();
+	std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent < toryengine::MeshRenderer>();
+	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
+	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
+	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(3.0f, -2.0f, 2.0f));
+	cube->AddComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f,1.0f,1.0f));
+	cube->GetComponent<toryengine::BoxCollider>()->Test();
+	cube->AddComponent<MoveCube>();
+
 	std::shared_ptr<toryengine::Object> cube2 = root->AddObject();
+	std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
+	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
+	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));
+	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-3.0f, -2.0f, 2.0f));
+	cube2->AddComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
+	cube2->AddComponent < MoveCube2>();
 
-	//DELETE std::shared_ptr<toryengine::Resources> resources = std::make_shared<toryengine::Resources>();
-
+	//Sound
 	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../Crush8-Bit.ogg");
 	s->Play();
 
@@ -99,13 +118,7 @@ int main()
 	//object->GetComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
 
 
-	std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent < toryengine::MeshRenderer>();
-	std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
-
 	//std::shared_ptr<toryengine::MeshRenderer> mr = cat->AddComponent<toryengine::MeshRenderer>();
-
-	//DELETEstd::shared_ptr<toryengine::MeshRenderer>mr2 = object->GetComponent<toryengine::MeshRenderer>();
-	//DELETEstd::shared_ptr<toryengine::Resources> temp = root->GetResources();
 
 	//mr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));//"texture.jpg"));
 	//mr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../curuthers.obj"));
@@ -113,29 +126,11 @@ int main()
 
 	//cat->AddComponent<toryengine::BoxCollider>();
 
-	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
-	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
-
-	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
-	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));
 
 	//cat->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, -10.0f));
 	
-	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(3.0f, -2.0f, 2.0f));	//left-right,up-down, forward, ba
-	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-3.0f, -2.0f, 2.0f));
-
-	cube->AddComponent<toryengine::BoxCollider>();
-	cube->GetComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
-	cube->GetComponent<toryengine::BoxCollider>()->Test();
-	cube->AddComponent<MoveCube>();
-
+		//left-right,up-down, forward, ba
 	
-
-	cube2->AddComponent<toryengine::BoxCollider>();
-	cube2->GetComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
-	cube2->AddComponent < MoveCube2>();
-
-
 
 	//object->GetComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
 
