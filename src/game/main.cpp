@@ -87,22 +87,22 @@ int main()
 	//Camera
 	std::shared_ptr<toryengine::Object> mainCamera = root->AddObject();
 	mainCamera->AddComponent<toryengine::Camera>();
-	mainCamera->GetRoot()->SetCurrentCamera(mainCamera);
+
 	mainCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, 10.0f));
 
-	//std::shared_ptr<toryengine::Object> sideCamera = root->AddObject();
-	//sideCamera->AddComponent<toryengine::Camera>();
-	//sideCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, -10.0f));
+	std::shared_ptr<toryengine::Object> sideCamera = root->AddObject();
+	sideCamera->AddComponent<toryengine::Camera>();
+	sideCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(10.0f, 0.0f, 0.0f));
 	//sideCamera->GetRoot()->SetCurrentCamera(sideCamera);
-	//sideCamera->GetComponent<toryengine::Transform>()->Rotate(glm::vec3(0.0f,0.0f,0.0f));
-
+	sideCamera->GetComponent<toryengine::Transform>()->Rotate(glm::vec3(0.0f,90.0f,0.0f));	//ROTATION WORKS AS IF YOU PUT A POLE THROUGH THE axis 
+	mainCamera->GetRoot()->SetCurrentCamera(mainCamera);
 	//Create Objcets
 	//std::shared_ptr<toryengine::Object> cat = root->AddObject();
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent < toryengine::MeshRenderer>();
 	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
 	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
-	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, 0.0f, 0.0f));
+	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, -1.0f, 0.0f));
 	cube->AddComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f,1.0f,1.0f));
 	cube->GetComponent<toryengine::BoxCollider>()->Test();
 	cube->AddComponent<MoveCube>();
@@ -111,7 +111,7 @@ int main()
 	std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
 	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
 	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));
-	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(4.0f, 0.0f,0.0f));
+	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(4.0f, -1.0f,0.0f));
 	cube2->AddComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f, 1.0f, 1.0f));
 	cube2->AddComponent < MoveCube2>();
 

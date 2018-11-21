@@ -35,15 +35,16 @@ namespace toryengine
 					running = false; //Turns program off
 				}
 			}
+			//CAMERA STUFF
 			std::vector<std::shared_ptr<Object>> cameras;
 			rootSelf.lock()->GetObjectsWithComponent<Camera>(cameras);
 
-			for (size_t i = 0; i < cameras.size(); i++)
-			{
-				SetCurrentCamera(cameras.at(i));
-				cameras.at(i)->Draw();
-				
-			}
+			//for (size_t i = 0; i < cameras.size(); i++)
+			//{
+				//SetCurrentCamera(cameras.at(i));
+				//cameras.at(i)->Draw();
+			//}
+
 			//UPDATE OBJECTS
 			for (std::vector<std::shared_ptr<Object> >::iterator i = objects.begin(); i != objects.end(); i++)	//go through all objects in object vector
 			{
