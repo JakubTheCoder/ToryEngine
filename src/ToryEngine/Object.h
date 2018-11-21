@@ -13,6 +13,7 @@ namespace toryengine
 	Acts as base object to attach components to.
 	*/
 	class Object
+
 	{
 		friend class Root; //Friend allows a class to access the private and protected variables of this class
 	public:

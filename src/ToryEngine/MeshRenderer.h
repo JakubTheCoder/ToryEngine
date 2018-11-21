@@ -9,7 +9,8 @@ namespace toryengine
 	class ShaderProgram;
 	class Mesh;
 	class Texture;
-
+	class Camera;
+	class Root;
 	class MeshRenderer : public Component
 	{
 	public:
@@ -28,7 +29,7 @@ namespace toryengine
 		std::shared_ptr<ShaderProgram> shader;
 		std::weak_ptr<Mesh> mesh;
 		std::weak_ptr<Texture> texture;
-
+		std::weak_ptr<Root> root;
 		//std::shared_ptr<Material> material;
 	};
 }

@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "Resources.h"
 #include "Environment.h"
+#include "Camera.h"
 
 #define WINDOW_WIDTH 800	
 #define WINDOW_HEIGHT 600
@@ -34,11 +35,13 @@ namespace toryengine
 					running = false; //Turns program off
 				}
 			}
-			GetObjectsWithComponent<Camera>(cameras);
+			std::vector<std::shared_ptr<Object>> cameras;
+			rootSelf.lock()->GetObjectsWithComponent<Camera>(cameras);
 
 			for (size_t i = 0; i < cameras.size(); i++)
 			{
-				
+				SetCurrentCamera(cameras.at(i));
+				cameras.at(i)->Draw();
 				
 			}
 			//UPDATE OBJECTS

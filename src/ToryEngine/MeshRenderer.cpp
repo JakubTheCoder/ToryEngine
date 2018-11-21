@@ -6,9 +6,12 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "ShaderProgram.h"
+#include "Root.h"
 #include "Object.h"
 #include "Transform.h"
 #include "Mesh.h"
+#include "Camera.h"
+
 namespace toryengine
 {
 	void MeshRenderer::OnInit()
@@ -41,7 +44,8 @@ namespace toryengine
 		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());
 
 		// camera's transform (and inverse) 
-		shader->SetUniform("in_View", glm::inverse(glm::translate( glm::mat4(1.0f),glm::vec3(0.0f,0.0f,10.0f))));
+
+		shader->SetUniform("in_View", glm::inverse(root.lock()->GetCurrentCamera()->GetComponent<Camera>()->GetProjectionMatrix()));
 		//Make camera object Get view matrix 
 
 		// from screen

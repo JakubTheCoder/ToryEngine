@@ -16,8 +16,8 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 	class Object;
 	class Resources;
 	class Environment;
-	//class BoxCollider;
 	class Camera;
+	//class BoxCollider; Delete probably?
 
 	class Root :private NonCopyable
 	{
@@ -57,7 +57,7 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 		std::shared_ptr<Environment> environment;	//delta time
 
 		std::shared_ptr<Object> currentCamera;
-		std::vector<std::shared_ptr<Object>> cameras;
+
 
 		bool running;	//game loop bool
 		SDL_Window* window;
