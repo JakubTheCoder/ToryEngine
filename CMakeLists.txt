@@ -83,6 +83,8 @@ src/ToryEngine/MeshCollider.cpp
 src/ToryEngine/Camera.h
 src/ToryEngine/RenderTexture.h
 src/ToryEngine/RenderTexture.cpp
+src/ToryEngine/Keyboard.h
+src/ToryEngine/Keyboard.cpp
 )
 
 if(MSVC)

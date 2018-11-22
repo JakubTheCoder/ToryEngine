@@ -6,6 +6,7 @@
 #include "Resources.h"
 #include "Environment.h"
 #include "Camera.h"
+#include "Keyboard.h"
 
 #define WINDOW_WIDTH 800	
 #define WINDOW_HEIGHT 600
