@@ -2,9 +2,9 @@
 
 namespace toryengine
 {
-	std::shared_ptr<Root> Resource::GetRoot()
-	{
-		return root.lock();
-	}
+	//std::shared_ptr<Root> Resource::GetRoot()
+	//{
+	//	return root.lock();
+	//}
 
 }

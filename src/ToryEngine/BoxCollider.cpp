@@ -1,15 +1,11 @@
 #include <iostream>
+
 #include "BoxCollider.h"
 #include "Transform.h"
 #include "Root.h"
 
 namespace toryengine
 {
-	//std::shared_ptr<Root> BoxCollider::GetRoot()
-	//{
-	//	return root.lock();
-	//}
-
 	void BoxCollider::OnUpdate()
 	{
 		std::vector<std::shared_ptr<Object>> colBoxes;	//Makes a vector of objects 

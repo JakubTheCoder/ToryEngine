@@ -1,14 +1,16 @@
 
 #include "Collider.h"
 #include "BoxCollider.h"
-#include "MeshCollider.h"
+//#include "MeshCollider.h"
 #include "VertexArray.h"	//for Triangle
+#include "Root.h"
+
 namespace toryengine
 {
 	void Collider::OnUpdate()
 	{
-		std::vector<std::shared_ptr<toryengine::Object>>meshOutput;
-		root.lock()->GetObjectsWithComponent<MeshCollider>(meshOutput);
+		//std::vector<std::shared_ptr<toryengine::Object>>meshOutput;
+		//root.lock()->GetObjectsWithComponent<MeshCollider>(meshOutput);
 	}
 
 	//bool Collider::TriBoxCollision(glm::vec3 boxCentre, glm::vec3 boxHalfSize, Triangle t)//Faces from model

@@ -54,7 +54,6 @@ src/ToryEngine/Object.cpp
 src/ToryEngine/Component.h
 src/ToryEngine/Component.cpp
 src/ToryEngine/Environment.h
-src/ToryEngine/Environment.cpp
 src/ToryEngine/VertexArray.h
 src/ToryEngine/VertexArray.cpp
 src/ToryEngine/VertexBuffer.h
@@ -66,7 +65,6 @@ src/ToryEngine/MeshRenderer.cpp
 src/ToryEngine/Transform.h
 src/ToryEngine/Transform.cpp
 src/ToryEngine/Resource.h
-src/ToryEngine/Resource.cpp
 src/ToryEngine/Resources.h
 src/ToryEngine/Mesh.h
 src/ToryEngine/Mesh.cpp
@@ -83,7 +81,6 @@ src/ToryEngine/BoxCollider.cpp
 src/ToryEngine/MeshCollider.h
 src/ToryEngine/MeshCollider.cpp
 src/ToryEngine/Camera.h
-src/ToryEngine/Camera.cpp
 src/ToryEngine/RenderTexture.h
 src/ToryEngine/RenderTexture.cpp
 )

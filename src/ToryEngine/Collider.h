@@ -1,9 +1,9 @@
 #pragma once 
-
 #include <glm/glm.hpp>
-#include "Component.h"
 #include <vector>
-#include "Root.h"
+
+#include "Component.h"
+//#include "Root.h"
 
 //include tribox C file.
 namespace toryengine

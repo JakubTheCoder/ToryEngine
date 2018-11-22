@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "Component.h"
+
 namespace toryengine
 {
 	class Transform;

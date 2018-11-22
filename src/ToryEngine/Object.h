@@ -4,9 +4,6 @@
 
 #include "Component.h"
 
-//Object = Entity
-
-//Do we need pragma once?
 namespace toryengine
 {
 	/*!
@@ -19,7 +16,8 @@ namespace toryengine
 	public:
 		std::shared_ptr<Root> GetRoot();	///< Go to the root, allows to interact with other objects
 
-		template <typename T> std::shared_ptr<T> GetComponent()	//template class since we dont know what type the component will be
+		template <typename T> 
+		std::shared_ptr<T> GetComponent()	//template class since we dont know what type the component will be
 		{
 			for (size_t i = 0; i < components.size(); i++)	//go thorugh all components of a object
 			{
@@ -33,6 +31,7 @@ namespace toryengine
 			throw std::exception();//thorw exeption if we couldn't find object
 
 		}
+
 		template <typename T>
 		bool HasComponent()	//template class since we dont know what type the component will be
 		{
@@ -48,8 +47,10 @@ namespace toryengine
 			return false;
 
 		}
+
 		//Allows the constructor to set different vars, for example Make player. Make player in red team. Make player in red team a wizard.
-		template <typename T> std::shared_ptr<T> AddComponent()
+		template <typename T>
+		std::shared_ptr<T> AddComponent()
 		{
 			std::shared_ptr<T> temp = std::make_shared<T>();
 			temp->object = objectSelf;
@@ -60,7 +61,9 @@ namespace toryengine
 			temp->OnInit();
 			return temp;
 		}
-		template <typename T, typename A> std::shared_ptr<T> AddComponent(A _a)
+
+		template <typename T, typename A>
+		std::shared_ptr<T> AddComponent(A _a)
 		{
 			std::shared_ptr<T> temp = std::make_shared<T>();
 			temp->object = objectSelf;

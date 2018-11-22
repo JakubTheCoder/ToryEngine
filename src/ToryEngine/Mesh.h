@@ -5,7 +5,7 @@
 
 #include "Resource.h"
 #include "NonCopyable.h"
-#include "VertexArray.h"
+#include "VertexArray.h"	//Triangle
 
 namespace toryengine
 {

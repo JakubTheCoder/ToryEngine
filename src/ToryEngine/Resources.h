@@ -9,6 +9,7 @@
 namespace toryengine
 {
 	class Resource;
+
 	class Resources
 	{
 	public:

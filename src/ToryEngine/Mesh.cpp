@@ -1,6 +1,7 @@
 #include <memory>
 #include "Mesh.h"
 
+
 namespace toryengine
 {
 	Mesh::Mesh()
