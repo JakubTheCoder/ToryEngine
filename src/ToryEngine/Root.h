@@ -55,7 +55,7 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 		//Other stuff Root has to access
 		std::shared_ptr<Resources> resources;	//loading in textures / models / shaders
 		std::shared_ptr<Environment> environment;	//delta time
-		std::shared_ptr<Keyboard> keyboard;
+		//std::shared_ptr<Keyboard> keyboard;
 
 		std::shared_ptr<Object> currentCamera;
 

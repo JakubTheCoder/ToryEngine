@@ -28,12 +28,15 @@ namespace toryengine
 			float diff = time - lastTime;
 			environment->SetDeltaTime(diff / 1000.0f);
 			SDL_Event event = { 0 }; //allows us to have inputs
-			
 			while (SDL_PollEvent(&event))
 			{
 				if (event.type == SDL_QUIT)
 				{
 					running = false; //Turns program off
+				}
+				if (SDL_KEYDOWN)
+				{
+					//keyboard->GetKeys().push_back(event.key.keysym.sym);
 				}
 			}
 			//CAMERA STUFF

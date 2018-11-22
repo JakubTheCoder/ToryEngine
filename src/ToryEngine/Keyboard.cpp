@@ -1,5 +1,5 @@
 #include "Keyboard.h"
-
+/*
 namespace toryengine
 {
 	bool Keyboard::GetKeyDown(SDL_Keycode key)
@@ -26,3 +26,4 @@ namespace toryengine
 		return false;
 	}
 }
+*/
