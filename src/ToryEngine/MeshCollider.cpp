@@ -5,6 +5,7 @@
 #include "VertexArray.h"
 #include "BoxCollider.h"
 #include "MeshRenderer.h"
+#include <iostream>
 namespace toryengine
 {
 	std::shared_ptr<Mesh> MeshCollider::GetMesh()
@@ -46,11 +47,11 @@ namespace toryengine
 			triVerts[2][2] = t->c.z;
 
 			int res = triBoxOverlap(bc, hs, triVerts);
-
 			if (res == 0)
 			{
 				isTriBoxColliding = false;
 			}
+			std::cout << "Colliding";
 			isTriBoxColliding = true;
 		}
 		//std::shared_ptr<BoxCollider> bc = GetObject()->GetComponent<BoxCollider>();
