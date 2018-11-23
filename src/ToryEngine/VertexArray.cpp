@@ -70,7 +70,39 @@ namespace toryengine
 
 				//Convertes String to double, since we are reading from a textfile, all text is strings,
 				//which we need to covert to doubles to get position values of a vertex
-				positions.push_back(glm::vec3(atof(splitLine.at(1).c_str()), atof(splitLine.at(2).c_str()), atof(splitLine.at(3).c_str())));
+				glm::vec3 currentPos;
+				currentPos.x = atof(splitLine.at(1).c_str());
+				currentPos.y = atof(splitLine.at(2).c_str());
+				currentPos.z = atof(splitLine.at(3).c_str());
+				positions.push_back(currentPos);
+
+
+				if (currentPos.x < minBound.x)
+				{
+					minBound.x = currentPos.x;
+				}
+				if (currentPos.y < minBound.y)
+				{
+					minBound.y = currentPos.y;
+				}
+				if (currentPos.z < minBound.z)
+				{
+					minBound.z = currentPos.z;
+				}
+
+				if (currentPos.x > maxBound.x)
+				{
+					maxBound.x = currentPos.x;
+				}
+				if (currentPos.y > maxBound.y)
+				{
+					maxBound.y = currentPos.y;
+				}
+				if (currentPos.z > maxBound.z)
+				{
+					maxBound.z = currentPos.z;
+				}
+
 			}
 			else if (splitLine.at(0) == "vt")	//Is there a Vertex Texture present on current line?
 			{
@@ -185,7 +217,6 @@ namespace toryengine
 				{
 					normalBuffer->Add(normals.at(atoi(subsplit.at(2).c_str()) - 1));
 				}
-
 			}
 			SetBuffer("in_Position", positionBuffer);
 			if (texCoordBuffer)

@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "Collider.h"
-//#include "collision/tribox.c"
 #include "VertexArray.h"
 namespace toryengine
 {
@@ -27,7 +26,6 @@ namespace toryengine
 	private:
 		std::weak_ptr<Root> root;
 		std::weak_ptr<Mesh> mesh;	//for faces
-		//std::vector<std::shared_ptr<Triangle>>faces;
 		bool isTriBoxColliding;
 	};
 }

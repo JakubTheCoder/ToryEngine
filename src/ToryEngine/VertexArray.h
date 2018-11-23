@@ -29,11 +29,17 @@ namespace toryengine
 		void SplitStringSpace(std::string& _input, std::vector<std::string>&_output);
 		std::vector<std::shared_ptr<Triangle>> GetFaces() { return faces; }
 
+		glm::vec3 GetMinBound() { return minBound; }
+		glm::vec3 GetMaxBound() { return maxBound; }
 	private:
 		GLuint id;
 		bool dirty;
 
 		std::vector<std::shared_ptr<VertexBuffer>> buffers;
 		std::vector < std::shared_ptr<Triangle>>faces;
+
+		glm::vec3 minBound = glm::vec3(INFINITY);
+		glm::vec3 maxBound = glm::vec3(-INFINITY);
+
 	};
 }

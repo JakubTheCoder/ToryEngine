@@ -3,30 +3,30 @@
 #include <vector>
 
 #include "Collider.h"
-#include <iostream>	//TEMP DELETE
-
 namespace toryengine
 {
 	class Root;
+	class MeshRenderer;
 
 	class BoxCollider : public Collider
 	{
 		friend class Object;
 
 	public:
-		void SetSize(glm::vec3 _size) { size = _size; }
-		glm::vec3 GetSize() { return size; }
+		//BoxCollider();
+		void SetSize();
 
-		void Test() {  std::cout << "Hello"; }
+		glm::vec3 GetSize();
 
 		bool isBoxColliding() { return isColliding; }
 		void OnUpdate();
-
-		//std::shared_ptr<Root> GetRoot();
+		void OnInit();
 
 	private:
+		//std::weak_ptr<Mesh> mesh;
 		std::weak_ptr<Root> root;
-		glm::vec3 size;
+		glm::vec3 sizeMin;
+		glm::vec3 sizeMax;
 		bool isColliding;
 	};
 }

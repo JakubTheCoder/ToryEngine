@@ -32,7 +32,7 @@ namespace toryengine
 		void SetUniform(std::string _unifrom,glm::vec4 _value);
 		void SetUniform(std::string _uniform, float _value);
 		void SetUniform(std::string _uniform, glm::mat4 _value);	
-		void SetUniform(std::string _uniform, std::weak_ptr<Texture> _texture);
+		void SetUniform(std::string _uniform, std::shared_ptr<Texture> _texture);
 
 		GLuint GetId() { return id; }
 

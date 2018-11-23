@@ -3,9 +3,26 @@
 #include "BoxCollider.h"
 #include "Transform.h"
 #include "Root.h"
-
+#include "MeshRenderer.h"
+#include "Mesh.h"
 namespace toryengine
 {
+	void BoxCollider::OnInit()
+	{
+		SetSize();
+	}
+
+	void BoxCollider::SetSize()
+	{
+		sizeMin = GetObject()->GetComponent<MeshRenderer>()->GetMesh()->GetMinBoundMesh();
+		sizeMax = GetObject()->GetComponent<MeshRenderer>()->GetMesh()->GetMaxBoundMesh();
+	}
+
+	glm::vec3 BoxCollider::GetSize() 
+	{
+		return glm::vec3(sizeMax.x - sizeMin.x, sizeMax.y - sizeMin.y, sizeMax.z - sizeMin.z); 
+	}
+
 	void BoxCollider::OnUpdate()
 	{
 		std::vector<std::shared_ptr<Object>> colBoxes;	//Makes a vector of objects 

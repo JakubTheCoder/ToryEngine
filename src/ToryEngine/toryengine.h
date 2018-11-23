@@ -17,5 +17,6 @@
 #include "Camera.h"
 #include "Keyboard.h"
 #include "ShaderProgram.h"
+#include "RenderTexture.h"
 
 #endif

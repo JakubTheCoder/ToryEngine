@@ -85,6 +85,8 @@ src/ToryEngine/RenderTexture.h
 src/ToryEngine/RenderTexture.cpp
 src/ToryEngine/Keyboard.h
 src/ToryEngine/Keyboard.cpp
+src/ToryEngine/RenderTextureComponent.h
+src/ToryEngine/RenderTextureComponent.cpp
 )
 
 if(MSVC)

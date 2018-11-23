@@ -21,6 +21,8 @@ namespace toryengine
 		std::vector<std::shared_ptr<Triangle>> GetFaces() { return faces; }
 		//std::shared_ptr<Mesh> Create();
 		void Load(std::string _path);
+		glm::vec3 GetMinBoundMesh() { return model->GetMinBound(); }
+		glm::vec3 GetMaxBoundMesh() { return model->GetMaxBound(); }
 	private:
 		GLuint id;
 		bool dirty;

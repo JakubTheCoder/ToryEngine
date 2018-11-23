@@ -79,11 +79,6 @@ namespace toryengine
 		glBindAttribLocation(id, 2, "in_TexCoord");
 		glBindAttribLocation(id, 3, "in_Normal");
 
-		if (glGetError() != GL_NO_ERROR)
-		{
-			throw std::exception();
-		}
-
 
 		glLinkProgram(id);	//Link the programs together
 		glGetProgramiv(id, GL_LINK_STATUS, &success);	//check for errors
@@ -214,7 +209,7 @@ namespace toryengine
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::SetUniform(std::string _uniform, std::weak_ptr<Texture> _texture)
+	void ShaderProgram::SetUniform(std::string _uniform, std::shared_ptr<Texture> _texture)
 	{
 		GLint uniformId = glGetUniformLocation(id, _uniform.c_str());
 

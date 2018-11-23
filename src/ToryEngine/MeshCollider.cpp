@@ -1,9 +1,10 @@
-/*
+
 #include "MeshCollider.h"
 #include "Mesh.h"
 #include "Root.h"
 #include "VertexArray.h"
 #include "BoxCollider.h"
+#include "MeshRenderer.h"
 namespace toryengine
 {
 	std::shared_ptr<Mesh> MeshCollider::GetMesh()
@@ -30,7 +31,7 @@ namespace toryengine
 			float hs[3] = { boxCenter.x / 2,boxCenter.y / 2,boxCenter.z / 2 };
 
 			float triVerts[3][3] = { 0 };
-			std::shared_ptr<Triangle> t = colBoxes.at(i)->GetComponent<Mesh>()->GetFaces().at(i);
+			std::shared_ptr<Triangle> t = colBoxes.at(i)->GetComponent<MeshRenderer>()->GetMesh()->GetFaces().at(i);
 			triVerts[0][0] = t->a.x;
 			triVerts[0][1] = t->a.y;
 			triVerts[0][2] = t->a.z;
@@ -88,4 +89,3 @@ namespace toryengine
 
 	}
 }
-*/
