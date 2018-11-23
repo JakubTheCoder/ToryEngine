@@ -21,6 +21,7 @@ namespace toryengine
 
 		void SetTexture(std::weak_ptr<Texture> _texture);
 
+		std::shared_ptr<ShaderProgram>GetShader() { return shader; }
 		//std::shared_ptr<Material> GetMaterial();
 	private:
 		void OnDraw();

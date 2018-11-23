@@ -16,5 +16,6 @@
 #include "MeshCollider.h"
 #include "Camera.h"
 #include "Keyboard.h"
+#include "ShaderProgram.h"
 
 #endif

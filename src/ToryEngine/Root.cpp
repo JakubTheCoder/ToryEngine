@@ -7,7 +7,7 @@
 #include "Environment.h"
 #include "Camera.h"
 #include "Keyboard.h"
-
+#include <iostream>
 #define WINDOW_WIDTH 800	
 #define WINDOW_HEIGHT 600
 
@@ -36,9 +36,29 @@ namespace toryengine
 				}
 				if (SDL_KEYDOWN)
 				{
-					//keyboard->GetKeys().push_back(event.key.keysym.sym);
+					Keyboard::keys.push_back(event.key.keysym.sym);
+					std::cout << "Key pressed: " << event.key.keysym.sym << std::endl;
+
+				}
+				if (SDL_KEYUP)
+				{
+					for (size_t i = 0; i < Keyboard::keys.size(); i++)
+					{
+						if (Keyboard::keys.at(i) == event.key.keysym.sym)
+						{
+							Keyboard::keys.erase(Keyboard::keys.begin() + i);
+							i--;
+						}
+					}
+				}
+
+				if (Keyboard::IsKeyDown(SDL_SCANCODE_W))
+				{
+					currentCamera->GetComponent<Transform>()->Translate(glm::vec3(0.0f, 1.0f, 0.0f));
 				}
 			}
+
+
 			//CAMERA STUFF
 			std::vector<std::shared_ptr<Object>> cameras;
 			rootSelf.lock()->GetObjectsWithComponent<Camera>(cameras);

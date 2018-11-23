@@ -1,8 +1,22 @@
 #include "Keyboard.h"
-/*
+
 namespace toryengine
 {
-	bool Keyboard::GetKeyDown(SDL_Keycode key)
+	std::vector<SDL_Keycode> Keyboard::keys;
+
+
+	bool Keyboard::IsKeyDown(SDL_Keycode _key)
+	{
+		for (int i = 0; keys.size(); i++)
+		{
+			if (keys.at(i) == _key)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+/*	bool Keyboard::GetKeyDown(SDL_Keycode key)
 	{
 		for (size_t i = 0; i < keys.size(); i++)
 		{
@@ -23,7 +37,7 @@ namespace toryengine
 				return true;
 			}
 		}
-		return false;
+
 	}
+	*/
 }
-*/

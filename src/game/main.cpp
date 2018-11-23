@@ -1,5 +1,4 @@
 #include <ToryEngine/toryengine.h>
-
 #include <iostream>
 //Where to put Render Textures? and how to place them in Mesh Renderer instead of the default shader, pass in what shader you want you use? meaning they have to be created in main / root maybe?
 class TestScreen : public toryengine::Component
@@ -29,7 +28,11 @@ public :
 	void OnUpdate()
 	{
 
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.05f * move_dir, 0.0f, 0.0f));
+		if (toryengine::Keyboard::IsKeyDown(SDLK_w))
+		{
+			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f , 0.5f*move_dir, 0.0f));
+		}
+		/*GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.05f * move_dir, 0.0f, 0.0f));
 		if (GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x > 4.0f
 			|| GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x < -4.0f)
 		{
@@ -38,12 +41,13 @@ public :
 		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
 		{
 			move_dir *= -1;
-		}
+		}*/
 		//if (glm::distance(lastPos, GetObject()->GetComponent<toryengine::Transform>()->GetPosition())>1.0f)
 		//{
 		//	GetObject()->GetComponent<toryengine::Transform>()->SetLocalPosition(lastPos);
 		//}
 		//lastPos = GetObject()->GetComponent<toryengine::Transform>()->GetPosition();
+
 	}
 private:
 	float move_dir = 1;
@@ -81,9 +85,24 @@ private:
 int main()
 {
 	std::cout << "Hello World" << std::endl;
-
+	
 	//Create and Initliaise Root
 	std::shared_ptr<toryengine::Root> root = toryengine::Root::Initalize();
+
+
+	std::shared_ptr<toryengine::ShaderProgram>lightKeyShader = std::make_shared<toryengine::ShaderProgram>("../resources/shaders/lightkeypass.vert", "../resources/shaders/lightkeypass.frag");
+	std::shared_ptr<toryengine::ShaderProgram>nullShader = std::make_shared<toryengine::ShaderProgram>("../resources/shaders/nullpass.vert", "../resources/shaders/nullpass.frag");
+	std::shared_ptr<toryengine::ShaderProgram>blurShader = std::make_shared<toryengine::ShaderProgram>("../resources/shaders/blur.vert", "../resources/shaders/blur.frag");
+	std::shared_ptr<toryengine::ShaderProgram>mergeShader = std::make_shared<toryengine::ShaderProgram>("../resources/shaders/mergepass.vert", "../resources/shaders/mergepass.frag");
+
+	std::shared_ptr<toryengine::RenderTexture> rt = std::make_shared<toryengine::RenderTexture>(1024, 1024);
+	std::shared_ptr<toryengine::RenderTexture> lightKeyRt = std::make_shared<toryengine::RenderTexture>(1024, 1024);
+	std::shared_ptr<toryengine::RenderTexture> blurRt = std::make_shared<toryengine::RenderTexture>(1024, 1024);
+	std::shared_ptr<toryengine::RenderTexture> blur2Rt = std::make_shared<toryengine::RenderTexture>(1024, 1024);
+	std::shared_ptr<toryengine::RenderTexture> blur3Rt = std::make_shared<toryengine::RenderTexture>(1024, 1024);
+	std::shared_ptr<toryengine::RenderTexture> mergeRt = std::make_shared<toryengine::RenderTexture>(1024, 1024);
+
+
 
 	//Camera
 	std::shared_ptr<toryengine::Object> mainCamera = root->AddObject();
@@ -108,6 +127,8 @@ int main()
 	cube->AddComponent<toryengine::BoxCollider>()->SetSize(glm::vec3(1.0f,1.0f,1.0f));
 	cube->GetComponent<toryengine::BoxCollider>()->Test();
 	cube->AddComponent<MoveCube>();
+	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::Mesh>()->GetShape());
+	cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::Mesh>()->GetShape());
 
 	std::shared_ptr<toryengine::Object> cube2 = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
@@ -146,7 +167,9 @@ int main()
 
 	//DELETEstd::vector<std::shared_ptr<toryengine::Object>> output;
 	//DELETEroot->GetObjectsWithComponent<toryengine::MeshRenderer>(output);
-
+	lightKeyShader->SetUniform("in_Texture", rt);
+	//std::dynamic_pointer_cast<
+	lightKeyShader->Draw(lightKeyRt);
 
 	root->Start();
 	return 0;
