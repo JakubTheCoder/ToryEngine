@@ -51,7 +51,7 @@ namespace toryengine
 			{
 				isTriBoxColliding = false;
 			}
-			std::cout << "Colliding";
+			//std::cout << "Colliding";
 			isTriBoxColliding = true;
 		}
 		//std::shared_ptr<BoxCollider> bc = GetObject()->GetComponent<BoxCollider>();

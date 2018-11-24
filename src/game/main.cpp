@@ -30,8 +30,21 @@ public :
 
 		if (toryengine::Keyboard::IsKeyDown(SDLK_w))
 		{
-			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f , 0.5f*move_dir, 0.0f));
+			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f , 0.1f, 0.0f));
 		}
+		if (toryengine::Keyboard::IsKeyDown(SDLK_s))
+		{
+			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -0.1f, 0.0f));
+		}
+		if (toryengine::Keyboard::IsKeyDown(SDLK_d))
+		{
+			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.1f, 0.0f, 0.0f));
+		}
+		if (toryengine::Keyboard::IsKeyDown(SDLK_a))
+		{
+			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.1f, 0.0f, 0.0f));
+		}
+
 		/*GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.05f * move_dir, 0.0f, 0.0f));
 		if (GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x > 4.0f
 			|| GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x < -4.0f)

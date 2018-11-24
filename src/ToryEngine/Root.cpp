@@ -18,31 +18,32 @@ namespace toryengine
 		running = true; //game loop bool
 
 		//
-		glm::vec3 angle = glm::vec3(0.0f, 1.0f, 0.0f);
+		//glm::vec3 angle = glm::vec3(0.0f, 1.0f, 0.0f);
 
 		float lastTime = SDL_GetTicks();
 		float idealTime = 1.0f / 60.0f;
+
 		while (running)	//= true
 		{
 			float time = SDL_GetTicks();
 			float diff = time - lastTime;
 			environment->SetDeltaTime(diff / 1000.0f);
+
 			SDL_Event event = { 0 }; //allows us to have inputs
 			while (SDL_PollEvent(&event))
 			{
-				if (event.type == SDL_QUIT)
+				switch (event.type)
 				{
-					running = false; //Turns program off
-				}
-				if (SDL_KEYDOWN)
-				{
+				case SDL_QUIT:
+					running = false;
+					break;
+					
+				case SDL_KEYDOWN:
 					Keyboard::keys.push_back(event.key.keysym.sym);
-					std::cout << "Key pressed: " << event.key.keysym.sym << std::endl;
+					break;
 
-				}
-				if (SDL_KEYUP)
-				{
-					for (size_t i = 0; i < Keyboard::keys.size(); i++)
+				case SDL_KEYUP:
+					for (int i = 0; i < Keyboard::keys.size(); i++)
 					{
 						if (Keyboard::keys.at(i) == event.key.keysym.sym)
 						{
@@ -50,14 +51,10 @@ namespace toryengine
 							i--;
 						}
 					}
+					break;
 				}
 
-				if (Keyboard::IsKeyDown(SDL_SCANCODE_W))
-				{
-					currentCamera->GetComponent<Transform>()->Translate(glm::vec3(0.0f, 1.0f, 0.0f));
-				}
 			}
-
 
 			//CAMERA STUFF
 			std::vector<std::shared_ptr<Object>> cameras;
@@ -65,8 +62,8 @@ namespace toryengine
 
 			//for (size_t i = 0; i < cameras.size(); i++)
 			//{
-				//SetCurrentCamera(cameras.at(i));
-				//cameras.at(i)->Draw();
+			//	SetCurrentCamera(cameras.at(i));
+			//	cameras.at(i)->Draw();
 			//}
 
 			//UPDATE OBJECTS
@@ -89,6 +86,7 @@ namespace toryengine
 			}
 
 			SDL_GL_SwapWindow(window);	//swap buffer
+
 			if (idealTime > environment->GetDeltaTime())
 			{
 				//Sleep for remaning time
