@@ -6,29 +6,24 @@
 
 class MoveCube :public toryengine::Component
 {
-public :
+public:
 
 	void OnUpdate()
 	{
+		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.05f * move_dir, 0.0f, 0.0f));
 
-		if (toryengine::Keyboard::IsKeyDown(SDLK_w))
+		if (GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x > 4.0f
+			|| GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x < -4.0f)
 		{
-			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f , 0.1f, 0.0f));
+			move_dir *= -1;
 		}
-		if (toryengine::Keyboard::IsKeyDown(SDLK_s))
+		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
 		{
-			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -0.1f, 0.0f));
-		}
-		if (toryengine::Keyboard::IsKeyDown(SDLK_d))
-		{
-			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.1f, 0.0f, 0.0f));
-		}
-		if (toryengine::Keyboard::IsKeyDown(SDLK_a))
-		{
-			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.1f, 0.0f, 0.0f));
+			move_dir *= -1;
 		}
 
 	}
+
 private:
 	float move_dir = 1;
 	glm::vec3 lastPos;
@@ -45,11 +40,12 @@ public:
 			|| GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x < -4.0f)
 		{
 			move_dir *= -1;
-			if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
-			{
-				move_dir *= -1;
-			}
 		}
+		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
+		{
+			move_dir *= -1;
+		}
+
 	}
 private:
 	float move_dir = -1;
@@ -59,7 +55,7 @@ private:
 int main()
 {
 	std::cout << "Hello World" << std::endl;
-	
+
 	//Create and Initliaise Root
 	std::shared_ptr<toryengine::Root> root = toryengine::Root::Initalize();
 
@@ -72,26 +68,35 @@ int main()
 	sideCamera->AddComponent<toryengine::Camera>();
 	sideCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(10.0f, 0.0f, 0.0f));
 	//sideCamera->GetRoot()->SetCurrentCamera(sideCamera);
-	sideCamera->GetComponent<toryengine::Transform>()->Rotate(glm::vec3(0.0f,90.0f,0.0f));	//ROTATION WORKS AS IF YOU PUT A POLE THROUGH THE axis 
+	sideCamera->GetComponent<toryengine::Transform>()->Rotate(glm::vec3(0.0f, 90.0f, 0.0f));	//ROTATION WORKS AS IF YOU PUT A POLE THROUGH THE axis 
 
 	mainCamera->GetRoot()->SetCurrentCamera(mainCamera);
 
 	std::shared_ptr<toryengine::Object>player = root->AddObject();
 	player->AddComponent<Player>();
-	player->AddComponent<toryengine::Camera>();
-	player->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, 10.0f));
-	player->GetRoot()->SetCurrentCamera(player);
+	std::shared_ptr<toryengine::MeshRenderer> playerMr = player->AddComponent<toryengine::MeshRenderer>();
+	playerMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/cube.obj"));
+	playerMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/player.png"));
+	player->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 1.0f, -5.0f));
+	player->AddComponent<toryengine::BoxCollider>();
 
+
+	std::shared_ptr<toryengine::Object>platform = root->AddObject();
+	std::shared_ptr<toryengine::MeshRenderer> platformMr = platform->AddComponent<toryengine::MeshRenderer>();
+	platformMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
+	platformMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
+	platform->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -3.0f, -5.0f));
+	platform->AddComponent<toryengine::BoxCollider>();
 
 	//Create Objcets
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent < toryengine::MeshRenderer>();
-	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
-	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
+	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/cube.obj"));
+	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/curuthers_diffuse.png"));
 	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, -1.0f, 0.0f));
 	cube->AddComponent<toryengine::BoxCollider>();
-	cube->AddComponent < toryengine::MeshCollider>();
-	cube->AddComponent<MoveCube>();
+	//cube->AddComponent < toryengine::MeshCollider>();
+	//cube->AddComponent<MoveCube>();
 
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::M>()->GetShape());
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
@@ -99,14 +104,14 @@ int main()
 
 	std::shared_ptr<toryengine::Object> cube2 = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
-	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
-	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));
-	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(4.0f, -1.0f,0.0f));
-	//cube2->AddComponent<toryengine::MeshCollider>();
-	cube2->AddComponent < MoveCube2>();
+	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/cube.obj"));
+	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/texture.jpg"));
+	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(4.0f, -1.0f, 0.0f));
+	cube2->AddComponent<toryengine::BoxCollider>();
+	//cube2->AddComponent < MoveCube2>();
 	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 	//Sound
-	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../Crush8-Bit.ogg");
+	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/Crush8-Bit.ogg");
 	s->Play();
 
 	root->Start();

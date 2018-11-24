@@ -1,8 +1,8 @@
 #pragma once
+#include "ToryEngine/Component.h"
 
 class Player :public toryengine::Component
 {
-	class Component;
 public:
 	void OnUpdate();
 

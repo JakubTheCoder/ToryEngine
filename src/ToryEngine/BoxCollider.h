@@ -15,6 +15,7 @@ namespace toryengine
 	public:
 		//BoxCollider();
 		void SetSize();
+		//void SetSize(glm::vec3 minPoint,glm::vec3 maxPoint);
 
 		glm::vec3 GetSize();
 

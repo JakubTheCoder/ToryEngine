@@ -103,6 +103,14 @@ add_executable(game
 src/game/main.cpp
 src/game/Player.h
 src/game/Player.cpp
+src/game/Platform.h
+src/game/Platform.cpp
+src/game/MovingCube.h
+src/game/MovingCube.cpp
+src/game/DeathCube.h
+src/game/DeathCube.cpp
+src/game/WinCube.h
+src/game/WinCube.cpp
 )
 
 target_link_libraries(game ToryEngine)
