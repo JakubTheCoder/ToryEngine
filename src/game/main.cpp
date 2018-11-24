@@ -1,25 +1,6 @@
 #include <ToryEngine/toryengine.h>
 #include <iostream>
-//Where to put Render Textures? and how to place them in Mesh Renderer instead of the default shader, pass in what shader you want you use? meaning they have to be created in main / root maybe?
-class TestScreen : public toryengine::Component
-{
-public:
-	void OnInit(std::string color)
-	{
-		std::cout << "Hello from the green test screen\n";
-	}
 
-	void OnBegin()
-	{
-	}
-
-	void OnUpdate()
-	{
-	}
-	void OnDraw()
-	{
-	}
-};
 
 class MoveCube :public toryengine::Component
 {
@@ -44,22 +25,6 @@ public :
 		{
 			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.1f, 0.0f, 0.0f));
 		}
-
-		/*GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.05f * move_dir, 0.0f, 0.0f));
-		if (GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x > 4.0f
-			|| GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x < -4.0f)
-		{
-			move_dir *= -1;
-		}
-		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
-		{
-			move_dir *= -1;
-		}*/
-		//if (glm::distance(lastPos, GetObject()->GetComponent<toryengine::Transform>()->GetPosition())>1.0f)
-		//{
-		//	GetObject()->GetComponent<toryengine::Transform>()->SetLocalPosition(lastPos);
-		//}
-		//lastPos = GetObject()->GetComponent<toryengine::Transform>()->GetPosition();
 
 	}
 private:
@@ -152,7 +117,9 @@ int main()
 	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
 	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, -1.0f, 0.0f));
 	cube->AddComponent<toryengine::BoxCollider>();
+	cube->AddComponent < toryengine::MeshCollider>();
 	cube->AddComponent<MoveCube>();
+
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::M>()->GetShape());
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 
@@ -161,7 +128,7 @@ int main()
 	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
 	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../texture.jpg"));
 	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(4.0f, -1.0f,0.0f));
-	cube2->AddComponent<toryengine::BoxCollider>();
+	//cube2->AddComponent<toryengine::MeshCollider>();
 	cube2->AddComponent < MoveCube2>();
 	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 	//Sound
