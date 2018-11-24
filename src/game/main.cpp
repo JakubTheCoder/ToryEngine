@@ -151,7 +151,7 @@ int main()
 	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../cube.obj"));
 	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../curuthers_diffuse.png"));
 	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, -1.0f, 0.0f));
-	cube->AddComponent<toryengine::MeshCollider>();
+	cube->AddComponent<toryengine::BoxCollider>();
 	cube->AddComponent<MoveCube>();
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::M>()->GetShape());
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
