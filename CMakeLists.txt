@@ -101,6 +101,8 @@ endif()
 
 add_executable(game
 src/game/main.cpp
+src/game/Player.h
+src/game/Player.cpp
 )
 
 target_link_libraries(game ToryEngine)

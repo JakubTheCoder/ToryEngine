@@ -2,13 +2,13 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-#include "Collider.h"
+#include "Component.h"
 namespace toryengine
 {
 	class Root;
 	class MeshRenderer;
 
-	class BoxCollider : public Collider
+	class BoxCollider : public Component
 	{
 		friend class Object;
 
