@@ -139,6 +139,7 @@ namespace toryengine
 		{
 			throw std::exception();
 		}
+		//temp->context = alcCreateContext(temp->device, NULL);
 		temp->context = alcCreateContext(temp->device, NULL);
 		if (!temp->context)
 		{

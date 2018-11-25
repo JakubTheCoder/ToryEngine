@@ -23,5 +23,6 @@ namespace toryengine
 	private:
 		//std::vector <std::shared_ptr<Camera>> cameras;
 		//std::shared_ptr<Camera> currentCamera;
+		float cameraSpeed;
 	};
 }
