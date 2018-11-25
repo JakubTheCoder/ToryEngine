@@ -20,6 +20,7 @@ namespace toryengine
 		glm::mat4 GetProjectionMatrix(){ return glm::perspective(glm::radians(45.0f), 800.0f/ 600.0f, 0.1f, 100.0f); }
 			
 		void OnUpdate();
+		float GetCameraSpeed() { return cameraSpeed; }
 	private:
 		//std::vector <std::shared_ptr<Camera>> cameras;
 		//std::shared_ptr<Camera> currentCamera;

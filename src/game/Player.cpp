@@ -1,12 +1,14 @@
 #include "Player.h"
+
 #include "ToryEngine/Keyboard.h"
 #include "ToryEngine/Transform.h"
 #include "glm/glm.hpp"
 #include "ToryEngine/Object.h"
 #include "ToryEngine/BoxCollider.h"
 #include "ToryEngine/Root.h"
-#include "Platform.h"
 
+#include "Platform.h"
+#include "DeathCube.h"
 #include <iostream>
 
 void Player::OnUpdate()
@@ -16,6 +18,16 @@ void Player::OnUpdate()
 
 	std::vector<std::shared_ptr<toryengine::Object>> platforms;	//Makes a vector of objects 
 	GetRoot()->GetObjectsWithComponent<Platform>(platforms);	//Gets all the objects with a BoxCollider
+	std::vector<std::shared_ptr<toryengine::Object>>deathCube;
+	GetRoot()->GetObjectsWithComponent<DeathCube>(deathCube);
+	for (size_t i = 0; i < deathCube.size(); i++)
+	{
+		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding() && deathCube.at(i)->GetComponent<DeathCube>())
+		{
+			std::cout << "Death";
+		}
+	}
+
 	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		if (velocity <= 0)

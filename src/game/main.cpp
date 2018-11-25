@@ -2,6 +2,7 @@
 #include <ToryEngine/toryengine.h>
 #include "Player.h"
 #include "Platform.h"
+#include "DeathCube.h"
 class MoveCube :public toryengine::Component
 {
 public:
@@ -116,7 +117,14 @@ int main()
 	//cube2->AddComponent < MoveCube2>();
 	cube2->AddComponent<Platform>();
 	//cube2->AddComponent<toryengine::RenderTextureComponent>();
-
+	
+	std::shared_ptr<toryengine::Object>deathCube = root->AddObject();
+	std::shared_ptr<toryengine::MeshRenderer> deathCubeMr = deathCube->AddComponent < toryengine::MeshRenderer>();
+	deathCubeMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
+	deathCubeMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
+	deathCube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f,-7.0f,-5.0f));
+	deathCube->AddComponent<toryengine::BoxCollider>();
+	deathCube->AddComponent<DeathCube>();
 	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->
 		//Draw(cube2->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture(), cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 	//Sound
