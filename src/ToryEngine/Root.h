@@ -30,7 +30,7 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 
 		std::shared_ptr<Object> AddObject();	//Adds a object to the vector
 		std::shared_ptr<Resources> GetResources() { return resources; }	//get a list of resources
-
+		std::shared_ptr<Environment> GetEnvironment() { return environment; }
 		std::shared_ptr<Object> GetCurrentCamera() { return currentCamera; }
 		void SetCurrentCamera(std::shared_ptr<Object> _camera) { currentCamera = _camera; }
 

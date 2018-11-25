@@ -1,18 +1,20 @@
+#include <glm/glm.hpp>
 #include "Player.h"
 
 #include "ToryEngine/Keyboard.h"
 #include "ToryEngine/Transform.h"
-#include "glm/glm.hpp"
 #include "ToryEngine/Object.h"
 #include "ToryEngine/BoxCollider.h"
 #include "ToryEngine/Root.h"
-
+#include "ToryEngine/Environment.h"
 #include "Platform.h"
 #include "DeathCube.h"
+
 #include <iostream>
 
 void Player::OnUpdate()
 {
+	score++;
 	//std::cout << "Pos" << GetObject()->GetComponent<toryengine::Transform>()->GetPosition().y;
 	velocity= -1;
 
@@ -38,10 +40,8 @@ void Player::OnUpdate()
 		{
 			if (GetObject()->GetComponent<toryengine::BoxCollider>()->isCollidingWith(platforms.at(i)))
 			{
-				GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, (0.1f*velocity)*-jumpForce, 0.0f));
-				//velocity *= -jumpForce;
-				//GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 2.0f, 0.0f));
-				std::cout << "Jump";
+				GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, ((0.1f*velocity)*-jumpForce), 0.0f));
+				//std::cout << "Jump";
 			}
 		}
 		else
@@ -51,11 +51,11 @@ void Player::OnUpdate()
 	}
 	if (toryengine::Keyboard::IsKeyDown(SDLK_d))
 	{
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.1f, 0.0f, 0.0f));
+		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.5f, 0.0f, 0.0f));
 	}
 	if (toryengine::Keyboard::IsKeyDown(SDLK_a))
 	{
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.1f, 0.0f, 0.0f));
+		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.5f, 0.0f, 0.0f));
 	}
 
 	GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.1f*velocity, 0.0f));
