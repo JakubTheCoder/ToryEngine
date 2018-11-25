@@ -21,19 +21,22 @@ namespace toryengine
 
 	void MeshRenderer::OnDraw()
 	{
-		// model mat4 from transform...
-		shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());
+		if (isEnabled())
+		{
+			// model mat4 from transform...
+			shader->SetUniform("in_Model", GetObject()->GetComponent<Transform>()->GetMatrix());
 
-		// camera's transform (and inverse) 
+			// camera's transform (and inverse) 
 
-		shader->SetUniform("in_View", glm::inverse(GetRoot()->GetCurrentCamera()->GetComponent<Transform>()->GetMatrix()));
-		//Make camera object Get view matrix 
+			shader->SetUniform("in_View", glm::inverse(GetRoot()->GetCurrentCamera()->GetComponent<Transform>()->GetMatrix()));
+			//Make camera object Get view matrix 
 
-		// from screen
-		shader->SetUniform("in_Projection", GetRoot()->GetCurrentCamera()->GetComponent<Camera>()->GetProjectionMatrix());		//WIDTH / HEIGHT
-		//Get camera projection matrix
-		//shape = GetMesh();
-		shader->Draw(mesh.lock()->GetShape());
+			// from screen
+			shader->SetUniform("in_Projection", GetRoot()->GetCurrentCamera()->GetComponent<Camera>()->GetProjectionMatrix());		//WIDTH / HEIGHT
+			//Get camera projection matrix
+			//shape = GetMesh();
+			shader->Draw(mesh.lock()->GetShape());
+		}
 	}
 
 	void MeshRenderer::SetTexture(std::weak_ptr<Texture> _texture)

@@ -2,7 +2,6 @@
 #include <memory>
 #include <vector>
 
-#include "Collider.h"
 #include "VertexArray.h"
 namespace toryengine
 {

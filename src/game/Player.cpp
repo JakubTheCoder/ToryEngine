@@ -14,50 +14,59 @@
 
 void Player::OnUpdate()
 {
-	score++;
-	std::cout << "Score: " << score;
-	//std::cout << "Pos" << GetObject()->GetComponent<toryengine::Transform>()->GetPosition().y;
-	velocity= -1;
-
-	std::vector<std::shared_ptr<toryengine::Object>> platforms;	//Makes a vector of objects 
-	GetRoot()->GetObjectsWithComponent<Platform>(platforms);	//Gets all the objects with a BoxCollider
-
-	std::vector<std::shared_ptr<toryengine::Object>>deathCube;
-	GetRoot()->GetObjectsWithComponent<DeathCube>(deathCube);
-	for (size_t i = 0; i < deathCube.size(); i++)
+	if (isEnabled())
 	{
-		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isCollidingWith(deathCube.at(i)))
-		{
-			//Delete character
-			//Display Lose Screen
-			std::cout << "Death";
-		}
-	}
-	//GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, (0.1f*velocity)*-jumpForce, 0.0f));
-	for (size_t i = 0; i < platforms.size(); i++)
-	{
+		score++;
+		std::cout << "Score: " << score << std::endl;
+		//std::cout << "Pos" << GetObject()->GetComponent<toryengine::Transform>()->GetPosition().y;
+		velocity = -1;
 
-		if (velocity <= 0)
+		std::vector<std::shared_ptr<toryengine::Object>> platforms;	//Makes a vector of objects 
+		GetRoot()->GetObjectsWithComponent<Platform>(platforms);	//Gets all the objects with a BoxCollider
+
+		std::vector<std::shared_ptr<toryengine::Object>>deathCube;
+		GetRoot()->GetObjectsWithComponent<DeathCube>(deathCube);
+		for (size_t i = 0; i < deathCube.size(); i++)
 		{
-			if (GetObject()->GetComponent<toryengine::BoxCollider>()->isCollidingWith(platforms.at(i)))
+			if (GetObject()->GetComponent<toryengine::BoxCollider>()->isCollidingWith(deathCube.at(i)))
 			{
-				GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, ((0.1f*velocity)*-jumpForce), 0.0f));
-				//std::cout << "Jump";
+				std::cout << "Player is Dead!!!" << std::endl;
+				//velocity = 0;
+				GetObject()->GetComponent<toryengine::BoxCollider>()->SetEnabled(false);
 			}
 		}
-		else
+		//GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, (0.1f*velocity)*-jumpForce, 0.0f));
+		for (size_t i = 0; i < platforms.size(); i++)
 		{
-			continue;
-		}
-	}
-	if (toryengine::Keyboard::IsKeyDown(SDLK_d))
-	{
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.5f, 0.0f, 0.0f));
-	}
-	if (toryengine::Keyboard::IsKeyDown(SDLK_a))
-	{
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.5f, 0.0f, 0.0f));
-	}
 
-	GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.1f*velocity, 0.0f));
+			if (velocity <= 0)
+			{
+				if (GetObject()->GetComponent<toryengine::BoxCollider>()->isCollidingWith(platforms.at(i)))
+				{
+					GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, ((0.1f*velocity)*-jumpForce), 0.0f));
+					//std::cout << "Jump";
+					deathSound->Play();
+				}
+			}
+			else
+			{
+				continue;
+			}
+		}
+		if (toryengine::Keyboard::IsKeyDown(SDLK_d))
+		{
+			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.5f, 0.0f, 0.0f));
+		}
+		if (toryengine::Keyboard::IsKeyDown(SDLK_a))
+		{
+			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.5f, 0.0f, 0.0f));
+		}
+
+		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.1f*velocity, 0.0f));
+	}
+}
+
+void Player::OnInit()
+{
+	deathSound= std::make_shared<toryengine::Sound>("../assets/Oddbounce.ogg");
 }

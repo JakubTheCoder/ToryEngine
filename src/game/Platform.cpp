@@ -10,13 +10,16 @@
 #include <iostream>
 void Platform::OnUpdate()
 {
-	std::vector<std::shared_ptr<toryengine::Object>>deathCube;
-	GetRoot()->GetObjectsWithComponent<DeathCube>(deathCube);
-	for (size_t i = 0; i < deathCube.size(); i++)
+	if (isEnabled())
 	{
-		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isCollidingWith(deathCube.at(i)))
+		std::vector<std::shared_ptr<toryengine::Object>>deathCube;
+		GetRoot()->GetObjectsWithComponent<DeathCube>(deathCube);
+		for (size_t i = 0; i < deathCube.size(); i++)
 		{
-			GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(GetObject()->GetComponent<Platform>()->GetPlatformPos(), 25.0f, 0.0f));
+			if (GetObject()->GetComponent<toryengine::BoxCollider>()->isCollidingWith(deathCube.at(i)))
+			{
+				GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(GetObject()->GetComponent<Platform>()->GetPlatformPos(), 25.0f, 0.0f));
+			}
 		}
 	}
 }

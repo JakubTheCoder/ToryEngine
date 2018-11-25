@@ -74,8 +74,6 @@ src/ToryEngine/Sound.h
 src/ToryEngine/Sound.cpp
 src/ToryEngine/Exception.h
 src/ToryEngine/Exception.cpp
-src/ToryEngine/Collider.h
-src/ToryEngine/Collider.cpp
 src/ToryEngine/BoxCollider.h
 src/ToryEngine/BoxCollider.cpp
 src/ToryEngine/MeshCollider.h
@@ -88,8 +86,6 @@ src/ToryEngine/Keyboard.h
 src/ToryEngine/Keyboard.cpp
 src/ToryEngine/RenderTextureComponent.h
 src/ToryEngine/RenderTextureComponent.cpp
-src/ToryEngine/GUI.h
-src/ToryEngine/GUI.cpp
 )
 
 if(MSVC)
@@ -108,12 +104,10 @@ src/game/Player.h
 src/game/Player.cpp
 src/game/Platform.h
 src/game/Platform.cpp
-src/game/MovingCube.h
-src/game/MovingCube.cpp
 src/game/DeathCube.h
 src/game/DeathCube.cpp
-src/game/WinCube.h
-src/game/WinCube.cpp
+src/game/Background.h
+src/game/Background.cpp
 )
 
 target_link_libraries(game ToryEngine)

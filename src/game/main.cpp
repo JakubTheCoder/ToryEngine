@@ -4,48 +4,8 @@
 #include "Player.h"
 #include "Platform.h"
 #include "DeathCube.h"
-class MoveCube :public toryengine::Component
-{
-public:
+#include "Background.h"
 
-	void OnUpdate()
-	{
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.05f * move_dir, 0.0f, 0.0f));
-
-		if (GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x > 4.0f
-			|| GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x < -4.0f)
-		{
-			move_dir *= -1;
-		}
-		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
-		{
-			move_dir *= -1;
-		}
-
-	}
-
-private:
-	float move_dir = 1;
-	glm::vec3 lastPos;
-};
-
-class MoveCube2 :public toryengine::Component
-{
-public:
-	void OnUpdate()
-	{
-
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.05f * move_dir, 0.0f, 0.0f));
-		if (GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x > 4.0f
-			|| GetObject()->GetComponent<toryengine::Transform>()->GetPosition().x < -4.0f)
-		{
-			move_dir *= -1;
-		}
-
-	}
-private:
-	float move_dir = -1;
-};
 
 int main()
 {
@@ -58,7 +18,7 @@ int main()
 	//Camera
 	std::shared_ptr<toryengine::Object> mainCamera = root->AddObject();
 	mainCamera->AddComponent<toryengine::Camera>();
-	mainCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, 50.0f));
+	mainCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, 20.0f));
 
 	std::shared_ptr<toryengine::Object> sideCamera = root->AddObject();
 	sideCamera->AddComponent<toryengine::Camera>();
@@ -76,22 +36,6 @@ int main()
 	player->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 1.0f, -5.0f));
 	player->AddComponent<toryengine::BoxCollider>();
 
-
-	//std::shared_ptr<toryengine::Object>platform = root->AddObject();
-	//std::shared_ptr<toryengine::MeshRenderer> platformMr = platform->AddComponent<toryengine::MeshRenderer>();
-	//platformMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
-	//platformMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	//platform->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -3.0f, -5.0f));
-	//platform->AddComponent<toryengine::BoxCollider>();
-	//platform->AddComponent<Platform>();
-
-	//std::shared_ptr<toryengine::Object> platform = root->AddObject();
-	//std::shared_ptr<toryengine::MeshRenderer> platformMr = platform->AddComponent<toryengine::MeshRenderer>();
-	//platformMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
-	//platformMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	//platform->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -1.0f, -5.0f));
-	//platform->AddComponent<toryengine::BoxCollider>();
-	
 	//Create Platforms
 	//Platform 1
 	int platformSize;
@@ -99,11 +43,11 @@ int main()
 	std::shared_ptr<toryengine::MeshRenderer> platformMr1 = platform1->AddComponent<toryengine::MeshRenderer>();
 	platformSize = rand() % 3;
 
-	if(platformSize == 0){ platformMr1->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/smallPlatform.obj")); }
-	if(platformSize == 1){ platformMr1->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/mediumPlatform.obj")); }
-	if(platformSize == 2){ platformMr1->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/bigPlatform.obj")); }
+	if (platformSize == 0) { platformMr1->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/smallPlatform.obj")); }
+	if (platformSize == 1) { platformMr1->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/mediumPlatform.obj")); }
+	if (platformSize == 2) { platformMr1->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/bigPlatform.obj")); }
 	platformMr1->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	
+
 	platform1->AddComponent<Platform>();
 	platform1->GetComponent<toryengine::Transform>()->Translate(glm::vec3(platform1->GetComponent<Platform>()->GetPlatformPos(), -5.0f, -5.0f));
 	platform1->AddComponent<toryengine::BoxCollider>();
@@ -163,12 +107,12 @@ int main()
 	platform5->AddComponent<Platform>();
 	platform5->GetComponent<toryengine::Transform>()->Translate(glm::vec3(platform5->GetComponent<Platform>()->GetPlatformPos(), 15.0f, -5.0f));
 	platform5->AddComponent<toryengine::BoxCollider>();
-	
+
 	std::shared_ptr<toryengine::Object>deathCube = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> deathCubeMr = deathCube->AddComponent < toryengine::MeshRenderer>();
 	deathCubeMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
 	deathCubeMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	deathCube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f,-15.0f,-5.0f));
+	deathCube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -15.0f, -5.0f));
 	deathCube->AddComponent<toryengine::BoxCollider>();
 	deathCube->AddComponent<DeathCube>();
 
@@ -176,12 +120,18 @@ int main()
 		//Draw(platform5->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture(), platform5->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 
 	//Make GUI that takes in points to make a flat surface and apply texture to so you cna have background and you die screen
-	//std::shared_ptr<toryengine::Object> background = root->AddObject();
+	std::shared_ptr<toryengine::Object> background = root->AddObject();
+	background->AddComponent<Background>();
+	std::shared_ptr<toryengine::MeshRenderer> backgroundMr = background->AddComponent<toryengine::MeshRenderer>();
+	backgroundMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/cube.obj"));
+	backgroundMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/background.jpg"));
+	background->GetComponent <toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, -20.0f));
+	background->GetComponent<toryengine::Transform>()->Scale(glm::vec3(50.0f, 40.0f, 0.0f));
 
 
 	//Sound
-	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/Crush8-Bit.ogg");
-	s->Play();
+	//std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/Crush8-Bit.ogg");
+	//s->Play();
 
 	root->Start();
 	return 0;

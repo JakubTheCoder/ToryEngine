@@ -1,10 +1,11 @@
-#include "DeathCube.h"
+#include "Background.h"
 #include "ToryEngine/Object.h"
 #include "ToryEngine/Transform.h"
 #include "ToryEngine/Root.h"
 #include "ToryEngine/Camera.h"
 #include "ToryEngine/Environment.h"
-void DeathCube::OnUpdate()
+
+void Background::OnUpdate()
 {
 	if (isEnabled())
 	{
