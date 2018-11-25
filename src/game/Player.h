@@ -7,7 +7,8 @@ public:
 	void OnUpdate();
 
 private:
-	float velocity = 1;
+	float velocity = -1;
 	bool isJumping;
+	float jumpForce = 50.0f;
 
 };

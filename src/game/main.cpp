@@ -59,7 +59,7 @@ int main()
 	//Camera
 	std::shared_ptr<toryengine::Object> mainCamera = root->AddObject();
 	mainCamera->AddComponent<toryengine::Camera>();
-	mainCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, 10.0f));
+	mainCamera->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.0f, 20.0f));
 
 	std::shared_ptr<toryengine::Object> sideCamera = root->AddObject();
 	sideCamera->AddComponent<toryengine::Camera>();
@@ -96,13 +96,13 @@ int main()
 
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent < toryengine::MeshRenderer>();
-	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/cube.obj"));
+	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
 	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/curuthers_diffuse.png"));
-	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -1.0f, 0.0f));
+	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -5.0f, -5.0f));
 	cube->AddComponent<toryengine::BoxCollider>();
 	//cube->AddComponent < toryengine::MeshCollider>();
-	cube->AddComponent<MoveCube>();
-
+	//cube->AddComponent<MoveCube>();
+	cube->AddComponent<Platform>();
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::M>()->GetShape());
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 
@@ -111,13 +111,16 @@ int main()
 	std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
 	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
 	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, -1.0f, -5.0f));
+	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, 0.0f, -5.0f));
 	cube2->AddComponent<toryengine::BoxCollider>();
-	cube2->AddComponent < MoveCube2>();
+	//cube2->AddComponent < MoveCube2>();
 	cube2->AddComponent<Platform>();
-	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
+	//cube2->AddComponent<toryengine::RenderTextureComponent>();
+
+	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->
+		//Draw(cube2->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture(), cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 	//Sound
-	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/dixie_horn.ogg");
+	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/Crush8-Bit.ogg");
 	s->Play();
 
 	root->Start();

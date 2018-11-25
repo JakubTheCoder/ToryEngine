@@ -12,6 +12,8 @@ namespace toryengine
 		void OnInit();
 		void OnUpdate();
 		void OnDraw();
+
+		std::shared_ptr<RenderTexture> GetRenderTexture() { return rt; }
 	private:
 
 		std::shared_ptr<RenderTexture> rt;
