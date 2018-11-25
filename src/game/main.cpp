@@ -163,32 +163,6 @@ int main()
 	platform5->AddComponent<Platform>();
 	platform5->GetComponent<toryengine::Transform>()->Translate(glm::vec3(platform5->GetComponent<Platform>()->GetPlatformPos(), 15.0f, -5.0f));
 	platform5->AddComponent<toryengine::BoxCollider>();
-
-
-	//Create Objcets
-	//std::shared_ptr<toryengine::Object> cube = root->AddObject();
-	//std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent<toryengine::MeshRenderer>();
-	//mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
-	//mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/curuthers_diffuse.png"));
-	//cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -5.0f, -5.0f));
-	//cube->AddComponent<toryengine::BoxCollider>();
-	////cube->AddComponent < toryengine::MeshCollider>();
-	////cube->AddComponent<MoveCube>();
-	//cube->AddComponent<Platform>();
-	////cube->AddComponent<toryengine::RenderTextureComponent>();
-	////cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(cube->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture(), cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
-	////cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(cube->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture()//, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
-
-
-	//std::shared_ptr<toryengine::Object> cube2 = root->AddObject();
-	//std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
-	//mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
-	//mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	//cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, 0.0f, -5.0f));
-	//cube2->AddComponent<toryengine::BoxCollider>();
-	////cube2->AddComponent < MoveCube2>();
-	//cube2->AddComponent<Platform>();
-	////cube2->AddComponent<toryengine::RenderTextureComponent>();
 	
 	std::shared_ptr<toryengine::Object>deathCube = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> deathCubeMr = deathCube->AddComponent < toryengine::MeshRenderer>();
@@ -197,8 +171,13 @@ int main()
 	deathCube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f,-15.0f,-5.0f));
 	deathCube->AddComponent<toryengine::BoxCollider>();
 	deathCube->AddComponent<DeathCube>();
-	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->
-		//Draw(cube2->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture(), cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
+
+	//platform5->GetComponent<toryengine::MeshRenderer>()->GetShader()->
+		//Draw(platform5->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture(), platform5->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
+
+	//Make GUI that takes in points to make a flat surface and apply texture to so you cna have background and you die screen
+	//std::shared_ptr<toryengine::Object> background = root->AddObject();
+
 
 	//Sound
 	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/Crush8-Bit.ogg");
