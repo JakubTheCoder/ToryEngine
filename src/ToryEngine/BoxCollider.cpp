@@ -28,6 +28,14 @@ namespace toryengine
 	{
 		return glm::vec3(sizeMax.x - sizeMin.x, sizeMax.y - sizeMin.y, sizeMax.z - sizeMin.z); 
 	}
+	glm::vec3 BoxCollider::GetMinSize()
+	{
+		return sizeMin;
+	}
+	glm::vec3 BoxCollider::GetMaxSize()
+	{
+		return sizeMax;
+	}
 
 	void BoxCollider::OnUpdate()
 	{
@@ -40,22 +48,18 @@ namespace toryengine
 			{
 				continue;
 			}
-
-			if (GetObject()->GetComponent<Transform>()->GetPosition().x < bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetSize().x &&
-				GetObject()->GetComponent<Transform>()->GetPosition().x + GetSize().x  > bc->GetObject()->GetComponent<Transform>()->GetPosition().x &&
-				GetObject()->GetComponent<Transform>()->GetPosition().y < bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetSize().y  &&
-				GetObject()->GetComponent<Transform>()->GetPosition().y + GetSize().y   > bc->GetObject()->GetComponent<Transform>()->GetPosition().y &&
-				GetObject()->GetComponent<Transform>()->GetPosition().z < bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetSize().z  &&
-				GetObject()->GetComponent<Transform>()->GetPosition().z + GetSize().z  > bc->GetObject()->GetComponent<Transform>()->GetPosition().z)
+			if (GetObject()->GetComponent<Transform>()->GetPosition().x + GetMinSize().x < bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetMaxSize().x &&
+				GetObject()->GetComponent<Transform>()->GetPosition().x + GetMaxSize().x > bc->GetObject()->GetComponent<Transform>()->GetPosition().x + bc->GetMinSize().x &&
+				GetObject()->GetComponent<Transform>()->GetPosition().y + GetMinSize().y < bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetMaxSize().y &&
+				GetObject()->GetComponent<Transform>()->GetPosition().y + GetMaxSize().y > bc->GetObject()->GetComponent<Transform>()->GetPosition().y + bc->GetMinSize().y &&
+				GetObject()->GetComponent<Transform>()->GetPosition().z + GetMinSize().z < bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetMaxSize().z &&
+				GetObject()->GetComponent<Transform>()->GetPosition().z + GetMaxSize().z > bc->GetObject()->GetComponent<Transform>()->GetPosition().z + bc->GetMinSize().z)
 			{
 				isColliding = true;
+				return;
 			}
-			else
-			{
-				isColliding = false;
-			}
-
 		}
+		isColliding = false;
 
 	}
 }

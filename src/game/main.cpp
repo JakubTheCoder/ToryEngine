@@ -1,9 +1,7 @@
 #include <iostream>
 #include <ToryEngine/toryengine.h>
 #include "Player.h"
-
-
-
+#include "Platform.h"
 class MoveCube :public toryengine::Component
 {
 public:
@@ -41,15 +39,14 @@ public:
 		{
 			move_dir *= -1;
 		}
-		if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
-		{
-			move_dir *= -1;
-		}
+		//if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding())
+		//{
+		//	move_dir *= -1;
+		//}
 
 	}
 private:
 	float move_dir = -1;
-	glm::vec3 lastPos;
 };
 
 int main()
@@ -81,22 +78,30 @@ int main()
 	player->AddComponent<toryengine::BoxCollider>();
 
 
-	std::shared_ptr<toryengine::Object>platform = root->AddObject();
-	std::shared_ptr<toryengine::MeshRenderer> platformMr = platform->AddComponent<toryengine::MeshRenderer>();
-	platformMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
-	platformMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	platform->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -3.0f, -5.0f));
-	platform->AddComponent<toryengine::BoxCollider>();
+	//std::shared_ptr<toryengine::Object>platform = root->AddObject();
+	//std::shared_ptr<toryengine::MeshRenderer> platformMr = platform->AddComponent<toryengine::MeshRenderer>();
+	//platformMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
+	//platformMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
+	//platform->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -3.0f, -5.0f));
+	//platform->AddComponent<toryengine::BoxCollider>();
+	//platform->AddComponent<Platform>();
 
+	//std::shared_ptr<toryengine::Object> platform = root->AddObject();
+	//std::shared_ptr<toryengine::MeshRenderer> platformMr = platform->AddComponent<toryengine::MeshRenderer>();
+	//platformMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
+	//platformMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
+	//platform->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -1.0f, -5.0f));
+	//platform->AddComponent<toryengine::BoxCollider>();
 	//Create Objcets
+
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent < toryengine::MeshRenderer>();
 	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/cube.obj"));
 	mrCube->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/curuthers_diffuse.png"));
-	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, -1.0f, 0.0f));
+	cube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -1.0f, 0.0f));
 	cube->AddComponent<toryengine::BoxCollider>();
 	//cube->AddComponent < toryengine::MeshCollider>();
-	//cube->AddComponent<MoveCube>();
+	cube->AddComponent<MoveCube>();
 
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::M>()->GetShape());
 	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
@@ -104,14 +109,15 @@ int main()
 
 	std::shared_ptr<toryengine::Object> cube2 = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube2 = cube2->AddComponent < toryengine::MeshRenderer>();
-	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/cube.obj"));
-	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/texture.jpg"));
-	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(4.0f, -1.0f, 0.0f));
+	mrCube2->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
+	mrCube2->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
+	cube2->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-4.0f, -1.0f, -5.0f));
 	cube2->AddComponent<toryengine::BoxCollider>();
-	//cube2->AddComponent < MoveCube2>();
+	cube2->AddComponent < MoveCube2>();
+	cube2->AddComponent<Platform>();
 	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 	//Sound
-	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/Crush8-Bit.ogg");
+	std::shared_ptr<toryengine::Sound> s = std::make_shared<toryengine::Sound>("../assets/dixie_horn.ogg");
 	s->Play();
 
 	root->Start();

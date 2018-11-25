@@ -123,8 +123,6 @@ namespace toryengine
 		temp->window = SDL_CreateWindow("Tory Engine", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,	//Creates a window 
 			WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
-		//glEnable(GL_CULL_FACE);
-		//glEnable(GL_DEPTH_TEST);
 
 		if (!SDL_GL_CreateContext(temp->window))	//makes sure window is made
 		{
