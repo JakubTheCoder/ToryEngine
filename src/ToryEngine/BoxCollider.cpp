@@ -24,9 +24,9 @@ namespace toryengine
 	//	sizeMax = p2;
 	//}
 
-	glm::vec3 BoxCollider::GetSize() 
+	glm::vec3 BoxCollider::GetSize()
 	{
-		return glm::vec3(sizeMax.x - sizeMin.x, sizeMax.y - sizeMin.y, sizeMax.z - sizeMin.z); 
+		return glm::vec3(sizeMax.x - sizeMin.x, sizeMax.y - sizeMin.y, sizeMax.z - sizeMin.z);
 	}
 	glm::vec3 BoxCollider::GetMinSize()
 	{
@@ -62,4 +62,23 @@ namespace toryengine
 		isColliding = false;
 
 	}
+
+	bool BoxCollider::isCollidingWith(std::shared_ptr<Object> other)
+	{
+		//std::vector<std::shared_ptr<Object>> colBoxes;	//Makes a vector of objects 
+		//root.lock()->GetObjectsWithComponent<BoxCollider>(colBoxes);	//Gets all the objects with a BoxCollider
+
+			if (GetObject()->GetComponent<Transform>()->GetPosition().x + GetMinSize().x < other->GetComponent<Transform>()->GetPosition().x + other->GetComponent<BoxCollider>()->GetMaxSize().x &&
+				GetObject()->GetComponent<Transform>()->GetPosition().x + GetMaxSize().x > other->GetComponent<Transform>()->GetPosition().x + other->GetComponent<BoxCollider>()->GetMinSize().x &&
+				GetObject()->GetComponent<Transform>()->GetPosition().y + GetMinSize().y < other->GetComponent<Transform>()->GetPosition().y + other->GetComponent<BoxCollider>()->GetMaxSize().y &&
+				GetObject()->GetComponent<Transform>()->GetPosition().y + GetMaxSize().y > other->GetComponent<Transform>()->GetPosition().y + other->GetComponent<BoxCollider>()->GetMinSize().y &&
+				GetObject()->GetComponent<Transform>()->GetPosition().z + GetMinSize().z < other->GetComponent<Transform>()->GetPosition().z + other->GetComponent<BoxCollider>()->GetMaxSize().z &&
+				GetObject()->GetComponent<Transform>()->GetPosition().z + GetMaxSize().z > other->GetComponent<Transform>()->GetPosition().z + other->GetComponent<BoxCollider>()->GetMinSize().z)
+			{
+				return true;
+			}
+		
+		return false;
+	}
+
 }

@@ -20,6 +20,7 @@ namespace toryengine
 		glm::vec3 GetMinSize();
 		glm::vec3 GetMaxSize();
 		bool isBoxColliding() { return isColliding; }
+		bool isCollidingWith(std::shared_ptr<Object> other);
 		void OnUpdate();
 		void OnInit();
 

@@ -93,8 +93,8 @@ int main()
 	//platformMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
 	//platform->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, -1.0f, -5.0f));
 	//platform->AddComponent<toryengine::BoxCollider>();
+	
 	//Create Objcets
-
 	std::shared_ptr<toryengine::Object> cube = root->AddObject();
 	std::shared_ptr<toryengine::MeshRenderer> mrCube = cube->AddComponent < toryengine::MeshRenderer>();
 	mrCube->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
@@ -104,8 +104,9 @@ int main()
 	//cube->AddComponent < toryengine::MeshCollider>();
 	//cube->AddComponent<MoveCube>();
 	cube->AddComponent<Platform>();
-	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::M>()->GetShape());
-	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(rt, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
+	//cube->AddComponent<toryengine::RenderTextureComponent>();
+	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(cube->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture(), cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
+	//cube->GetComponent<toryengine::MeshRenderer>()->GetShader()->Draw(cube->GetComponent<toryengine::RenderTextureComponent>()->GetRenderTexture()//, cube->GetComponent<toryengine::MeshRenderer>()->GetMesh()->GetShape());
 
 
 	std::shared_ptr<toryengine::Object> cube2 = root->AddObject();
@@ -122,7 +123,7 @@ int main()
 	std::shared_ptr<toryengine::MeshRenderer> deathCubeMr = deathCube->AddComponent < toryengine::MeshRenderer>();
 	deathCubeMr->SetMesh(root->GetResources()->Load<toryengine::Mesh>("../assets/platform.obj"));
 	deathCubeMr->SetTexture(root->GetResources()->Load<toryengine::Texture>("../assets/platform.jpg"));
-	deathCube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f,-7.0f,-5.0f));
+	deathCube->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f,-10.0f,-5.0f));
 	deathCube->AddComponent<toryengine::BoxCollider>();
 	deathCube->AddComponent<DeathCube>();
 	//cube2->GetComponent<toryengine::MeshRenderer>()->GetShader()->
