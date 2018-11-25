@@ -15,6 +15,7 @@
 void Player::OnUpdate()
 {
 	score++;
+	std::cout << "Score: " << score;
 	//std::cout << "Pos" << GetObject()->GetComponent<toryengine::Transform>()->GetPosition().y;
 	velocity= -1;
 

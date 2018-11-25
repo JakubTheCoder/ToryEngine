@@ -22,7 +22,7 @@ void Platform::OnUpdate()
 }
 float Platform::GetPlatformPos()
 {
-	platformPos = rand() % 12 - 6;
+	platformPos = rand() % 16 - 8;
 	std::cout << "Platform position :" << platformPos << std::endl;
 	return platformPos;
 }
