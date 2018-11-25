@@ -81,6 +81,7 @@ src/ToryEngine/BoxCollider.cpp
 src/ToryEngine/MeshCollider.h
 src/ToryEngine/MeshCollider.cpp
 src/ToryEngine/Camera.h
+src/ToryEngine/Camera.cpp
 src/ToryEngine/RenderTexture.h
 src/ToryEngine/RenderTexture.cpp
 src/ToryEngine/Keyboard.h

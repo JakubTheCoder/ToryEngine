@@ -22,9 +22,14 @@ void Player::OnUpdate()
 		{
 			if (GetObject()->GetComponent<toryengine::BoxCollider>()->isBoxColliding() && platforms.at(i)->GetComponent<Platform>())
 			{
+				GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, (0.1f*velocity)*-jumpForce, 0.0f));
 				//velocity *= -jumpForce;
-				GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 3.0f, 0.0f));
+				//GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 2.0f, 0.0f));
 			}
+		}
+		else
+		{
+			continue;
 		}
 	}
 	if (toryengine::Keyboard::IsKeyDown(SDLK_d))
@@ -35,11 +40,6 @@ void Player::OnUpdate()
 	{
 		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(-0.1f, 0.0f, 0.0f));
 	}
-	if (toryengine::Keyboard::IsKeyDown(SDLK_SPACE))
-	{
-		GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 5.0f, 0.0f));
-	}
-
 
 	GetObject()->GetComponent<toryengine::Transform>()->Translate(glm::vec3(0.0f, 0.1f*velocity, 0.0f));
 }

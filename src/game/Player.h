@@ -9,6 +9,6 @@ public:
 private:
 	float velocity = -1;
 	bool isJumping;
-	float jumpForce = 50.0f;
+	float jumpForce = 30.0f;
 
 };
