@@ -20,7 +20,13 @@ namespace toryengine
 	}
 	void RenderTextureComponent::OnDraw()
 	{
-		lightKeyShader->SetUniform("in_Texture", rt);
+		lightKeyShader->
+			
+			
+			
+			
+			
+			("in_Texture", rt);
 		lightKeyShader->Draw(lightKeyRt);
 
 		blurShader->SetUniform("in_Texture", lightKeyRt);
@@ -37,7 +43,7 @@ namespace toryengine
 		mergeShader->Draw(mergeRt);
 
 		nullShader->SetViewport(glm::vec4(0, 0, 800, 600));
-		nullShader->SetUniform("in_Texture", rt);
+		nullShader->("in_Texture", rt);
 	}
 	void RenderTextureComponent::OnUpdate()
 	{

@@ -10,13 +10,17 @@ namespace toryengine
 {
 	class Resource;
 
+	/*!
+		A container class for multiple Resource classes. 
+	*/
 	class Resources
 	{
 	public:
+		//! Template class that allows loading a resource
 		template <typename T>
 		std::shared_ptr<T> Load(std::string _path)
 		{
-			//creates a texture inside and returns;
+			//creates a resource inside and returns;
 			std::shared_ptr<T> temp = std::make_shared<T>();
 
 			for (size_t i = 0; i < resources.size(); i++)

@@ -262,7 +262,7 @@ namespace toryengine
 			throw std::exception();
 		}
 
-		return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();	// why do we do this calc?
+		return buffers.at(0)->GetDataSize() / buffers.at(0)->GetComponents();
 	}
 
 	GLuint VertexArray::GetId()

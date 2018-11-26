@@ -9,20 +9,22 @@
 
 namespace toryengine
 {
+	/*!
+		Texture class that allows you to load textures onto models
+	*/
 	class Texture : public Resource, private NonCopyable
 	{
 		friend class RenderTexture;
 
 	public:
-		Texture() {}
-		Texture(int width, int height);
-		GLuint GetId() { return id; }
-		glm::vec2 GetSize() { return size; }
+		Texture() {}///<Default constructor
+		Texture(int width, int height);	///<Binds Texutre
+		GLuint GetId() { return id; }	///<Returns texutre ID
+		glm::vec2 GetSize() { return size; }	///<Returns the size of the texture
 
-		std::string GetPath() { return path; }
+		std::string GetPath() { return path; }	///<Gets path to the texture file
 
-		void Load(std::string _path);
-		//std::shared_ptr<Texture>Create();
+		void Load(std::string _path);	///<Loads in Texture from file
 	private:
 		GLuint id;
 		bool dirty;

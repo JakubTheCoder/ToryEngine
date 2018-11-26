@@ -8,12 +8,12 @@ namespace toryengine
 	class VertexBuffer
 	{
 	public:
-		VertexBuffer();
-		void Add(glm::vec2 _value);
-		void Add(glm::vec3 _value);	//adds position in the X, Y and Z axis
-		void Add(glm::vec4 _value);	//adds 4 position in the X, Y,Z and W axis
-		int GetComponents();	
-		int GetDataSize() { return data.size(); }
+		VertexBuffer();	///<Default Constructor
+		void Add(glm::vec2 _value);	///<Adds buffer data in the X and Y axis
+		void Add(glm::vec3 _value);	///<Adds buffer data in the X, Y and Zaxis
+		void Add(glm::vec4 _value);	///<<Adds buffer data in the X, Y,Z and W axis
+		int GetComponents();	///<Get Component that is attached to object
+		int GetDataSize() { return data.size(); }	///<Gets the value of data 
 		GLuint GetId();
 
 	private:
