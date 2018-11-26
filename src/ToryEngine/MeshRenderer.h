@@ -11,17 +11,21 @@ namespace toryengine
 	class Texture;
 	class Camera;
 	class Root;
+
+	/*!
+		MeshRenderer class that takes care of drawing objects onto the screen
+	*/
 	class MeshRenderer : public Component
 	{
 	public:
-		void OnInit();
+		void OnInit();	///<Initialize function for Mesh Renderer
 
-		void SetMesh(std::weak_ptr<Mesh> _mesh);
-		std::shared_ptr<Mesh> GetMesh() { return mesh.lock(); }
+		void SetMesh(std::weak_ptr<Mesh> _mesh);	///<Makes the loaded in mesh to this component's mesh
+		std::shared_ptr<Mesh> GetMesh() { return mesh.lock(); }	///<Returns pointer to mesh in this component
 
-		void SetTexture(std::weak_ptr<Texture> _texture);
+		void SetTexture(std::weak_ptr<Texture> _texture);	///<Sets a texture to the mesh 
 
-		std::shared_ptr<ShaderProgram>GetShader() { return shader; }
+		std::shared_ptr<ShaderProgram>GetShader() { return shader; }	///<Gets the normal shader 
 	private:
 		void OnDraw();
 
@@ -33,7 +37,5 @@ namespace toryengine
 
 		std::weak_ptr<Mesh> mesh;
 		std::weak_ptr<Texture> texture;
-		//std::weak_ptr<Root> root;
-		//std::shared_ptr<Material> material;
 	};
 }

@@ -28,7 +28,7 @@ namespace toryengine
 			for (size_t i = 0; i < colObjects.size(); i++)
 			{
 				//glm::vec3 boxCenter = boxCollider->GetSize();
-				glm::vec3 boxCenter = GetObject()->GetComponent<BoxCollider>()->GetSize();
+				glm::vec3 boxCenter = GetObject()->GetComponent<BoxCollider>()->GetMaxSize()- GetObject()->GetComponent<BoxCollider>()->GetMinSize();
 
 				float bc[3] = { boxCenter.x,boxCenter.y,boxCenter.z };
 				float hs[3] = { boxCenter.x / 2,boxCenter.y / 2,boxCenter.z / 2 };

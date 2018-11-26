@@ -3,16 +3,16 @@
 #include <SDL2/SDL.h>
 namespace toryengine
 {
+	/*!
+		Keyboard Input class that stores all the keys that have been pressed
+	*/
 	class Keyboard
 	{
 	public:
-		//std::vector<SDL_Keycode> GetKeys() { return keys; }
-		//bool GetKey(SDL_Keycode keyCode);
-		//bool GetKeyUp(SDL_Keycode keyCode);
 		Keyboard() {}
 		~Keyboard() {}
-		static bool IsKeyDown(SDL_Keycode keyCode);
-		static std::vector<SDL_Keycode>keys;
+		static bool IsKeyDown(SDL_Keycode keyCode);	///<checks if a certain button was pressed
+		static std::vector<SDL_Keycode>keys;	///< public vecotr of keys that are being pressed so that they can be accessed from anywhere
 	private:
 
 	};

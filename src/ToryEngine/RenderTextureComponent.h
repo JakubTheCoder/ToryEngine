@@ -4,16 +4,18 @@ namespace toryengine
 {
 	class RenderTexture;
 	class ShaderProgram;
-
+	/*!
+		Stores render textures and shaders for render textures and post processing + blur
+	*/
 	class RenderTextureComponent :public Component
 	{
 
 	public:
-		void OnInit();
-		void OnUpdate();
-		void OnDraw();
+		void OnInit();	///<Initialization function for Render Texture Component
+		void OnUpdate();///<Update function for Render Texture Component
+		void OnDraw();	///<Draw function for Render Texture Component
 
-		std::shared_ptr<RenderTexture> GetRenderTexture() { return rt; }
+		std::shared_ptr<RenderTexture> GetRenderTexture() { return rt; }	///<returns render texture
 	private:
 
 		std::shared_ptr<RenderTexture> rt;

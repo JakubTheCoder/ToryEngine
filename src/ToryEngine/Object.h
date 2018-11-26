@@ -49,6 +49,7 @@ namespace toryengine
 			return false;
 
 		}
+
 		//!Allows you to add a component to a object of any type
 		template <typename T>
 		std::shared_ptr<T> AddComponent()	

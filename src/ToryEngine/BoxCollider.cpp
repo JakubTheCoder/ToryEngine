@@ -18,16 +18,7 @@ namespace toryengine
 		sizeMax = GetObject()->GetComponent<MeshRenderer>()->GetMesh()->GetMaxBoundMesh();
 
 	}
-	//void BoxCollider::SetSize(glm::vec3 p1, glm::vec3 p2)
-	//{
-	//	sizeMin = p1;
-	//	sizeMax = p2;
-	//}
 
-	glm::vec3 BoxCollider::GetSize()
-	{
-		return glm::vec3(sizeMax.x - sizeMin.x, sizeMax.y - sizeMin.y, sizeMax.z - sizeMin.z);
-	}
 	glm::vec3 BoxCollider::GetMinSize()
 	{
 		return sizeMin;

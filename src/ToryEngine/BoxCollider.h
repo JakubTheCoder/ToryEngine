@@ -7,25 +7,23 @@ namespace toryengine
 {
 	class Root;
 	class MeshRenderer;
-
+	/*!
+		BoxCollider class that makes a collider around a object that is used for collision
+	*/
 	class BoxCollider : public Component
 	{
 		friend class Object;
 
 	public:
-		//BoxCollider();
-		void SetSize();
-		//void SetSize(glm::vec3 minPoint,glm::vec3 maxPoint);
-		glm::vec3 GetSize();
-		glm::vec3 GetMinSize();
-		glm::vec3 GetMaxSize();
-		bool isBoxColliding() { return isColliding; }
-		bool isCollidingWith(std::shared_ptr<Object> other);
-		void OnUpdate();
-		void OnInit();
+		void SetSize();	///<Sets the size of the collider based on the smallest and biggest point of the mesh
+		glm::vec3 GetMinSize();	///<Gets the minimum point of the collider (used for collision)
+		glm::vec3 GetMaxSize();	///<Gets the maximum pooint of the collider (used for collision)
+		bool isBoxColliding() { return isColliding; }	///<Returns true or false based on if there is a collision
+		bool isCollidingWith(std::shared_ptr<Object> other);	///<Checks to see if collisions are happening between another specified object
+		void OnUpdate();	///<Update function for box collider 
+		void OnInit();	///<Initialisation function for box collider
 
 	private:
-		//std::weak_ptr<Mesh> mesh;
 		std::weak_ptr<Root> root;
 		glm::vec3 sizeMin;
 		glm::vec3 sizeMax;
