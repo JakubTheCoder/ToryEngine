@@ -7,9 +7,8 @@
 
 #include "NonCopyable.h"
 #include "Object.h"
-//ROOT = CORE
 
-namespace toryengine	//Makes sure it uses the Tory Engine functions, even if user has same function names.
+namespace toryengine
 {
 
 	//allows root to access these classes
@@ -19,23 +18,37 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 	class Camera;
 	class Keyboard;
 
+	/*!
+	Root is  the base class of the engine, it is used to update Object and any Component attached to it.
+	All Objects that are made are added to the vector of objects inside of root,
+	so that Objects or Components can access other objects allowing them to interact with eachother
+	by going up the heirarchy.
+	*/
+
 	class Root :private NonCopyable
 	{
 
 	public:
-		static std::shared_ptr<Root> Initalize();	//static can be called anywhere to init Root
+		///<Initializes Root. It has to be called when Root is made. Initalize sets up any dependancies like SDL, Glew and OpenAL
+		static std::shared_ptr<Root> Initalize();	
 
-		void Start();	//Main loop. runs all object updates etc
-		void Stop();	//stops the program
+		void Start();	///<Main loop. Updates and draws all Objects as well as adds Keyboard input
+		void Stop();	///<Stops the program.
 
-		std::shared_ptr<Object> AddObject();	//Adds a object to the vector
-		std::shared_ptr<Resources> GetResources() { return resources; }	//get a list of resources
-		std::shared_ptr<Environment> GetEnvironment() { return environment; }
-		std::shared_ptr<Object> GetCurrentCamera() { return currentCamera; }
-		void SetCurrentCamera(std::shared_ptr<Object> _camera) { currentCamera = _camera; }
+		std::shared_ptr<Object> AddObject();	///<Adds an Object to a vector to keep track and update
+		std::shared_ptr<Resources> GetResources() { return resources; }	///<Grants access to Resources manager
+		std::shared_ptr<Environment> GetEnvironment() { return environment; }	///<Grants access to environment(delta time)
+		std::shared_ptr<Object> GetCurrentCamera() { return currentCamera; }	///<Grants access to current camera that is displaying
+		void SetCurrentCamera(std::shared_ptr<Object> _camera) { currentCamera = _camera; }	///<Sets a camera to current to view through camera
 
+		//!\brief Template class that lets you check if a object has a certain component
+		/*!
+		To use this function a vector of objects needs to be made and passed in as the parameter which will add all the objects with said component to the vector:	
+		std::vector<std::shared_ptr<aComponentType> objectsWithComponent;
+		*/
+		
 		template <typename T> 
-		void GetObjectsWithComponent(std::vector<std::shared_ptr<Object>>& output)
+		void GetObjectsWithComponent(std::vector<std::shared_ptr<Object>>& output)	
 		{
 			//output.clear();
 			for (size_t i= 0; i < objects.size(); i++)
@@ -55,13 +68,12 @@ namespace toryengine	//Makes sure it uses the Tory Engine functions, even if use
 		//Other stuff Root has to access
 		std::shared_ptr<Resources> resources;	//loading in textures / models / shaders
 		std::shared_ptr<Environment> environment;	//delta time
-		//std::shared_ptr<Keyboard> keyboard;
 
-		std::shared_ptr<Object> currentCamera;
+		std::shared_ptr<Object> currentCamera;	//Current camera
 
 
 		bool running;	//game loop bool
-		SDL_Window* window;
+		SDL_Window* window;	
 		ALCdevice* device;
 		ALCcontext* context;
 	};

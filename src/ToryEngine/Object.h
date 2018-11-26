@@ -7,17 +7,18 @@
 namespace toryengine
 {
 	/*!
-	Acts as base object to attach components to.
+		Object is a class that allows you to create game objects to attach components to. 
 	*/
 	class Object
 
 	{
 		friend class Root; //Friend allows a class to access the private and protected variables of this class
 	public:
-		std::shared_ptr<Root> GetRoot();	///< Go to the root, allows to interact with other objects
+		std::shared_ptr<Root> GetRoot();	///< Get Access to Root, allowing to go up hierarchy
 
+		//!Template class that allows you to get a component of any type
 		template <typename T> 
-		std::shared_ptr<T> GetComponent()	//template class since we dont know what type the component will be
+		std::shared_ptr<T> GetComponent()
 		{
 			for (size_t i = 0; i < components.size(); i++)	//go thorugh all components of a object
 			{
@@ -32,8 +33,9 @@ namespace toryengine
 
 		}
 
+		//!Template class that allows you to check if a object has a specific componenet
 		template <typename T>
-		bool HasComponent()	//template class since we dont know what type the component will be
+		bool HasComponent()	
 		{
 			for (size_t i = 0; i < components.size(); i++)	//go thorugh all components of a object
 			{
@@ -47,10 +49,9 @@ namespace toryengine
 			return false;
 
 		}
-
-		//Allows the constructor to set different vars, for example Make player. Make player in red team. Make player in red team a wizard.
+		//!Allows you to add a component to a object of any type
 		template <typename T>
-		std::shared_ptr<T> AddComponent()
+		std::shared_ptr<T> AddComponent()	
 		{
 			std::shared_ptr<T> temp = std::make_shared<T>();
 			temp->object = objectSelf;
@@ -63,7 +64,7 @@ namespace toryengine
 		}
 
 		template <typename T, typename A>
-		std::shared_ptr<T> AddComponent(A _a)
+		std::shared_ptr<T> AddComponent(A _a)	///<allows the constructor to set different vars, for example  Make player in red team etc.
 		{
 			std::shared_ptr<T> temp = std::make_shared<T>();
 			temp->object = objectSelf;
@@ -76,15 +77,6 @@ namespace toryengine
 
 			return temp;
 		}
-
-		/*
-		template <typename T, typename A, typename B>
-		std::shared_ptr<T> addComponent<T>(A a, B b);
-
-		template <typename T, typename A, typename B, typename C> 
-		std::shared_ptr<T> addComponent<T>(A a, B b, C c);
-		*/
-
 	private:
 		std::weak_ptr<Object> objectSelf;
 		std::weak_ptr<Root> root;

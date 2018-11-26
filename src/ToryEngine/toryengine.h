@@ -11,7 +11,6 @@
 #include "Resources.h"
 #include "Sound.h"
 #include "Transform.h"
-#include "Collider.h"
 #include "BoxCollider.h"
 #include "MeshCollider.h"
 #include "Camera.h"

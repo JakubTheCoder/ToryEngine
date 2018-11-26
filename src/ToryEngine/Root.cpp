@@ -7,7 +7,7 @@
 #include "Environment.h"
 #include "Camera.h"
 #include "Keyboard.h"
-#include <iostream>
+
 #define WINDOW_WIDTH 800	
 #define WINDOW_HEIGHT 600
 
@@ -16,9 +16,6 @@ namespace toryengine
 	void Root::Start()
 	{
 		running = true; //game loop bool
-
-		//
-		//glm::vec3 angle = glm::vec3(0.0f, 1.0f, 0.0f);
 
 		float lastTime = SDL_GetTicks();
 		float idealTime = 1.0f / 60.0f;
@@ -29,7 +26,8 @@ namespace toryengine
 			float diff = time - lastTime;
 			environment->SetDeltaTime(diff / 1000.0f);
 
-			SDL_Event event = { 0 }; //allows us to have inputs
+			SDL_Event event = { 0 }; //Allows us to have inputs
+
 			while (SDL_PollEvent(&event))
 			{
 				switch (event.type)
@@ -37,15 +35,15 @@ namespace toryengine
 				case SDL_QUIT:
 					running = false;
 					break;
-					
-				case SDL_KEYDOWN:
-					Keyboard::keys.push_back(event.key.keysym.sym);
+
+				case SDL_KEYDOWN:	//If any key is pressed down
+					Keyboard::keys.push_back(event.key.keysym.sym);	//add that key to a vector of keys for input
 					break;
 
-				case SDL_KEYUP:
+				case SDL_KEYUP:	//if a key is not being pressed anymore (Key is back up)
 					for (int i = 0; i < Keyboard::keys.size(); i++)
 					{
-						if (Keyboard::keys.at(i) == event.key.keysym.sym)
+						if (Keyboard::keys.at(i) == event.key.keysym.sym)	//Remove the key that is not being pressed from the inputs
 						{
 							Keyboard::keys.erase(Keyboard::keys.begin() + i);
 							i--;
@@ -67,9 +65,9 @@ namespace toryengine
 			//}
 
 			//UPDATE OBJECTS
-			for (std::vector<std::shared_ptr<Object> >::iterator i = objects.begin(); i != objects.end(); i++)	//go through all objects in object vector
+
+			for (std::vector<std::shared_ptr<Object> >::iterator i = objects.begin(); i != objects.end(); i++)	//Go Through all Objects and update them
 			{
-				//(*i)->GetComponent<Transform>()->Rotate(angle);
 				(*i)->Update(); //object ticks() 
 			}
 
@@ -77,8 +75,10 @@ namespace toryengine
 			glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+			//Cull faces and Depth Test for drawing faces in right order
 			glEnable(GL_CULL_FACE);
 			glEnable(GL_DEPTH_TEST);
+
 			//DRAW OBJECTS
 			for (std::vector<std::shared_ptr<Object>>::iterator i = objects.begin(); i != objects.end(); i++)
 			{
@@ -134,12 +134,12 @@ namespace toryengine
 			throw std::exception();
 		}
 
+		//Audio
 		temp->device = alcOpenDevice(NULL);
 		if (!temp->device)
 		{
 			throw std::exception();
 		}
-		//temp->context = alcCreateContext(temp->device, NULL);
 		temp->context = alcCreateContext(temp->device, NULL);
 		if (!temp->context)
 		{
@@ -153,6 +153,7 @@ namespace toryengine
 			alcCloseDevice(temp->device);
 			throw std::exception();
 		}
+
 		return temp;
 	}
 	std::shared_ptr<Object> Root::AddObject()
