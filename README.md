@@ -1,2 +1,2 @@
 # ToryEngine
-The Tory Game Engine
+The (Vic)Tory Game Engine
